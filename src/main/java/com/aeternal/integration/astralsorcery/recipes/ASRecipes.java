@@ -1,3 +1,7 @@
+//---This code is a part of the original IU(Industrial Upgrade) code: https://github.com/ZelGimi/industrialupgrade. Project: https://www.curseforge.com/minecraft/mc-mods/industrial-upgrade.
+//---The rights to this code belong to their original authors.---///
+//---The usage and modification of it are a subject to the license of the original souce code and discretion of it's author.---///
+
 package com.aeternal.integration.astralsorcery.recipes;
 
 import com.aeternal.integration.astralsorcery.block.BlockAstralSolarPanel;
@@ -7,27 +11,18 @@ import com.denfop.api.Recipes;
 import com.denfop.api.recipe.BaseMachineRecipe;
 import com.denfop.api.recipe.Input;
 import com.denfop.api.recipe.RecipeOutput;
-import com.denfop.blocks.FluidName;
-import com.denfop.items.resource.ItemIngots;
 import com.denfop.recipe.IInputHandler;
-import com.denfop.recipe.IInputItemStack;
-import hellfirepvp.astralsorcery.AstralSorcery;
 import hellfirepvp.astralsorcery.common.crafting.altar.recipes.AttunementRecipe;
 import hellfirepvp.astralsorcery.common.crafting.altar.recipes.ConstellationRecipe;
 import hellfirepvp.astralsorcery.common.crafting.altar.recipes.TraitRecipe;
 import hellfirepvp.astralsorcery.common.crafting.helper.ShapedRecipeSlot;
-import hellfirepvp.astralsorcery.common.item.ItemCraftingComponent;
-import hellfirepvp.astralsorcery.common.item.useables.ItemUsableDust;
 import hellfirepvp.astralsorcery.common.lib.BlocksAS;
 import hellfirepvp.astralsorcery.common.lib.ItemsAS;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-import static com.aeternal.integration.astralsorcery.block.BlockAstralSolarPanel.dimscp_solar_panel;
 import static com.denfop.tiles.mechanism.TileGenerationMicrochip.add;
 import static hellfirepvp.astralsorcery.common.crafting.altar.AltarRecipeRegistry.registerConstellationRecipe;
 import static hellfirepvp.astralsorcery.common.crafting.altar.AltarRecipeRegistry.registerTraitRecipe;
