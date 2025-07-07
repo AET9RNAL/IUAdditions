@@ -13,8 +13,8 @@ The user is granted the following rights and permissions. The author reserves th
 
 2.1 Use and modification
 
-You can include this mode in any projects, including modpacks and distribute it as part of your modpack without the need to obtain permission from the author.
-You may distribute a modified version of a mod, provided you clearly indicate that it is a modification of the original and provide a link to the original source (CurseForge or Modrinth).
+You can include this mod in any projects, including modpacks and distribute it as part of your modpack without the need to obtain permission from the author.
+You may distribute a modified version of the mod, provided you clearly indicate that it is a modification of the original and provide a link to the original source (CurseForge or Modrinth).
 If you want to create a complete analogue of this mod, which means creating a software product in which key aspects of the mod (functionality more than 50% similar to the original, graphical interface and block textures) are clearly copied, you must obtain written permission from the author. The author reserves the right to refuse such permission.
 
 2.2 Contributing
