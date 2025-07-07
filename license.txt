@@ -1,0 +1,16 @@
+IU:Additions is licensed under All rights reserved (ARR)
+June 21, 2025
+
+1. Preamble
+
+This license governs the use, modification and distribution of this software. Although the mod is distributed under All Rights Reserved (ARR) license, this license grants the user additional rights under which they may modify and redistribute the software.
+
+By using this software you automatically agree to the terms of this license.
+
+2. Permissions
+
+The user is granted the following rights and permissions. The author reserves the right to change these rights and permissions in the future without further notice.
+
+2.1 Use and modification
+
+You may
