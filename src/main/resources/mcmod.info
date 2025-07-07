@@ -3,7 +3,7 @@
     "authorList" : [
       "AETERNAL"
     ],
-    "credits" : "This addon utilises code and api of Industrial Upgrade that belongs to it's respective owners",
+    "credits" : "This addon utilises source code of Industrial Upgrade that belongs to it's respective owners",
     "dependants" : [],
     "dependencies" : ["industrialupgrade"],
     "description" : "",
@@ -16,6 +16,6 @@
     "screenshots" : [],
     "updateUrl" : "",
     "url" : "",
-    "version" : "1.0"
+    "version" : "1.3.1"
   }
 ]
