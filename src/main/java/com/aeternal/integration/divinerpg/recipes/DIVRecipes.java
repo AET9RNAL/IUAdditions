@@ -256,22 +256,22 @@ public class DIVRecipes {
         ;
     }
     public static void DIVCompressorRecipe() {
-        addcompressor(DivinerpgIntegration.plate_shadowphotonium.getDefaultInstance(), 9, DivinerpgIntegration.plate_shadowphotoniumdense.getDefaultInstance());
-        addcompressor(DivinerpgIntegration.plate_moltendemon.getDefaultInstance(), 9, DivinerpgIntegration.plate_moltendemondense.getDefaultInstance());
-        addcompressor(DivinerpgIntegration.plate_hades.getDefaultInstance(), 9, DivinerpgIntegration.plate_hadesdense.getDefaultInstance());
-        addcompressor(DivinerpgIntegration.plate_harmonite.getDefaultInstance(), 9, DivinerpgIntegration.plate_harmonitedense.getDefaultInstance());
-        addcompressor(DivinerpgIntegration.plate_nucleoarlemite.getDefaultInstance(), 9, DivinerpgIntegration.plate_nucleoarlemitedense.getDefaultInstance());
-        addcompressor(DivinerpgIntegration.plate_celestial.getDefaultInstance(), 9, DivinerpgIntegration.plate_celestialdense.getDefaultInstance());
+        addcompressor(new ItemStack(DivinerpgIntegration.plate_shadowphotonium), 9, new ItemStack(DivinerpgIntegration.plate_shadowphotoniumdense));
+        addcompressor(new ItemStack(DivinerpgIntegration.plate_moltendemon), 9, new ItemStack(DivinerpgIntegration.plate_moltendemondense));
+        addcompressor(new ItemStack(DivinerpgIntegration.plate_hades), 9, new ItemStack(DivinerpgIntegration.plate_hadesdense));
+        addcompressor(new ItemStack(DivinerpgIntegration.plate_harmonite), 9, new ItemStack(DivinerpgIntegration.plate_harmonitedense));
+        addcompressor(new ItemStack(DivinerpgIntegration.plate_nucleoarlemite), 9, new ItemStack(DivinerpgIntegration.plate_nucleoarlemitedense));
+        addcompressor(new ItemStack(DivinerpgIntegration.plate_celestial), 9, new ItemStack(DivinerpgIntegration.plate_celestialdense));
 
     }
 
     public static void DIVRollingRecipe() {
 
-        addmolot("ingotShadowPhotonium", DivinerpgIntegration.plate_shadowphotonium.getDefaultInstance());
-        addmolot("ingotDemonic", DivinerpgIntegration.plate_moltendemon.getDefaultInstance());
-        addmolot("ingotHades", DivinerpgIntegration.plate_hades.getDefaultInstance());
-        addmolot("ingotHarmonite", DivinerpgIntegration.plate_harmonite.getDefaultInstance());
-        addmolot("ingotNucleoArlemite", DivinerpgIntegration.plate_nucleoarlemite.getDefaultInstance());
+        addmolot("ingotShadowPhotonium", new ItemStack(DivinerpgIntegration.plate_shadowphotonium));
+        addmolot("ingotDemonic", new ItemStack(DivinerpgIntegration.plate_moltendemon));
+        addmolot("ingotHades", new ItemStack(DivinerpgIntegration.plate_hades));
+        addmolot("ingotHarmonite", new ItemStack(DivinerpgIntegration.plate_harmonite));
+        addmolot("ingotNucleoArlemite", new ItemStack(DivinerpgIntegration.plate_nucleoarlemite));
 
     }
 

@@ -71,13 +71,9 @@ public final class Core {
         if(Constants.DE_LOADED && Constants.DE_CONFIRM && Constants.PU_LOADED) {
             itemSpectralPowerConverter = TileBlockCreator.instance.create(BlockSpectralConverter.class);
             itemSpectralQEConverter = TileBlockCreator.instance.create(BlockSpectralQEConverter.class);
-            itemSpectralPowerConverter.registerModels();
-            itemSpectralQEConverter.registerModels();
         }
         if(Constants.BA_LOADED && Constants.BA_CONFIRM && Constants.PU_LOADED) {
             itemManaConverter = TileBlockCreator.instance.create(BlockManaConverter.class);
-            itemManaConverter.registerModels();
-
         }
         if (event.getSide() == Side.CLIENT) {
             for (IModelRender register : modelList) {
@@ -86,14 +82,19 @@ public final class Core {
             if(Constants.AS_LOADED && Constants.AS_CONFIRM) {
                 blockASSolarPanel.registerModels();
             }
-
             if(Constants.DIV_LOADED && Constants.DIV_CONFIRM) {
                 blockDivineSolarPanel.registerModels();
             }
             if(Constants.FO_LOADED && Constants.FO_CONFIRM) {
                 blockForestrySolarPanel.registerModels();
             }
-
+            if(Constants.DE_LOADED && Constants.DE_CONFIRM) {
+                itemSpectralPowerConverter.registerModels();
+                itemSpectralQEConverter.registerModels();
+            }
+            if(Constants.BA_LOADED && Constants.BA_CONFIRM) {
+                itemManaConverter.registerModels();
+            }
 
         }
     }

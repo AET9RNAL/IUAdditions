@@ -230,8 +230,8 @@ public class ASRecipes {
 
 
     public static void ASCompressorRecipe() {
-        addcompressor(AstralSorceryIntegration.iridium_reinforced_stellar.getDefaultInstance(), 4, AstralSorceryIntegration.iridium_dense_stellar.getDefaultInstance());
-        addcompressor(AstralSorceryIntegration.iridium_dense_stellar.getDefaultInstance(), 9, AstralSorceryIntegration.iridium_advanced_stellar.getDefaultInstance());
+        addcompressor(new ItemStack(AstralSorceryIntegration.iridium_reinforced_stellar), 4, new ItemStack(AstralSorceryIntegration.iridium_dense_stellar));
+        addcompressor(new ItemStack(AstralSorceryIntegration.iridium_dense_stellar), 9, new ItemStack(AstralSorceryIntegration.iridium_advanced_stellar));
 
     }
     public static void MicrochipRecipe(){

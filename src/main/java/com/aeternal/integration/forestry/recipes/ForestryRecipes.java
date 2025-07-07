@@ -92,10 +92,7 @@ public class ForestryRecipes {
 
     public static void FOCompressorRecipe() {
 
-
-
-
-        addcompressor(ItemHoneyComb.VanillaComb.SIMMERING.get(), 32, ForestryIntegration.compressed_shimmeringhoneycomb.getDefaultInstance());
+        addcompressor(ItemHoneyComb.VanillaComb.SIMMERING.get(), 32, new ItemStack(ForestryIntegration.compressed_shimmeringhoneycomb));
      //   addcompressor(String.valueOf(EnumHoneyComb.URANIUM), 32, ForestryIntegration.compressed_radioactivehoneycomb.getDefaultInstance());
 
     }
