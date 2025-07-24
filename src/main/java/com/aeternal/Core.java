@@ -25,18 +25,23 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.oredict.OreDictionary;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.aeternal.integration.astralsorcery.tile.AstralSorceryIntegration.blockASSolarPanel;
+import static com.aeternal.integration.astralsorcery.AstralSorceryIntegration.blockASSolarPanel;
 import static com.aeternal.integration.divinerpg.DivinerpgIntegration.blockDivineSolarPanel;
 import static com.aeternal.integration.forestry.ForestryIntegration.blockForestrySolarPanel;
 
 @SuppressWarnings({"ALL", "UnnecessaryFullyQualifiedName"})
 @Mod.EventBusSubscriber
-@Mod(modid = Constants.MOD_ID, name = Constants.MOD_NAME, dependencies = Constants.MOD_DEPS, version = Constants.MOD_VERSION, acceptedMinecraftVersions = "[1.12,1.12.2]")
+@Mod(modid = Constants.MOD_ID,
+        name = Constants.MOD_NAME,
+        dependencies = Constants.MOD_DEPS,
+        version = Constants.MOD_VERSION,
+        acceptedMinecraftVersions = "[1.12,1.12.2]")
 public final class Core {
 
     public static final CreativeTabs IUATab = new TabCore(0, "IU:AdditionsTab");
@@ -46,8 +51,11 @@ public final class Core {
     public static BlockTileEntity itemSpectralQEConverter;
     public static BlockTileEntity itemManaConverter;
 
-    public static Logger log;
-    @SidedProxy(clientSide = "com.aeternal.proxy.ClientProxy", serverSide = "com.aeternal.proxy.CommonProxy")
+    public static final Logger LOGGER = LogManager.getLogger(Constants.MOD_ID);
+
+    @SidedProxy(
+            clientSide = "com.aeternal.proxy.ClientProxy",
+            serverSide = "com.aeternal.proxy.CommonProxy")
     public static CommonProxy proxy;
 
     @Mod.Instance("iuadditions")
@@ -56,6 +64,7 @@ public final class Core {
     public static ResourceLocation getIdentifier(final String name) {
         return new ResourceLocation(Constants.MOD_ID, name);
     }
+
     public static final List<IModelRender> modelList = new ArrayList<>();
     public static void addIModelRegister(IModelRender puItemBase) {
         modelList.add(puItemBase);
@@ -65,19 +74,14 @@ public final class Core {
     @Mod.EventHandler
     public void load(final FMLPreInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(this);
-        com.aeternal.Core.log = event.getModLog();
         Config.loadNormalConfig(event.getSuggestedConfigurationFile());
         proxy.preInit(event);
         if(Constants.DE_LOADED && Constants.DE_CONFIRM && Constants.PU_LOADED) {
             itemSpectralPowerConverter = TileBlockCreator.instance.create(BlockSpectralConverter.class);
             itemSpectralQEConverter = TileBlockCreator.instance.create(BlockSpectralQEConverter.class);
-            itemSpectralPowerConverter.registerModels();
-            itemSpectralQEConverter.registerModels();
         }
         if(Constants.BA_LOADED && Constants.BA_CONFIRM && Constants.PU_LOADED) {
             itemManaConverter = TileBlockCreator.instance.create(BlockManaConverter.class);
-            itemManaConverter.registerModels();
-
         }
         if (event.getSide() == Side.CLIENT) {
             for (IModelRender register : modelList) {
@@ -86,17 +90,23 @@ public final class Core {
             if(Constants.AS_LOADED && Constants.AS_CONFIRM) {
                 blockASSolarPanel.registerModels();
             }
-
             if(Constants.DIV_LOADED && Constants.DIV_CONFIRM) {
                 blockDivineSolarPanel.registerModels();
             }
             if(Constants.FO_LOADED && Constants.FO_CONFIRM) {
                 blockForestrySolarPanel.registerModels();
             }
-
+            if(Constants.DE_LOADED && Constants.DE_CONFIRM && Constants.PU_LOADED) {
+                itemSpectralPowerConverter.registerModels();
+                itemSpectralQEConverter.registerModels();
+            }
+            if(Constants.BA_LOADED && Constants.BA_CONFIRM && Constants.PU_LOADED) {
+                itemManaConverter.registerModels();
+            }
 
         }
     }
+
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         registerOreDict();
@@ -108,7 +118,6 @@ public final class Core {
 
     @Mod.EventHandler
     public void init(final FMLInitializationEvent event) {
-        SRecipes.init();
         proxy.init(event);
     }
 

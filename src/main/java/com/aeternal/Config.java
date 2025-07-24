@@ -105,7 +105,7 @@ public final class Config {
     public static boolean allowManaToEfConversion;
 
     public static void loadNormalConfig(final File configFile) {
-        Core.log.info("Loading IUA Config from " + configFile.getAbsolutePath());
+        Core.LOGGER.info("Loading IUA Config from " + configFile.getAbsolutePath());
 
         final Configuration config = new Configuration(configFile);
         try {
@@ -229,7 +229,7 @@ public final class Config {
             manatransferrate = config.get("general", "mana I/O transfer rate", 50000).getInt(50000);
 
         } catch (Exception e) {
-            Core.log.fatal("Fatal error reading config file.", e);
+            Core.LOGGER.fatal("Fatal error reading config file.", e);
             throw new RuntimeException(e);
         } finally {
             if (config.hasChanged()) {

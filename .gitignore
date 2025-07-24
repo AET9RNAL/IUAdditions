@@ -1,35 +1,22 @@
-## gradle
-/.gradle
-/build
+# eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
 
-## ForgeGradle
-/run
+# idea
+out
+*.ipr
+*.iws
+*.iml
+.idea
 
-## eclipse
-/.settings
-/.metadata
-/.classpath
-/.project
-/eclipse
-/bin
+# gradle
+build
+.gradle
 
-## intellij
-/out
-/.idea
-/atlassian-ide-plugin.xml
-/*.ipr
-/*.iws
-/*.iml
-/classes
-
-## Jars
-*.jar
-!/gradle/wrapper/gradle-wrapper.jar
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
-
+# other
+eclipse
+run

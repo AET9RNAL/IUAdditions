@@ -40,95 +40,103 @@ iuadditions.divinepanel.crossdimentional_solar_panel=§c§lCrossdimensional Sola
 
 iuadditions.forestrypanel.cyanbeekeeper_solar_panel=§bCyan Beekeeper Solar Panel
 iuadditions.forestrypanel.bluebeekeeper_solar_panel=§9Blue Beekeeper Solar Panel
-iuadditions.forestrypanel.greenbeekeeper_solar_panel=§aGreen Beekeeper Solar Panel
+iuadditions.forestrypanel.greenbeekeeper_solar_panel=§Radioactive Beekeeper Solar Panel
 iuadditions.forestrypanel.staticbeekeeper_solar_panel=§5Static Beekeeper Solar Panel
-iuadditions.forestrypanel.purplebeekeeper_solar_panel=§dPurple Beekeeper Solar Panel
+iuadditions.forestrypanel.purplebeekeeper_solar_panel=§dVenomou Beekeeper Solar Panel
 iuadditions.forestrypanel.amberbeekeeper_solar_panel=§6Amber Beekeeper Solar Panel
 iuadditions.forestrypanel.refractivebeekeeper_solar_panel=§4§lRefractive Beekeeper Solar Panel
 
 iuadditions.spectralconverter.spectral_converter=§dSpectral Converter
 iuadditions.spectralqeconverter.spectralqe_converter=§dQuantum Spectral Converter
 iuadditions.manaconverter.mana_converter=§bMana Converter
+
 #ITEMS
-iua.plate_astralstarmetal.name=Starmetal Plate
 
-iua.capacitor_stellar.name=Stellar Capacitor
-iua.capacitor_eden.name=Eden Capacitor
-iua.capacitor_wildwood.name=Wildwood Capacitor
-iua.capacitor_apalachia.name=Apalachia Capacitor
-iua.capacitor_skythern.name=Skythern Capacitor
-iua.capacitor_mortum.name=Mortum Capacitor
-iua.capacitor_arcana.name=Arcana Capacitor
+#Astral
+iua.astral_element.plate=Starmetal Plate
+iua.astral_element.capacitor=Stellar Capacitor
+iua.astral_element.iridium=Stellar Iridium
+iua.astral_element.circuit=Stellar Circuit
+iua.astral_element.qfp_chip=Stellar QFP Chip
+iua.astral_element.soic_chip=Stellar SOIC Chip
+iua.astral_element.core=Stellar Core
+iua.astral_element.reinforced_iridium=Industrial Stellar Iridium Plate
+iua.astral_element.dense_reinforced_iridium=Compressed Stellar Industrial Iridium Plate
+iua.astral_element.iridium_advanced=Dense Compressed Stellar Industrial Iridium Plate
 
-iua.iridium_stellar.name=Stellar Iridium
+#DivRPG
+iua.divinerpg_elements.eden_capacitor=Eden Capacitor
+iua.divinerpg_elements.wildwood_capacitor=Wildwood Capacitor
+iua.divinerpg_elements.apalachia_capacitor=Apalachia Capacitor
+iua.divinerpg_elements.skythern_capacitor=Skythern Capacitor
+iua.divinerpg_elements.mortum_capacitor=Mortum Capacitor
+iua.divinerpg_elements.arcana_capacitor=Arcana Capacitor
+iua.divinerpg_elements.vethea_capacitor=Vethea Capacitor
 
-iua.circuit_stellar.name=Stellar Circuit
-iua.circuit_eden.name=Eden Circuit
-iua.circuit_wildwood.name=Wildwood Circuit
-iua.circuit_apalachia.name=Apalachia Circuit
-iua.circuit_skythern.name=Skythern Circuit
-iua.circuit_mortum.name=Mortum Circuit
-iua.circuit_arcana.name=Arcana Circuit
+iua.divinerpg_elements.eden_soic=Eden SOIC Chip
+iua.divinerpg_elements.wildwood_soic=Wildwood SOIC Chip
+iua.divinerpg_elements.apalachia_soic=Apalachia SOIC Chip
+iua.divinerpg_elements.skythern_soic=Skythern SOIC Chip
+iua.divinerpg_elements.mortum_soic=Mortum SOIC Chip
+iua.divinerpg_elements.arcana_soic=Arcana SOIC Chip
+iua.divinerpg_elements.vethea_soic=Vethea SOIC Chip
 
-iua.qfp_stellar.name=Stellar QFP Chip
-iua.qfp_eden.name=Eden QFP Chip
-iua.qfp_wildwood.name=Wildwood QFP Chip
-iua.qfp_apalachia.name=Apalachia QFP Chip
-iua.qfp_skythern.name=Skythern QFP Chip
-iua.qfp_mortum.name=Mortum QFP Chip
-iua.qfp_arcana.name=Arcna QFP Chip
+iua.divinerpg_elements.eden_qfp=Eden QFP Chip
+iua.divinerpg_elements.wildwood_qfp=Wildwood QFP Chip
+iua.divinerpg_elements.apalachia_qfp=Apalachia QFP Chip
+iua.divinerpg_elements.skythern_qfp=Skythern QFP Chip
+iua.divinerpg_elements.mortum_qfp=Mortum QFP Chip
+iua.divinerpg_elements.arcana_qfp=Arcna QFP Chip
+iua.divinerpg_elements.vethea_qfp=Vethea QFP Chip
 
-iua.soic_stellar.name=Stellar SOIC Chip
-iua.soic_eden.name=Eden SOIC Chip
-iua.soic_wildwood.name=Wildwood SOIC Chip
-iua.soic_apalachia.name=Apalachia SOIC Chip
-iua.soic_skythern.name=Skythern SOIC Chip
-iua.soic_mortum.name=Mortum SOIC Chip
-iua.soic_arcana.name=Arcana SOIC Chip
+iua.divinerpg_elements.eden_circuit=Eden Circuit
+iua.divinerpg_elements.wildwood_circuit=Wildwood Circuit
+iua.divinerpg_elements.apalachia_circuit=Apalachia Circuit
+iua.divinerpg_elements.skythern_circuit=Skythern Circuit
+iua.divinerpg_elements.mortum_circuit=Mortum Circuit
+iua.divinerpg_elements.arcana_circuit=Arcana Circuit
+iua.divinerpg_elements.vethea_circuit=Vethea Circuit
 
-iua.core_stellar.name=Stellar Core
-iua.core_eden.name=Eden Core
-iua.core_wildwood.name=Wildwood Core
-iua.core_apalachia.name=Apalachia Core
-iua.core_skythern.name=Skythern Core
-iua.core_mortum.name=Mortum Core
-iua.core_arcana.name=Arcana Core
-iua.core_vethea.name=Vethea Core
-iua.core_crossdimensional.name=§c§lCrossdimensional Core
+iua.divinerpg_elements.eden_core=Eden Core
+iua.divinerpg_elements.wildwood_core=Wildwood Core
+iua.divinerpg_elements.apalachia_core=Apalachia Core
+iua.divinerpg_elements.skythern_core=Skythern Core
+iua.divinerpg_elements.mortum_core=Mortum Core
+iua.divinerpg_elements.arcana_core=Arcana Core
+iua.divinerpg_elements.vethea_core=Vethea Core
+iua.divinerpg_elements.crossdimensional_core=§c§lCrossdimensional Core
 
-iua.iridium_reinforced_stellar.name=Industrial Stellar Iridium Plate
-iua.iridium_dense_stellar.name=Compressed Stellar Industrial Iridium Plate
-iua.iridium_advanced_stellar.name=Dense Compressed Stellar Industrial Iridium Plate
+#Forestry
+iua.compressed_honeycomb.shimmering=Compressed Shimmering Honeycomb
+iua.compressed_honeycomb.radioactive=Compressed Radioactive Honeycomb
+iua.compressed_honeycomb.venomous=Compressed Venomou Honeycomb
+iua.compressed_honeycomb.certus=Compressed Certus Honeycomb
+iua.compressed_honeycomb.statics=Compressed Static Honeycomb
+iua.compressed_honeycomb.dripping=Compressed Dripping Honeycomb
 
-iua.compressed_shimmeringhoneycomb.name=Compressed Shimmering Honeycomb
-iua.compressed_radioactivehoneycomb.name=Compressed Green Honeycomb
-iua.compressed_venomoushoneycomb.name=Compressed Purple Honeycomb
-iua.compressed_certushoneycomb.name=Compressed Certus Honeycomb
-iua.compressed_statichoneycomb.name=Compressed Static Honeycomb
-iua.compressed_drippinghoneycomb.name=Compressed Dripping Honeycomb
+iua.crystal.shimmering=Shimmering Honey Crystal
+iua.crystal.radioactive=Radioactive Honey Crystal
+iua.crystal.venomous=Venomou Honey Crystal
+iua.crystal.certus=Certus Honey Crystal
+iua.crystal.statics=Static Honey Crystal
+iua.crystal.dripping=Dripping Honey Crystal
 
-iua.crystal_shimmering.name=Shimmering Honey Crystal
-iua.crystal_radioactive.name=Green Honey Crystal
-iua.crystal_venomous.name=Purple Honey Crystal
-iua.crystal_certus.name=Certus Honey Crystal
-iua.crystal_static.name=Static Honey Crystal
-iua.crystal_dripping.name=Dripping Honey Crystal
+iua.plate.shimmering=Shimmering Crystallized Plate
+iua.plate.radioactive=Radioactive Crystallized Plate
+iua.plate.venomous=Venomou Crystallized Plate
+iua.plate.certus=Certus Crystallized Plate
+iua.plate.statics=Static Crystallized Plate
+iua.plate.dripping=Dripping Crystallized Plate
+iua.refractive.plate=Refractive Crystallized Plate
 
-iua.plate_shimmering.name=Shimmering Crystallized Plate
-iua.plate_radioactive.name=Green Crystallized Plate
-iua.plate_venomous.name=Purple Crystallized Plate
-iua.plate_certus.name=Certus Crystallized Plate
-iua.plate_static.name=Static Crystallized Plate
-iua.plate_dripping.name=Dripping Crystallized Plate
-iua.plate_refractive.name=Refractive Crystallized Plate
-
-iua.plate_shadowphotonium.name=Shadow Photonium Plate
-iua.plate_moltendemon.name=Molten Demonic Plate
-iua.plate_celestial.name=Celestial Plate
-iua.plate_hades.name=Hades Plate
-iua.plate_harmonite.name=Harmonite Plate
-iua.plate_nucleoarlemite.name=Nucleo Arlemite Plate
-iua.plate_voidweave.name=Voidweave Plate
+###
+iua.plate.shadowphotonium.name=Shadow Photonium Plate
+iua.plate.moltendemon.name=Molten Demonic Plate
+iua.plate.celestial.name=Celestial Plate
+iua.plate.hades.name=Hades Plate
+iua.plate.harmonite.name=Harmonite Plate
+iua.plate.nucleoarlemite.name=Nucleo Arlemite Plate
+iua.plate.voidweave.name=Voidweave Plate
 
 iua.plate_shadowphotoniumdense.name=Dense Shadow Photonium Plate
 iua.plate_moltendemondense.name=Dense Molten Demonic Plate
@@ -146,34 +154,10 @@ iua.ingot_harmonite.name=Harmonite Alloy
 iua.ingot_nucleoarlemite.name=Nucleo Arlemite Alloy
 iua.ingot_voidweave.name=Voidweave Alloy
 
-iua.glass_shimmering.name=Shimmering Comb Glass
-iua.glass_radioactive.name=Radioactive Comb Glass
-iua.glass_venomous.name=Purple Comb Glass
-iua.glass_certus.name=Certus Comb Glass
-iua.glass_static.name=Static Comb Glass
-iua.glass_dripping.name=Gold Comb Glass
-iua.glass_refractive.name=Refractive Comb Glass
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+iua.glass.shimmering=Shimmering Comb Glass
+iua.glass.radioactive=Radioactive Comb Glass
+iua.glass.venomous=Venomou Comb Glass
+iua.glass.certus=Certus Comb Glass
+iua.glass.statics=Static Comb Glass
+iua.glass.dripping=Gold Comb Glass
+iua.refractive.glass=Refractive Comb Glass

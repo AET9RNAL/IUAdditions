@@ -1,9 +1,13 @@
+//---This code is a part of the original IU(Industrial Upgrade) code: https://github.com/ZelGimi/industrialupgrade. Project: https://www.curseforge.com/minecraft/mc-mods/industrial-upgrade.
+//---The rights to this code belong to their original authors.---///
+//---The usage and modification of it are a subject to the license of the original souce code and discretion of it's author.---///
+
 package com.aeternal.items;
 
 import com.aeternal.Constants;
 import com.aeternal.Core;
 import com.aeternal.api.IModelRegister;
-import com.aeternal.register.Register;
+import com.aeternal.register.ItemHandler;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -29,7 +33,7 @@ public class IUAItemBase extends Item implements IModelRegister {
         this.name = name;
         this.path = path;
         setUnlocalizedName(name);
-        Register.registerItem((Item) this, Core.getIdentifier(name)).setUnlocalizedName(name);
+        ItemHandler.registerItem((Item) this, Core.getIdentifier(name)).setUnlocalizedName(name);
         Core.proxy.addIModelRegister(this);
     }
 
@@ -54,6 +58,5 @@ public class IUAItemBase extends Item implements IModelRegister {
                 new ModelResourceLocation(Constants.MOD_ID + ":" + path + this.name, null)
         );
     }
-
 
 }

@@ -17,12 +17,15 @@ public class Constants {
     public static final boolean AE2_LOADED = Loader.isModLoaded("appliedenergistics2");
     public static final boolean BA_LOADED = Loader.isModLoaded("botania");
     public static final boolean BV_LOADED = Loader.isModLoaded("botaniverse");
+    public static final boolean BOP_LOADED = Loader.isModLoaded("biomesoplenty");
     public static final boolean BADD_LOADED = Loader.isModLoaded("botanicadds");
     public static final boolean EB_LOADED = Loader.isModLoaded("extrabotany");
     public static final boolean AS_LOADED = Loader.isModLoaded("astralsorcery");
+    public static final boolean ASA_LOADED = Loader.isModLoaded("astraladditions");
     public static final boolean DIV_LOADED = Loader.isModLoaded("divinerpg");
     public static final boolean FO_LOADED = Loader.isModLoaded("forestry");
-    public static final boolean BINNIE_LOADED = Loader.isModLoaded("extrabees");
+    public static final boolean EXBEES_LOADED = Loader.isModLoaded("extrabees");
+    public static final boolean TE_LOADED = Loader.isModLoaded("thermalexpansion");
     public static final boolean DE_CONFIRM = Config.DraconicConfirmed;
     public static final boolean BA_CONFIRM = Config.BotaniaConfirmed;
     public static final boolean AS_CONFIRM = Config.AstralConfirmed;

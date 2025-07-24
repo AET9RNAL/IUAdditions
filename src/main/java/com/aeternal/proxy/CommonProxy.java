@@ -1,72 +1,33 @@
 package com.aeternal.proxy;
 
-import com.aeternal.Constants;
 import com.aeternal.api.IModelRegister;
-import com.aeternal.integration.astralsorcery.recipes.ASRecipes;
-import com.aeternal.integration.astralsorcery.tile.AstralSorceryIntegration;
-import com.aeternal.integration.divinerpg.DivinerpgIntegration;
-import com.aeternal.integration.divinerpg.recipes.DIVRecipes;
-import com.aeternal.integration.forestry.ForestryIntegration;
-import com.aeternal.integration.forestry.recipes.ForestryRecipes;
+import com.aeternal.register.ItemHandler;
+import com.aeternal.register.RecipeHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-
-import static com.aeternal.integration.astralsorcery.recipes.ASRecipes.*;
 
 
 public class CommonProxy  {
 
     public void preInit(FMLPreInitializationEvent event) {
 
-        if (Constants.AS_LOADED && Constants.AS_CONFIRM) {
-            AstralSorceryIntegration.init();
-        }
-        if (Constants.FO_LOADED && Constants.FO_CONFIRM) {
-            ForestryIntegration.init();
-        }
-        if (Constants.DIV_LOADED && Constants.DIV_CONFIRM) {
-            DivinerpgIntegration.init();
-        }
-/*        if (Constants.BA_LOADED && Constants.BA_CONFIRM) {
-           BotaniaIntegration.init();
-        }*/
+        ItemHandler.init();
 
     }
 
     public void init(FMLInitializationEvent event) {
-        if (Constants.AS_LOADED && Constants.AS_CONFIRM) {
 
-            //TODO: fix this
-         //   ASRecipes.ASBaseRecipe();
-            ASRecipes.ASCompressorRecipe();
-            ASRecipes.MicrochipRecipe();
-            ASRecipes.ASDoubleMolecularRecipe();
-            ASRecipes.InitConstellationRecipes();
-        }
-        if (Constants.DIV_LOADED && Constants.DIV_CONFIRM) {
-            //TODO: fix this
-        //   DIVRecipes.DIVBaseRecipe();
-           DIVRecipes.MicrochipRecipe();
-           DIVRecipes.DIVCompressorRecipe();
-           DIVRecipes.DIVRollingRecipe();
-        }
-        if (Constants.FO_LOADED && Constants.BINNIE_LOADED && Constants.FO_CONFIRM) {
-            ForestryRecipes.FOCompressorRecipe();
-        }
-//        if (Constants.DE_LOADED && Constants.DE_CONFIRM) {
-//            SCRecipes.Init();
-//        }
     }
 
     public void postInit(FMLPostInitializationEvent event) {
 
-    }
+        RecipeHandler.init();
 
+    }
 
     public boolean addIModelRegister(IModelRegister modelRegister) {
         return false;
     }
-
 
 }

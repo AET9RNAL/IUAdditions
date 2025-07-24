@@ -1,0 +1,6 @@
+{
+  "parent": "iuadditions:item/default",
+  "textures": {
+    "layer0": "iuadditions:items/qfp_vethea"
+  }
+}

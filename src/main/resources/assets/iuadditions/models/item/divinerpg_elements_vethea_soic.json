@@ -1,0 +1,6 @@
+{
+  "parent": "iuadditions:item/default",
+  "textures": {
+    "layer0": "iuadditions:items/soic_vethea"
+  }
+}
