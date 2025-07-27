@@ -40,9 +40,9 @@ iuadditions.divinepanel.crossdimentional_solar_panel=§c§lCrossdimensional Sola
 
 iuadditions.forestrypanel.cyanbeekeeper_solar_panel=§bCyan Beekeeper Solar Panel
 iuadditions.forestrypanel.bluebeekeeper_solar_panel=§9Blue Beekeeper Solar Panel
-iuadditions.forestrypanel.greenbeekeeper_solar_panel=§Radioactive Beekeeper Solar Panel
+iuadditions.forestrypanel.greenbeekeeper_solar_panel=§aRadioactive Beekeeper Solar Panel
 iuadditions.forestrypanel.staticbeekeeper_solar_panel=§5Static Beekeeper Solar Panel
-iuadditions.forestrypanel.purplebeekeeper_solar_panel=§dVenomou Beekeeper Solar Panel
+iuadditions.forestrypanel.purplebeekeeper_solar_panel=§dVenomous Beekeeper Solar Panel
 iuadditions.forestrypanel.amberbeekeeper_solar_panel=§6Amber Beekeeper Solar Panel
 iuadditions.forestrypanel.refractivebeekeeper_solar_panel=§4§lRefractive Beekeeper Solar Panel
 
@@ -86,7 +86,7 @@ iua.divinerpg_elements.wildwood_qfp=Wildwood QFP Chip
 iua.divinerpg_elements.apalachia_qfp=Apalachia QFP Chip
 iua.divinerpg_elements.skythern_qfp=Skythern QFP Chip
 iua.divinerpg_elements.mortum_qfp=Mortum QFP Chip
-iua.divinerpg_elements.arcana_qfp=Arcna QFP Chip
+iua.divinerpg_elements.arcana_qfp=Arcana QFP Chip
 iua.divinerpg_elements.vethea_qfp=Vethea QFP Chip
 
 iua.divinerpg_elements.eden_circuit=Eden Circuit
@@ -109,21 +109,21 @@ iua.divinerpg_elements.crossdimensional_core=§c§lCrossdimensional Core
 #Forestry
 iua.compressed_honeycomb.shimmering=Compressed Shimmering Honeycomb
 iua.compressed_honeycomb.radioactive=Compressed Radioactive Honeycomb
-iua.compressed_honeycomb.venomous=Compressed Venomou Honeycomb
+iua.compressed_honeycomb.venomous=Compressed Venomous Honeycomb
 iua.compressed_honeycomb.certus=Compressed Certus Honeycomb
 iua.compressed_honeycomb.statics=Compressed Static Honeycomb
 iua.compressed_honeycomb.dripping=Compressed Dripping Honeycomb
 
 iua.crystal.shimmering=Shimmering Honey Crystal
 iua.crystal.radioactive=Radioactive Honey Crystal
-iua.crystal.venomous=Venomou Honey Crystal
+iua.crystal.venomous=Venomous Honey Crystal
 iua.crystal.certus=Certus Honey Crystal
 iua.crystal.statics=Static Honey Crystal
 iua.crystal.dripping=Dripping Honey Crystal
 
 iua.plate.shimmering=Shimmering Crystallized Plate
 iua.plate.radioactive=Radioactive Crystallized Plate
-iua.plate.venomous=Venomou Crystallized Plate
+iua.plate.venomous=Venomous Crystallized Plate
 iua.plate.certus=Certus Crystallized Plate
 iua.plate.statics=Static Crystallized Plate
 iua.plate.dripping=Dripping Crystallized Plate
@@ -156,7 +156,7 @@ iua.ingot_voidweave.name=Voidweave Alloy
 
 iua.glass.shimmering=Shimmering Comb Glass
 iua.glass.radioactive=Radioactive Comb Glass
-iua.glass.venomous=Venomou Comb Glass
+iua.glass.venomous=Venomous Comb Glass
 iua.glass.certus=Certus Comb Glass
 iua.glass.statics=Static Comb Glass
 iua.glass.dripping=Gold Comb Glass
