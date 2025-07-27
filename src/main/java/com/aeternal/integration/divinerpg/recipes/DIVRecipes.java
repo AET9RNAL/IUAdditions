@@ -149,6 +149,16 @@ public class DIVRecipes {
                 ('Q'), IUItem.circuitSpectral,
                 ('A'), ItemRegistry.arcanium
         );
+        Recipes.recipe.addRecipe(vethea_qfp,
+                "CCC",
+                "EQE",
+                "AAA",
+
+                ('C'), compressedCarbon,
+                ('E'), vethea_capacitor,
+                ('Q'), IUItem.circuitSpectral,
+                ('A'), ItemRegistry.shinyPearls
+        );
         Recipes.recipe.addRecipe(eden_soic,
                 "SSS",
                 "SCS",
@@ -196,6 +206,14 @@ public class DIVRecipes {
 
                 ('S'), ("stickManganese"),
                 ('C'), arcana_capacitor
+        );
+        Recipes.recipe.addRecipe(vethea_soic,
+                "SSS",
+                "SCS",
+                "SSS",
+
+                ('S'), ("stickBismuth"),
+                ('C'), vethea_capacitor
         )
 
         ;
@@ -265,7 +283,85 @@ public class DIVRecipes {
                 (short) 5000, true
         );
 
+        add(
+                new ItemStack(IUItem.energiumDust.getItem(),1,24),
+                new ItemStack(IUItem.iuingot,1,2),
+                new ItemStack(ItemRegistry.shinyPearls),
+                new ItemStack(IUItem.iuingot,1,13),
+                new ItemStack(IUItem.iuingot,1,5),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.vethea_capacitor.getId()),
+                (short) 5000, true
+        );
 
+        add(
+                new ItemStack(IUItem.iuingot,1,38),
+                new ItemStack(IUItem.iuingot,1,34),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.eden_capacitor.getId()),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.eden_soic.getId()),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.eden_qfp.getId()),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.eden_circuit.getId()),
+                (short) 2000, true
+        );
+
+        add(
+                new ItemStack(IUItem.iuingot,1,30),
+                new ItemStack(IUItem.iuingot,1,33),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.wildwood_capacitor.getId()),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.wildwood_soic.getId()),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.wildwood_qfp.getId()),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.wildwood_circuit.getId()),
+                (short) 3000, true
+        );
+
+        add(
+                new ItemStack(IUItem.iuingot,1,35),
+                new ItemStack(IUItem.iuingot,1,27),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.apalachia_capacitor.getId()),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.apalachia_soic.getId()),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.apalachia_qfp.getId()),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.apalachia_circuit.getId()),
+                (short) 3500, true
+        );
+
+        add(
+                new ItemStack(IUItem.iuingot,1,17),
+                new ItemStack(IUItem.iuingot,1,25),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.skythern_capacitor.getId()),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.skythern_soic.getId()),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.skythern_qfp.getId()),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.skythern_circuit.getId()),
+                (short) 4000, true
+        );
+
+        add(
+                new ItemStack(IUItem.photoniy_ingot,1,0),
+                new ItemStack(IUItem.iuingot,1,44),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.mortum_capacitor.getId()),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.mortum_soic.getId()),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.mortum_qfp.getId()),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.mortum_circuit.getId()),
+                (short) 5000, true
+        );
+
+        add(
+                new ItemStack(IUItem.iuingot,1,39),
+                new ItemStack(IUItem.iuingot,1,47),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.arcana_capacitor.getId()),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.arcana_soic.getId()),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.arcana_qfp.getId()),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.arcana_circuit.getId()),
+                (short) 5000, true
+        );
+
+        add(
+                new ItemStack(IUItem.iuingot,1,30),
+                new ItemStack(IUItem.iuingot,1,48),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.vethea_capacitor.getId()),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.vethea_soic.getId()),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.vethea_qfp.getId()),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.vethea_circuit.getId()),
+                (short) 5000, true
+        );
     }
 
     public static void DIVCompressorRecipe() {
