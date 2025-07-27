@@ -1,1 +1,3 @@
-- [ ] - Assembler
+- [ ] - Assembler (WIP)
+- [ ] - Crypt 
+- [ ] - Cleanroom (Greg)
