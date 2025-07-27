@@ -7,7 +7,6 @@ import com.aeternal.spectralconverters.IModelRender;
 import com.aeternal.spectralconverters.blocks.BlockManaConverter;
 import com.aeternal.spectralconverters.blocks.BlockSpectralConverter;
 import com.aeternal.spectralconverters.blocks.BlockSpectralQEConverter;
-import com.aeternal.spectralconverters.recipes.SRecipes;
 import com.aeternal.tabs.TabCore;
 import com.denfop.blocks.BlockTileEntity;
 import com.denfop.blocks.TileBlockCreator;
@@ -110,10 +109,6 @@ public final class Core {
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         registerOreDict();
-/*        if (Constants.AS_LOADED && Constants.AS_CONFIRM) {
-            AstralIntegrationItems.registerItems(event.getRegistry());
-        }*/
-
     }
 
     @Mod.EventHandler
@@ -132,20 +127,11 @@ public final class Core {
         if (Constants.DIV_LOADED && Constants.DIV_CONFIRM) {
             OreDictionary.registerOre("ingotShadowPhotonium", new ItemStack(DivinerpgIntegration.ingot_shadowphotonium, 1));
             OreDictionary.registerOre("ingotDemonic", new ItemStack(DivinerpgIntegration.ingot_moltendemon, 1));
+            OreDictionary.registerOre("ingotCelestial", new ItemStack(DivinerpgIntegration.ingot_celestial, 1));
             OreDictionary.registerOre("ingotHades", new ItemStack(DivinerpgIntegration.ingot_hades, 1));
             OreDictionary.registerOre("ingotHarmonite", new ItemStack(DivinerpgIntegration.ingot_harmonite, 1));
             OreDictionary.registerOre("ingotNucleoArlemite", new ItemStack(DivinerpgIntegration.ingot_nucleoarlemite, 1));
+            OreDictionary.registerOre("ingotVoidweave", new ItemStack(DivinerpgIntegration.ingot_voidweave, 1));
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-

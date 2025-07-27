@@ -1,16 +1,18 @@
-//---This code is a part of the original IU(Industrial Upgrade) code: https://github.com/ZelGimi/industrialupgrade. Project: https://www.curseforge.com/minecraft/mc-mods/industrial-upgrade.
-//---The rights to this code belong to their original authors.---///
-//---The usage and modification of it are a subject to the license of the original souce code and discretion of it's author.---///
-
 package com.aeternal.integration.divinerpg.recipes;
 
 
+import com.aeternal.IUAItem;
 import com.aeternal.integration.divinerpg.DivinerpgIntegration;
+import com.aeternal.integration.divinerpg.item.DivItems;
 import com.denfop.IUItem;
+import com.denfop.api.Recipes;
 import com.denfop.recipes.CompressorRecipe;
 import com.denfop.recipes.MetalFormerRecipe;
+import divinerpg.registry.ItemRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+
+import static com.denfop.tiles.mechanism.TileGenerationMicrochip.add;
 
 public class DIVRecipes {
 
@@ -40,187 +42,231 @@ public class DIVRecipes {
     public static Item circuitQuantum = IUItem.cirsuitQuantum.getItem();
     public static ItemStack circuitSpectral = IUItem.circuitSpectral;
     public static Item compressedCarbon = IUItem.compresscarbon;
+    public static final ItemStack eden_capacitor = new ItemStack(IUAItem.divItems, 1, 0);
+    public static final ItemStack wildwood_capacitor = new ItemStack(IUAItem.divItems, 1, 1);
+    public static final ItemStack apalachia_capacitor = new ItemStack(IUAItem.divItems, 1, 2);
+    public static final ItemStack skythern_capacitor = new ItemStack(IUAItem.divItems, 1, 3);
+    public static final ItemStack mortum_capacitor = new ItemStack(IUAItem.divItems, 1, 4);
+    public static final ItemStack arcana_capacitor = new ItemStack(IUAItem.divItems, 1, 5);
+    public static final ItemStack vethea_capacitor = new ItemStack(IUAItem.divItems, 1, 6);
+    public static final ItemStack eden_soic = new ItemStack(IUAItem.divItems, 1, 7);
+    public static final ItemStack wildwood_soic = new ItemStack(IUAItem.divItems, 1, 8);
+    public static final ItemStack apalachia_soic = new ItemStack(IUAItem.divItems, 1, 9);
+    public static final ItemStack skythern_soic = new ItemStack(IUAItem.divItems, 1, 10);
+    public static final ItemStack mortum_soic = new ItemStack(IUAItem.divItems, 1, 11);
+    public static final ItemStack arcana_soic = new ItemStack(IUAItem.divItems, 1, 12);
+    public static final ItemStack vethea_soic = new ItemStack(IUAItem.divItems, 1, 13);
+    public static final ItemStack eden_qfp = new ItemStack(IUAItem.divItems, 1, 14);
+    public static final ItemStack wildwood_qfp = new ItemStack(IUAItem.divItems, 1, 15);
+    public static final ItemStack apalachia_qfp = new ItemStack(IUAItem.divItems, 1, 16);
+    public static final ItemStack skythern_qfp = new ItemStack(IUAItem.divItems, 1, 17);
+    public static final ItemStack mortum_qfp = new ItemStack(IUAItem.divItems, 1, 18);
+    public static final ItemStack arcana_qfp = new ItemStack(IUAItem.divItems, 1, 19);
+    public static final ItemStack vethea_qfp = new ItemStack(IUAItem.divItems, 1, 20);
+    public static final ItemStack eden_circuit = new ItemStack(IUAItem.divItems, 1, 21);
+    public static final ItemStack wildwood_circuit = new ItemStack(IUAItem.divItems, 1, 22);
+    public static final ItemStack apalachia_circuit = new ItemStack(IUAItem.divItems, 1, 23);
+    public static final ItemStack skythern_circuit = new ItemStack(IUAItem.divItems, 1, 24);
+    public static final ItemStack mortum_circuit = new ItemStack(IUAItem.divItems, 1, 25);
+    public static final ItemStack arcana_circuit = new ItemStack(IUAItem.divItems, 1, 26);
+    public static final ItemStack vethea_circuit = new ItemStack(IUAItem.divItems, 1, 27);
+    public static final ItemStack eden_core = new ItemStack(IUAItem.divItems, 1, 28);
+    public static final ItemStack wildwood_core = new ItemStack(IUAItem.divItems, 1, 29);
+    public static final ItemStack apalachia_core = new ItemStack(IUAItem.divItems, 1, 30);
+    public static final ItemStack skythern_core = new ItemStack(IUAItem.divItems, 1, 31);
+    public static final ItemStack mortum_core = new ItemStack(IUAItem.divItems, 1, 32);
+    public static final ItemStack arcana_core = new ItemStack(IUAItem.divItems, 1, 33);
+    public static final ItemStack vethea_core = new ItemStack(IUAItem.divItems, 1, 34);
+    public static final ItemStack crossdimensional_core = new ItemStack(IUAItem.divItems, 1, 35);
 
 
-//    public static void DIVBaseRecipe() {
-//        Recipes.recipe.addRecipe(qfp_eden,
-//                "CCC",
-//                "EQE",
-//                "AAA",
-//
-//                ('C'), ("plateCarbon"),
-//                ('E'), capacitor_eden,
-//                ('Q'), IUItem.cirsuitQuantum,
-//                ('A'), ("chunkEden")
-//        );
-//        Recipes.recipe.addRecipe(qfp_wildwood,
-//                "CCC",
-//                "EQE",
-//                "AAA",
-//
-//                ('C'), ("plateCarbon"),
-//                ('E'), capacitor_wildwood,
-//                ('Q'), IUItem.cirsuitQuantum,
-//                ('A'), ("chunkWildwood")
-//        );
-//        Recipes.recipe.addRecipe(qfp_apalachia,
-//                "CCC",
-//                "EQE",
-//                "AAA",
-//
-//                ('C'), ("plateCarbon"),
-//                ('E'), capacitor_apalachia,
-//                ('Q'), IUItem.cirsuitQuantum,
-//                ('A'), ("chunkApalachia")
-//        );
-//        Recipes.recipe.addRecipe(qfp_skythern,
-//                "CCC",
-//                "EQE",
-//                "AAA",
-//
-//                ('C'), compressedCarbon,
-//                ('E'), capacitor_skythern,
-//                ('Q'), IUItem.circuitSpectral,
-//                ('A'), ("chunkSkythern")
-//        );
-//        Recipes.recipe.addRecipe(qfp_mortum,
-//                "CCC",
-//                "EQE",
-//                "AAA",
-//
-//                ('C'), compressedCarbon,
-//                ('E'), capacitor_mortum,
-//                ('Q'), IUItem.circuitSpectral,
-//                ('A'), ("chunkMortum")
-//        );
-//        Recipes.recipe.addRecipe(qfp_arcana,
-//                "CCC",
-//                "EQE",
-//                "AAA",
-//
-//                ('C'), compressedCarbon,
-//                ('E'), capacitor_arcana,
-//                ('Q'), IUItem.circuitSpectral,
-//                ('A'), ItemRegistry.arcanium
-//        );
-//        Recipes.recipe.addRecipe(soic_eden,
-//                "SSS",
-//                "SCS",
-//                "SSS",
-//
-//                ('S'), ("stickElectrum"),
-//                ('C'), capacitor_eden
-//        );
-//        Recipes.recipe.addRecipe(soic_wildwood,
-//                "SSS",
-//                "SCS",
-//                "SSS",
-//
-//                ('S'), ("stickChromium"),
-//                ('C'), capacitor_wildwood
-//        );
-//        Recipes.recipe.addRecipe(soic_apalachia,
-//                "SSS",
-//                "SCS",
-//                "SSS",
-//
-//                ('S'), ("stickSpinel"),
-//                ('C'), capacitor_apalachia
-//        );
-//        Recipes.recipe.addRecipe(soic_skythern,
-//                "SSS",
-//                "SCS",
-//                "SSS",
-//
-//                ('S'), ("stickIridium"),
-//                ('C'), capacitor_skythern
-//        );
-//        Recipes.recipe.addRecipe(soic_mortum,
-//                "SSS",
-//                "SCS",
-//                "SSS",
-//
-//                ('S'), ("stickCaravky"),
-//                ('C'), capacitor_mortum
-//        );
-//        Recipes.recipe.addRecipe(soic_arcana,
-//                "SSS",
-//                "SCS",
-//                "SSS",
-//
-//                ('S'), ("stickManganese"),
-//                ('C'), capacitor_arcana
-//        )
-//
-//        ;
-//    }
+    public static void init() {
+        DIVBaseRecipe();
+        MicrochipRecipe();
+        DIVCompressorRecipe();
+        DIVRollingRecipe();
+    }
+
+
+    public static void DIVBaseRecipe() {
+        Recipes.recipe.addRecipe(eden_qfp,
+                "CCC",
+                "EQE",
+                "AAA",
+
+                ('C'), ("plateCarbon"),
+                ('E'), eden_capacitor,
+                ('Q'), IUItem.cirsuitQuantum,
+                ('A'), ("chunkEden")
+        );
+        Recipes.recipe.addRecipe(wildwood_qfp,
+                "CCC",
+                "EQE",
+                "AAA",
+
+                ('C'), ("plateCarbon"),
+                ('E'), wildwood_capacitor,
+                ('Q'), IUItem.cirsuitQuantum,
+                ('A'), ("chunkWildwood")
+        );
+        Recipes.recipe.addRecipe(apalachia_qfp,
+                "CCC",
+                "EQE",
+                "AAA",
+
+                ('C'), ("plateCarbon"),
+                ('E'), apalachia_capacitor,
+                ('Q'), IUItem.cirsuitQuantum,
+                ('A'), ("chunkApalachia")
+        );
+        Recipes.recipe.addRecipe(skythern_qfp,
+                "CCC",
+                "EQE",
+                "AAA",
+
+                ('C'), compressedCarbon,
+                ('E'), skythern_capacitor,
+                ('Q'), IUItem.circuitSpectral,
+                ('A'), ("chunkSkythern")
+        );
+        Recipes.recipe.addRecipe(mortum_qfp,
+                "CCC",
+                "EQE",
+                "AAA",
+
+                ('C'), compressedCarbon,
+                ('E'), mortum_capacitor,
+                ('Q'), IUItem.circuitSpectral,
+                ('A'), ("chunkMortum")
+        );
+        Recipes.recipe.addRecipe(arcana_qfp,
+                "CCC",
+                "EQE",
+                "AAA",
+
+                ('C'), compressedCarbon,
+                ('E'), arcana_capacitor,
+                ('Q'), IUItem.circuitSpectral,
+                ('A'), ItemRegistry.arcanium
+        );
+        Recipes.recipe.addRecipe(eden_soic,
+                "SSS",
+                "SCS",
+                "SSS",
+
+                ('S'), ("stickElectrum"),
+                ('C'), eden_capacitor
+        );
+        Recipes.recipe.addRecipe(wildwood_soic,
+                "SSS",
+                "SCS",
+                "SSS",
+
+                ('S'), ("stickChromium"),
+                ('C'), wildwood_capacitor
+        );
+        Recipes.recipe.addRecipe(apalachia_soic,
+                "SSS",
+                "SCS",
+                "SSS",
+
+                ('S'), ("stickSpinel"),
+                ('C'), apalachia_capacitor
+        );
+        Recipes.recipe.addRecipe(skythern_soic,
+                "SSS",
+                "SCS",
+                "SSS",
+
+                ('S'), ("stickIridium"),
+                ('C'), skythern_capacitor
+        );
+        Recipes.recipe.addRecipe(mortum_soic,
+                "SSS",
+                "SCS",
+                "SSS",
+
+                ('S'), ("stickCaravky"),
+                ('C'), mortum_capacitor
+        );
+        Recipes.recipe.addRecipe(arcana_soic,
+                "SSS",
+                "SCS",
+                "SSS",
+
+                ('S'), ("stickManganese"),
+                ('C'), arcana_capacitor
+        )
+
+        ;
+    }
 
 
 
 
-//    public static void MicrochipRecipe(){
-//        add(
-//                new ItemStack(IUItem.energiumDust.getItem(),1,24),
-//                new ItemStack(IUItem.iuingot,1,2),
-//                new ItemStack(ItemRegistry.edenGem),
-//                new ItemStack(IUItem.iuingot,1,13),
-//                new ItemStack(IUItem.iuingot,1,5),
-//                new ItemStack(DivinerpgIntegration.capacitor_eden),
-//                (short) 2500, true
-//        );
-//
-//        add(
-//                new ItemStack(IUItem.energiumDust.getItem(),1,24),
-//                new ItemStack(IUItem.iuingot,1,2),
-//                new ItemStack(ItemRegistry.wildwoodGem),
-//                new ItemStack(IUItem.iuingot,1,13),
-//                new ItemStack(IUItem.iuingot,1,5),
-//                new ItemStack(DivinerpgIntegration.capacitor_wildwood),
-//                (short) 2500, true
-//        );
-//
-//        add(
-//                new ItemStack(IUItem.energiumDust.getItem(),1,24),
-//                new ItemStack(IUItem.iuingot,1,2),
-//                new ItemStack(ItemRegistry.apalachiaGem),
-//                new ItemStack(IUItem.iuingot,1,13),
-//                new ItemStack(IUItem.iuingot,1,5),
-//                new ItemStack(DivinerpgIntegration.capacitor_apalachia),
-//                (short) 3000, true
-//        );
-//
-//        add(
-//                new ItemStack(IUItem.energiumDust.getItem(),1,24),
-//                new ItemStack(IUItem.iuingot,1,2),
-//                new ItemStack(ItemRegistry.skythernGem),
-//                new ItemStack(IUItem.iuingot,1,13),
-//                new ItemStack(IUItem.iuingot,1,5),
-//                new ItemStack(DivinerpgIntegration.capacitor_skythern),
-//                (short) 4000, true
-//        );
-//
-//        add(
-//                new ItemStack(IUItem.energiumDust.getItem(),1,24),
-//                new ItemStack(IUItem.iuingot,1,2),
-//                new ItemStack(ItemRegistry.mortumGem),
-//                new ItemStack(IUItem.iuingot,1,13),
-//                new ItemStack(IUItem.iuingot,1,5),
-//                new ItemStack(DivinerpgIntegration.capacitor_mortum),
-//                (short) 4000, true
-//        );
-//
-//        add(
-//                new ItemStack(IUItem.energiumDust.getItem(),1,24),
-//                new ItemStack(IUItem.iuingot,1,2),
-//                new ItemStack(ItemRegistry.collectorFragments),
-//                new ItemStack(IUItem.iuingot,1,13),
-//                new ItemStack(IUItem.iuingot,1,5),
-//                new ItemStack(DivinerpgIntegration.capacitor_arcana),
-//                (short) 5000, true
-//        );
-//
-//
-//    }
+    public static void MicrochipRecipe(){
+        add(
+                new ItemStack(IUItem.energiumDust.getItem(),1,24),
+                new ItemStack(IUItem.iuingot,1,2),
+                new ItemStack(ItemRegistry.edenGem),
+                new ItemStack(IUItem.iuingot,1,13),
+                new ItemStack(IUItem.iuingot,1,5),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.eden_capacitor.getId()),
+                (short) 2500, true
+        );
+
+        add(
+                new ItemStack(IUItem.energiumDust.getItem(),1,24),
+                new ItemStack(IUItem.iuingot,1,2),
+                new ItemStack(ItemRegistry.wildwoodGem),
+                new ItemStack(IUItem.iuingot,1,13),
+                new ItemStack(IUItem.iuingot,1,5),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.wildwood_capacitor.getId()),
+                (short) 2500, true
+        );
+
+        add(
+                new ItemStack(IUItem.energiumDust.getItem(),1,24),
+                new ItemStack(IUItem.iuingot,1,2),
+                new ItemStack(ItemRegistry.apalachiaGem),
+                new ItemStack(IUItem.iuingot,1,13),
+                new ItemStack(IUItem.iuingot,1,5),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.apalachia_capacitor.getId()),
+                (short) 3000, true
+        );
+
+        add(
+                new ItemStack(IUItem.energiumDust.getItem(),1,24),
+                new ItemStack(IUItem.iuingot,1,2),
+                new ItemStack(ItemRegistry.skythernGem),
+                new ItemStack(IUItem.iuingot,1,13),
+                new ItemStack(IUItem.iuingot,1,5),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.skythern_capacitor.getId()),
+                (short) 4000, true
+        );
+
+        add(
+                new ItemStack(IUItem.energiumDust.getItem(),1,24),
+                new ItemStack(IUItem.iuingot,1,2),
+                new ItemStack(ItemRegistry.mortumGem),
+                new ItemStack(IUItem.iuingot,1,13),
+                new ItemStack(IUItem.iuingot,1,5),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.mortum_capacitor.getId()),
+                (short) 4000, true
+        );
+
+        add(
+                new ItemStack(IUItem.energiumDust.getItem(),1,24),
+                new ItemStack(IUItem.iuingot,1,2),
+                new ItemStack(ItemRegistry.collectorFragments),
+                new ItemStack(IUItem.iuingot,1,13),
+                new ItemStack(IUItem.iuingot,1,5),
+                new ItemStack(IUAItem.divItems, 1, DivItems.DivItemsTypes.arcana_capacitor.getId()),
+                (short) 5000, true
+        );
+
+
+    }
 
     public static void DIVCompressorRecipe() {
         CompressorRecipe.addcompressor(new ItemStack(DivinerpgIntegration.plate_shadowphotonium), 9, new ItemStack(DivinerpgIntegration.plate_shadowphotoniumdense));
@@ -229,6 +275,7 @@ public class DIVRecipes {
         CompressorRecipe.addcompressor(new ItemStack(DivinerpgIntegration.plate_harmonite), 9, new ItemStack(DivinerpgIntegration.plate_harmonitedense));
         CompressorRecipe.addcompressor(new ItemStack(DivinerpgIntegration.plate_nucleoarlemite), 9, new ItemStack(DivinerpgIntegration.plate_nucleoarlemitedense));
         CompressorRecipe.addcompressor(new ItemStack(DivinerpgIntegration.plate_celestial), 9, new ItemStack(DivinerpgIntegration.plate_celestialdense));
+        CompressorRecipe.addcompressor(new ItemStack(DivinerpgIntegration.plate_voidweave), 9, new ItemStack(DivinerpgIntegration.plate_voidweavedense));
 
     }
 
@@ -236,9 +283,11 @@ public class DIVRecipes {
 
         MetalFormerRecipe.addmolot("ingotShadowPhotonium", new ItemStack(DivinerpgIntegration.plate_shadowphotonium));
         MetalFormerRecipe.addmolot("ingotDemonic", new ItemStack(DivinerpgIntegration.plate_moltendemon));
+        MetalFormerRecipe.addmolot("ingotCelestial", new ItemStack(DivinerpgIntegration.plate_celestial));
         MetalFormerRecipe.addmolot("ingotHades", new ItemStack(DivinerpgIntegration.plate_hades));
         MetalFormerRecipe.addmolot("ingotHarmonite", new ItemStack(DivinerpgIntegration.plate_harmonite));
         MetalFormerRecipe.addmolot("ingotNucleoArlemite", new ItemStack(DivinerpgIntegration.plate_nucleoarlemite));
+        MetalFormerRecipe.addmolot("ingotVoidweave", new ItemStack(DivinerpgIntegration.plate_voidweave));
 
     }
 
