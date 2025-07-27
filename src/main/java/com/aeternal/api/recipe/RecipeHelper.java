@@ -8,8 +8,6 @@ import com.denfop.api.Recipes;
 import com.denfop.api.recipe.BaseMachineRecipe;
 import com.denfop.api.recipe.Input;
 import com.denfop.api.recipe.RecipeOutput;
-import com.denfop.recipe.IInputItemStack;
-import com.denfop.recipe.InputItemStack;
 import com.denfop.tiles.mechanism.dual.heat.TileAlloySmelter;
 import com.denfop.utils.ModUtils;
 import net.minecraft.item.ItemStack;
@@ -32,7 +30,7 @@ public class RecipeHelper {
         } else {
             NBTTagCompound nbt = ModUtils.nbt();
             nbt.setShort("temperature", (short) temperature);
-            Recipes.recipes.addRecipe("peralloysmelter", new BaseMachineRecipe(new Input(new IInputItemStack[]{
+            Recipes.recipes.addRecipe("peralloysmelter", new BaseMachineRecipe(new Input(new InputItemStack[]{
                     new InputItemStack(input1),
                     new InputItemStack(input2),
                     new InputItemStack(input3),

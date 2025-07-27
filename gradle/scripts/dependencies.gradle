@@ -98,6 +98,7 @@ dependencies {
     implementation "curse.maven:thermal-foundation-222880:2926428"
     implementation "curse.maven:cofh-core-69162:2920433"
     implementation "curse.maven:cofh-world-271384:2920434"
+    implementation "curse.maven:mekanism-268560:2835175"
     runtimeOnly fileTree('client')
     compileOnly fileTree('libs')
     implementation fileTree('lib')
