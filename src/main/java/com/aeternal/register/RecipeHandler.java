@@ -1,5 +1,6 @@
 package com.aeternal.register;
 
+import com.aeternal.integration.divinerpg.recipes.DIVRecipes;
 import com.aeternal.spectralconverters.recipes.SRecipes;
 import com.aeternal.Constants;
 import com.aeternal.integration.astralsorcery.recipes.ASRecipes;
@@ -13,7 +14,7 @@ public class RecipeHandler {
             ASRecipes.init();
         }
         if (Constants.DIV_LOADED && Constants.DIV_CONFIRM) {
-            //FIXME
+            DIVRecipes.init();
         }
         if (Constants.FO_LOADED && Constants.EXBEES_LOADED && Constants.FO_CONFIRM) {
             ForestryRecipes.init();
