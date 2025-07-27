@@ -130,13 +130,13 @@ iua.plate.dripping=Dripping Crystallized Plate
 iua.refractive.plate=Refractive Crystallized Plate
 
 ###
-iua.plate.shadowphotonium.name=Shadow Photonium Plate
-iua.plate.moltendemon.name=Molten Demonic Plate
-iua.plate.celestial.name=Celestial Plate
-iua.plate.hades.name=Hades Plate
-iua.plate.harmonite.name=Harmonite Plate
-iua.plate.nucleoarlemite.name=Nucleo Arlemite Plate
-iua.plate.voidweave.name=Voidweave Plate
+iua.plate_shadowphotonium.name=Shadow Photonium Plate
+iua.plate_moltendemon.name=Molten Demonic Plate
+iua.plate_celestial.name=Celestial Plate
+iua.plate_hades.name=Hades Plate
+iua.plate_harmonite.name=Harmonite Plate
+iua.plate_nucleoarlemite.name=Nucleo Arlemite Plate
+iua.plate_voidweave.name=Voidweave Plate
 
 iua.plate_shadowphotoniumdense.name=Dense Shadow Photonium Plate
 iua.plate_moltendemondense.name=Dense Molten Demonic Plate
