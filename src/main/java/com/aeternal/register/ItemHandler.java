@@ -2,12 +2,14 @@ package com.aeternal.register;
 
 import com.aeternal.Constants;
 import com.aeternal.IUAItem;
+import com.aeternal.blocks.BlockAssembler;
 import com.aeternal.integration.astralsorcery.AstralSorceryIntegration;
 import com.aeternal.integration.astralsorcery.item.AstralCraftingElements;
 import com.aeternal.integration.divinerpg.DivinerpgIntegration;
 import com.aeternal.integration.divinerpg.item.DivItems;
 import com.aeternal.integration.forestry.ForestryIntegration;
 import com.aeternal.integration.forestry.items.*;
+import com.denfop.blocks.TileBlockCreator;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
@@ -33,7 +35,7 @@ public class ItemHandler {
             IUAItem.divItems = new DivItems();
             DivinerpgIntegration.init();
         }
-
+        IUAItem.assembler = TileBlockCreator.instance.create(BlockAssembler.class);
     }
     
     public static <T extends Item> T registerItem(T item, ResourceLocation rl) {

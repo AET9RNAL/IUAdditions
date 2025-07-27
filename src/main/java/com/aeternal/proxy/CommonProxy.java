@@ -6,6 +6,7 @@ package com.aeternal.proxy;
 
 import com.aeternal.api.IModelRegister;
 import com.aeternal.register.ItemHandler;
+import com.aeternal.register.MultiBlockSystemHandler;
 import com.aeternal.register.RecipeHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -18,6 +19,7 @@ public class CommonProxy  {
 
         ItemHandler.init();
 
+
     }
 
     public void init(FMLInitializationEvent event) {
@@ -25,6 +27,7 @@ public class CommonProxy  {
     }
 
     public void postInit(FMLPostInitializationEvent event) {
+        MultiBlockSystemHandler.init();
 
         RecipeHandler.init();
 
