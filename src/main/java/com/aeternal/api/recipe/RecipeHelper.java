@@ -8,6 +8,7 @@ import com.denfop.api.Recipes;
 import com.denfop.api.recipe.BaseMachineRecipe;
 import com.denfop.api.recipe.Input;
 import com.denfop.api.recipe.RecipeOutput;
+import com.denfop.recipe.IInputItemStack;
 import com.denfop.tiles.mechanism.dual.heat.TileAlloySmelter;
 import com.denfop.utils.ModUtils;
 import net.minecraft.item.ItemStack;
@@ -16,12 +17,13 @@ import net.minecraft.nbt.NBTTagCompound;
 public class RecipeHelper {
 
     public static ItemStack setCount(ItemStack itemStack, int count) {
-        itemStack.setCount(count);
-        return itemStack;
+        ItemStack newItemStack = itemStack.copy();
+        newItemStack.setCount(count);
+        return newItemStack;
     }
 
     public static void addAlloySmelter(ItemStack input0, ItemStack input1, ItemStack output, int temp) {
-        TileAlloySmelter.addAlloysmelter(new InputItemStack(input0), new InputItemStack(input1), output, temp);
+        TileAlloySmelter.addAlloysmelter(Recipes.inputFactory.getInput(input0), Recipes.inputFactory.getInput(input1), output, temp);
     }
 
     public static void addPerfectAlloySmelter(ItemStack input1, ItemStack input2, ItemStack input3, ItemStack input4, ItemStack input5,ItemStack output, int temperature) {
@@ -30,12 +32,12 @@ public class RecipeHelper {
         } else {
             NBTTagCompound nbt = ModUtils.nbt();
             nbt.setShort("temperature", (short) temperature);
-            Recipes.recipes.addRecipe("peralloysmelter", new BaseMachineRecipe(new Input(new InputItemStack[]{
-                    new InputItemStack(input1),
-                    new InputItemStack(input2),
-                    new InputItemStack(input3),
-                    new InputItemStack(input4),
-                    new InputItemStack(input5)
+            Recipes.recipes.addRecipe("", new BaseMachineRecipe(new Input(new IInputItemStack[]{
+                    Recipes.inputFactory.getInput(input1),
+                    Recipes.inputFactory.getInput(input2),
+                    Recipes.inputFactory.getInput(input3),
+                    Recipes.inputFactory.getInput(input4),
+                    Recipes.inputFactory.getInput(input5)
             }), new RecipeOutput(nbt, output)));
         }
     }
@@ -48,7 +50,7 @@ public class RecipeHelper {
     public static void addRolling(ItemStack input, ItemStack output) {
         Recipes.recipes.addRecipe(
                 "rolling",
-                new BaseMachineRecipe(new Input(new InputItemStack(input)),
+                new BaseMachineRecipe(new Input(Recipes.inputFactory.getInput(input)),
                 new RecipeOutput((NBTTagCompound) null, output))
         );
     }
