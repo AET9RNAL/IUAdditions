@@ -32,7 +32,7 @@ public class RecipeHelper {
         } else {
             NBTTagCompound nbt = ModUtils.nbt();
             nbt.setShort("temperature", (short) temperature);
-            Recipes.recipes.addRecipe("", new BaseMachineRecipe(new Input(new IInputItemStack[]{
+            Recipes.recipes.addRecipe("peralloysmelter", new BaseMachineRecipe(new Input(new IInputItemStack[]{
                     Recipes.inputFactory.getInput(input1),
                     Recipes.inputFactory.getInput(input2),
                     Recipes.inputFactory.getInput(input3),
