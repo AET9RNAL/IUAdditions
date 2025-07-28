@@ -42,11 +42,6 @@ public class RecipeHelper {
         }
     }
 
-    public static void addDEFusion(ItemStack result, ItemStack catalyst, long energyCost, int craftingTier, Object... ingredients) {
-        IFusionRecipe recipe = new SimpleFusionRecipe(result, catalyst, energyCost / ingredients.length, craftingTier, ingredients);
-        RecipeManager.FUSION_REGISTRY.add(recipe);
-    }
-
     public static void addRolling(ItemStack input, ItemStack output) {
         Recipes.recipes.addRecipe(
                 "rolling",

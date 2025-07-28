@@ -1,20 +1,15 @@
-//---This code is a part of the original IU(Industrial Upgrade) code: https://github.com/ZelGimi/industrialupgrade. Project: https://www.curseforge.com/minecraft/mc-mods/industrial-upgrade.
-//---The rights to this code belong to their original authors.---///
-//---The usage and modification of it are a subject to the license of the original souce code and discretion of it's author.---///
-
 package com.aeternal.integration.forestry.recipes;
 
 import binnie.extrabees.modules.ModuleCore;
 import cofh.thermalexpansion.util.managers.machine.TransposerManager;
 import binnie.extrabees.items.ItemHoneyComb;
 import com.aeternal.Constants;
-import com.aeternal.Core;
 import com.aeternal.IUAItem;
 import com.aeternal.api.recipe.RecipeHelper;
+import com.aeternal.integration.draconicevolution.recipe.DERecipeHelper;
 import com.aeternal.integration.forestry.items.HoneyCrystal;
 import com.aeternal.integration.forestry.items.HoneyGlass;
 import com.aeternal.integration.forestry.items.HoneyPlate;
-import com.brandon3055.draconicevolution.lib.RecipeManager;
 import com.denfop.IUItem;
 import com.denfop.api.Recipes;
 import com.denfop.tiles.mechanism.TileEntityFluidIntegrator;
@@ -23,8 +18,6 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.Mod;
-
-import java.math.BigInteger;
 
 import static com.denfop.recipes.CompressorRecipe.addcompressor;
 
@@ -54,13 +47,13 @@ public class ForestryRecipes {
 
     public static void FOCompressorRecipe() {
 
-        addcompressor(ItemHoneyComb.VanillaComb.SIMMERING.get(), 32, new ItemStack(IUAItem.compressedHoneycomb, 1, 0));
+        if (Constants.EXBEES_LOADED) addcompressor(ItemHoneyComb.VanillaComb.SIMMERING.get(), 32, new ItemStack(IUAItem.compressedHoneycomb, 1, 0));
         addcompressor(new ItemStack(ModuleCore.comb, 32, 82), new ItemStack(IUAItem.compressedHoneycomb, 1, 0));
         addcompressor(new ItemStack(ModuleCore.comb, 32, 21), new ItemStack(IUAItem.compressedHoneycomb, 1, 1));
         addcompressor(new ItemStack(ModuleCore.comb, 32, 28), new ItemStack(IUAItem.compressedHoneycomb, 1, 2));
         addcompressor(new ItemStack(ModuleCore.comb, 32, 81), new ItemStack(IUAItem.compressedHoneycomb, 1, 3));
         addcompressor(new ItemStack(ModuleCore.comb, 32, 14), new ItemStack(IUAItem.compressedHoneycomb, 1, 4));
-        addcompressor(ItemHoneyComb.VanillaComb.DRIPPING.get(), 32, new ItemStack(IUAItem.compressedHoneycomb, 1, 5));
+        if (Constants.EXBEES_LOADED) addcompressor(ItemHoneyComb.VanillaComb.DRIPPING.get(), 32, new ItemStack(IUAItem.compressedHoneycomb, 1, 5));
 
     }
 
@@ -162,7 +155,7 @@ public class ForestryRecipes {
                 new ItemStack(IUAItem.honeyGlass, 1, HoneyPlate.HoneyPlateTypes.getLength() - 2),
                 new ItemStack(IUAItem.honeyGlass, 1, HoneyPlate.HoneyPlateTypes.getLength() - 1)
         };
-        RecipeHelper.addDEFusion(new ItemStack(IUAItem.refractive, 1, 1), new ItemStack(IUItem.photonglass, 1, 13), 15000000000L, 3, (Object[]) items);
+        DERecipeHelper.addDEFusion(new ItemStack(IUAItem.refractive, 1, 1), new ItemStack(IUItem.photonglass, 1, 13), 15000000000L, 3, (Object[]) items);
     }
 
     public static void FORefractiveGlassAlternative() {

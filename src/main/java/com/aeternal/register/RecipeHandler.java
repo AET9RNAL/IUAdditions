@@ -16,7 +16,7 @@ public class RecipeHandler {
         if (Constants.DIV_LOADED && Constants.DIV_CONFIRM) {
             DIVRecipes.init();
         }
-        if (Constants.FO_LOADED && Constants.EXBEES_LOADED && Constants.FO_CONFIRM) {
+        if (Constants.FO_LOADED && Constants.FO_CONFIRM) {
             ForestryRecipes.init();
         }
         if (Constants.DE_LOADED && Constants.DE_CONFIRM) {
