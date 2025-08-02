@@ -1,3 +1,4 @@
 - [ ] - Assembler (WIP)
 - [ ] - Crypt 
-- [ ] - Cleanroom (Greg)
+- [ ] - Cleanroom (Greg)  
+- [ ] - HBM energy converter
