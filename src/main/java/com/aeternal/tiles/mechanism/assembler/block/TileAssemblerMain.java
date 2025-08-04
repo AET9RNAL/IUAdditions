@@ -1,8 +1,9 @@
 package com.aeternal.tiles.mechanism.assembler.block;
 
 import com.aeternal.IUAItem;
+import com.aeternal.Localization;
 import com.aeternal.audio.EnumSound;
-import com.aeternal.blocks.BlockAssembler;
+import com.aeternal.blocks.assembler.BlockAssembler;
 import com.aeternal.container.ContainerAssembler;
 import com.aeternal.gui.GuiAssembler;
 import com.aeternal.register.MultiBlockSystemHandler;
@@ -30,7 +31,6 @@ import com.denfop.network.packet.PacketStopSound;
 import com.denfop.network.packet.PacketUpdateFieldTile;
 import com.denfop.tiles.base.TileEntityInventory;
 import com.denfop.tiles.mechanism.multiblocks.base.TileMultiBlockBase;
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -129,15 +129,16 @@ public class TileAssemblerMain extends TileMultiBlockBase
     }
 
     @SideOnly(Side.CLIENT)
-    public void addInformation(final ItemStack stack, final List<String> tooltip, final ITooltipFlag advanced) {
+    public void addInformation(final ItemStack stack, final List<String> tooltip) {
+        super.addInformation(stack, tooltip);
 //        tooltip.add(Localization.translate("iu.blastfurnace.info1"));
-//        tooltip.add(Localization.translate("iu.blastfurnace.info3") + Localization.translate(new ItemStack(
-//                IUAItem.assembler,
-//                1,
-//                0
-//        ).getUnlocalizedName()));
+        boolean add = tooltip.add(Localization.translate("iua.assembler.info1") + Localization.translate(new ItemStack(
+                IUAItem.assembler,
+                1,
+                0
+        ).getUnlocalizedName()));
 //        tooltip.add(Localization.translate("iu.blastfurnace.info4"));
-//        tooltip.add(Localization.translate("iu.blastfurnace.info5") + Localization.translate(IUItem.ForgeHammer.getUnlocalizedName()));
+        tooltip.add(Localization.translate("iua.assembler.info2") + com.denfop.Localization.translate(IUItem.ForgeHammer.getUnlocalizedName()));
 //        tooltip.add(Localization.translate("iu.blastfurnace.info6"));
     }
 
@@ -214,7 +215,6 @@ public class TileAssemblerMain extends TileMultiBlockBase
     @Override
     public void onUnloaded() {
         super.onUnloaded();
-
     }
 
     //TODO
@@ -445,11 +445,6 @@ public class TileAssemblerMain extends TileMultiBlockBase
     }
 
     @Override
-    public void update() {
-
-    }
-
-    @Override
     public int[] getSlotsForFace(EnumFacing side) {
         return new int[]{};
     }
@@ -472,9 +467,7 @@ public class TileAssemblerMain extends TileMultiBlockBase
 
     @Override
     public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) {
-        if (this.invSlotAssembler.get(index).isEmpty()) {
-            return false;
-        } else return true;
+        return !this.invSlotAssembler.get(index).isEmpty();
     }
 
     @Override
@@ -495,6 +488,48 @@ public class TileAssemblerMain extends TileMultiBlockBase
     @Override
     public ItemStack getStackInSlot(int index) {
         return this.invSlotAssembler.get(index);
+    }
+
+    @Override
+    public ItemStack decrStackSize(int index, int count) {
+        invSlotAssembler.get(index).setCount(count);
+        return invSlotAssembler.get(index);
+    }
+
+    @Override
+    public ItemStack removeStackFromSlot(int index) {
+        invSlotAssembler.get(index).setCount(0);
+        return invSlotAssembler.get(index);
+    }
+
+    @Override
+    public void setInventorySlotContents(int index, ItemStack stack) {
+        invSlotAssembler.set(index, stack);
+    }
+
+    @Override
+    public int getInventoryStackLimit() {
+        return invSlotAssembler.getStackSizeLimit();
+    }
+
+    @Override
+    public boolean isUsableByPlayer(EntityPlayer player) {
+        return true;
+    }
+
+    @Override
+    public boolean isItemValidForSlot(int index, ItemStack stack) {
+        return invSlotAssembler.get(index).equals(stack);
+    }
+
+    @Override
+    public int getField(int id) {
+        return 0;
+    }
+
+    @Override
+    public int getFieldCount() {
+        return this.tank.getFluidAmount();
     }
 
 

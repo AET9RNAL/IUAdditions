@@ -22,5 +22,6 @@ public class IUAItem {
  public static DivItems divItems;
 
  public static BlockTileEntity assembler;
+ public static BlockTileEntity assemblerMeka;
 
 }

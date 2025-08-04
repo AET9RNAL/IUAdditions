@@ -2,7 +2,8 @@ package com.aeternal.register;
 
 import com.aeternal.Constants;
 import com.aeternal.IUAItem;
-import com.aeternal.blocks.BlockAssembler;
+import com.aeternal.blocks.assembler.BlockAssembler;
+import com.aeternal.blocks.assembler.integrations.mekanism.BlockMekaAssembler;
 import com.aeternal.integration.astralsorcery.AstralSorceryIntegration;
 import com.aeternal.integration.astralsorcery.item.AstralCraftingElements;
 import com.aeternal.integration.divinerpg.DivinerpgIntegration;
@@ -35,7 +36,11 @@ public class ItemHandler {
             IUAItem.divItems = new DivItems();
             DivinerpgIntegration.init();
         }
+
         IUAItem.assembler = TileBlockCreator.instance.create(BlockAssembler.class);
+        if (Constants.MEKA_LOADED) {
+            IUAItem.assemblerMeka = TileBlockCreator.instance.create(BlockMekaAssembler.class);
+        }
     }
     
     public static <T extends Item> T registerItem(T item, ResourceLocation rl) {

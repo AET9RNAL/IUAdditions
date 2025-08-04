@@ -1,7 +1,8 @@
-package com.aeternal.blocks;
+package com.aeternal.blocks.assembler;
 
-import com.aeternal.Constants;
 import com.aeternal.Core;
+import com.aeternal.tiles.mechanism.assembler.block.TileAssemblerCasing;
+import com.aeternal.tiles.mechanism.assembler.block.TileAssemblerFluidInput;
 import com.aeternal.tiles.mechanism.assembler.block.TileAssemblerMain;
 import com.denfop.api.tile.IMultiTileBlock;
 import com.denfop.blocks.MultiTileBlock;
@@ -12,8 +13,6 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import javax.annotation.Nonnull;
@@ -22,6 +21,8 @@ import java.util.Set;
 public enum BlockAssembler implements IMultiTileBlock {
 
     assembler_main(TileAssemblerMain.class, 0),
+    assembler_casing(TileAssemblerCasing.class, 1),
+    assembler_input_fluid(TileAssemblerFluidInput.class, 2)
     ;
 
     public static final ResourceLocation IDENTITY = Core.getIdentifier("assembler");
@@ -48,10 +49,6 @@ public enum BlockAssembler implements IMultiTileBlock {
     }
 
     public void buildDummies() {
-        final ModContainer mc = Loader.instance().activeModContainer();
-        if (mc == null || !Constants.MOD_ID.equals(mc.getModId())) {
-            throw new IllegalAccessError("Don't mess with this please.");
-        }
         for (final BlockAssembler block : BlockAssembler.values()) {
             if (block.teClass != null) {
                 try {

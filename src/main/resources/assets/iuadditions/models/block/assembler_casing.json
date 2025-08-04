@@ -1,0 +1,12 @@
+{
+  "parent" : "block/cube",
+  "textures" : {
+    "particle" : "iuadditions:blocks/assembler_casing",
+    "down" : "iuadditions:blocks/assembler_casing",
+    "up" : "iuadditions:blocks/assembler_casing",
+    "north" : "iuadditions:blocks/assembler_casing",
+    "east" : "iuadditions:blocks/assembler_casing",
+    "south" : "iuadditions:blocks/assembler_casing",
+    "west" : "iuadditions:blocks/assembler_casing"
+  }
+}

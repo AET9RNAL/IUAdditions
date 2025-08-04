@@ -50,6 +50,10 @@ iuadditions.spectralconverter.spectral_converter=§dSpectral Converter
 iuadditions.spectralqeconverter.spectralqe_converter=§dQuantum Spectral Converter
 iuadditions.manaconverter.mana_converter=§bMana Converter
 
+iuadditions.assembler.assembler_main=Assembler Controller
+iuadditions.assembler.assembler_casing=Assembler Casing
+iuadditions.assembler.assembler_input_fluid=Assembler Fluid Input
+
 #ITEMS
 
 #Astral
@@ -161,3 +165,7 @@ iua.glass.certus=Certus Comb Glass
 iua.glass.statics=Static Comb Glass
 iua.glass.dripping=Gold Comb Glass
 iua.refractive.glass=Refractive Comb Glass
+
+#Tooltips
+iua.assembler.info1=Put last:
+iua.assembler.info2=RMB on the controller with

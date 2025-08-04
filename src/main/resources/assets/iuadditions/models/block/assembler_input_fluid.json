@@ -1,0 +1,12 @@
+{
+  "parent" : "block/cube",
+  "textures" : {
+    "particle" : "iuadditions:blocks/assembler_input_fluid",
+    "down" : "iuadditions:blocks/assembler_input_fluid",
+    "up" : "iuadditions:blocks/assembler_input_fluid",
+    "north" : "iuadditions:blocks/assembler_input_fluid",
+    "east" : "iuadditions:blocks/assembler_input_fluid",
+    "south" : "iuadditions:blocks/assembler_input_fluid",
+    "west" : "iuadditions:blocks/assembler_input_fluid"
+  }
+}
