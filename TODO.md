@@ -2,7 +2,7 @@
 - [ ] - Crypt 
 - [ ] - Cleanroom (Greg)  
 - [ ] - HBM energy converter
-- [ ] - CT Integrations:
+- [x] - CT Integrations:
     - [x] Crystal charger
     - [x] El assembler
     - [x] Night Converter
@@ -11,4 +11,4 @@
     - [x] Nuclear Fusion
     - [x] Neutron Separator
     - [x] Crystal Grower
-    - [ ] Upgrade Kit manufacturer
+    - [x] Upgrade Kit manufacturer

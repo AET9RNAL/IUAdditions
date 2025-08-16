@@ -24,9 +24,9 @@ import java.util.Objects;
  * Zen usage:
  * mods.industrialupgrade.UpgradeMachineFactory.removeRecipe(IItemStack);
  * mods.industrialupgrade.UpgradeMachineFactory.addRecipe(IItemStack_out,
- * <in0>, <in1>, <in2>,
- * <in3>, <in4>, <in5>,
- * <in6>, <in7>, <in8>);
+ * IItemStack_in1, IItemStack_in2, IItemStack_in3,
+ * IItemStack_in4, IItemStack_in5, IItemStack_in6,
+ * IItemStack_in7, IItemStack_in8, IItemStack_in9);
  */
 @ZenClass("mods.industrialupgrade.UpgradeMachineFactory")
 @ModOnly("industrialupgrade")

@@ -21,6 +21,11 @@ import stanhebben.zenscript.annotations.ZenMethod;
 import java.util.Arrays;
 import java.util.Objects;
 
+/**
+ * Zen usage:
+ * mods.industrialupgrade.QuantumMolecular.removeRecipe(IItemStack);
+ * mods.industrialupgrade.QuantumMolecular.addRecipe(IItemStack_out, IItemStack_in0, IItemStack_in1);
+ */
 @ZenClass("mods.industrialupgrade.QuantumMolecular")
 @ModOnly("industrialupgrade")
 @ZenRegister

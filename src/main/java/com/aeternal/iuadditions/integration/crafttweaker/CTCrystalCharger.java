@@ -21,8 +21,8 @@ import java.util.Objects;
 
 /**
  * Zen usage:
- * mods.industrialupgrade.CrystalCharger.removeRecipe(<modid:out_item>);
- * mods.industrialupgrade.CrystalCharger.addRecipe(<modid:out_item>, <modid:in_item>);
+ * mods.industrialupgrade.CrystalCharger.removeRecipe(IItemStack);
+ * mods.industrialupgrade.CrystalCharger.addRecipe(IItemStack_out, IItemStack_in);
  */
 @ZenClass("mods.industrialupgrade.CrystalCharger")
 @ModOnly("industrialupgrade")

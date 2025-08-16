@@ -15,6 +15,11 @@ import crafttweaker.api.minecraft.CraftTweakerMC;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
+/**
+ * Zen usage:
+ * mods.industrialupgrade.Programming.removeRecipe(IItemStack);
+ * mods.industrialupgrade.Programming.addRecipe(IItemStack_out, IItemStack_in);
+ */
 @ZenClass("mods.industrialupgrade.Programming")
 @ModOnly("industrialupgrade")
 @ZenRegister
