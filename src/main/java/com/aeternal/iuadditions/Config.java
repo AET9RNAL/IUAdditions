@@ -104,6 +104,8 @@ public final class Config {
     public static boolean allowEfToManaConversion;
     public static boolean allowManaToEfConversion;
 
+    public static boolean allowBoss;
+
     public static void loadNormalConfig(final File configFile) {
         Core.LOGGER.info("Loading IUA Config from " + configFile.getAbsolutePath());
 
@@ -227,6 +229,8 @@ public final class Config {
             coefficientmanatoef = config.get("general", "coefficient mana to ef", 0.02).getDouble(0.02);
 
             manatransferrate = config.get("general", "mana I/O transfer rate", 50000).getInt(50000);
+
+            allowBoss = config.get("general", "Enable or disable boss spawning in Automatic Hunter",false).getBoolean(false);
 
         } catch (Exception e) {
             Core.LOGGER.fatal("Fatal error reading config file.", e);

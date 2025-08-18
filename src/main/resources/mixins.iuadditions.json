@@ -1,11 +1,14 @@
 {
-	"package": "",
+	"package": "com.aeternal.iuadditions.mixins",
+	"plugin": "com.aeternal.iuadditions.mixins.DebugPlugin",
 	"required": true,
-	"refmap": "mixins.iuadditions.refmap.json",
+	"refmap": "iuadditions.mixins.refmap.json",
 	"target": "@env(DEFAULT)",
 	"minVersion": "0.8.5",
 	"compatibilityLevel": "JAVA_8",
-	"mixins": [],
+	"mixins": [
+		"MixinTileAutoSpawner"
+	],
 	"server": [],
 	"client": []
 }

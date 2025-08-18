@@ -25,6 +25,9 @@ repositories {
             includeGroup 'maven.modrinth'
         }
     }
+    maven {
+        url 'https://maven.cleanroommc.com'
+    }
     mavenLocal() // Must be last for caching to work
 }
 
@@ -92,7 +95,6 @@ dependencies {
     runtimeOnly "curse.maven:had-enough-items-557549:6463525"
     implementation "curse.maven:top-addons-247111:2887479"
     implementation "curse.maven:ae2-extended-life-570458:6302098"
-    implementation "curse.maven:crafttweaker-239197:6669824"
     implementation "curse.maven:thermal-dynamics-227443:2920505"
     implementation "curse.maven:thermal-expansion-69163:2926431"
     implementation "curse.maven:thermal-foundation-222880:2926428"
@@ -104,4 +106,16 @@ dependencies {
     compileOnly fileTree('libs')
     implementation fileTree('lib')
 
+    annotationProcessor 'org.ow2.asm:asm-debug-all:5.2'
+    annotationProcessor 'com.google.guava:guava:32.1.2-jre'
+    annotationProcessor 'com.google.code.gson:gson:2.8.9'
+    String mixinBooter = modUtils.enableMixins('zone.rong:mixinbooter:10.0', 'iuadditions.mixins.refmap.json')
+    // modUtils.enableMixins('zone.rong:mixinbooter:9.1', 'mod_id.mixins.refmap.json') << add refmap name as 2nd arg (optional)
+    api (mixinBooter) {
+        transitive = false
+    }
+
+    annotationProcessor (mixinBooter) {
+        transitive = false
+    }
 }

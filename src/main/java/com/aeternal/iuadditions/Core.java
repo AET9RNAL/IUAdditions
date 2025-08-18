@@ -42,7 +42,14 @@ import static com.aeternal.iuadditions.integration.forestry.ForestryIntegration.
         version = Constants.MOD_VERSION,
         acceptedMinecraftVersions = "[1.12,1.12.2]")
 public final class Core {
-
+    static {
+        try {
+            org.spongepowered.asm.mixin.Mixins.addConfiguration("mixins.iuadditions.json");
+            System.out.println("[IUAdditions] Mixins.addConfiguration registered mixins.iuadditions.json");
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+    }
     public static final CreativeTabs IUATab = new TabCore(0, "IU:AdditionsTab");
 
     public static final List<ItemStack> list = new ArrayList<>();
@@ -68,6 +75,7 @@ public final class Core {
     public static void addIModelRegister(IModelRender puItemBase) {
         modelList.add(puItemBase);
     }
+
 
 
     @Mod.EventHandler
