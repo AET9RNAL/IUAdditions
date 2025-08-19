@@ -1,11 +1,6 @@
-//---This code is a part of the original IU(Industrial Upgrade) code: https://github.com/ZelGimi/industrialupgrade. Project: https://www.curseforge.com/minecraft/mc-mods/industrial-upgrade.
-//---The rights to this code belong to their original authors.---///
-//---The usage and modification of it are a subject to the license of the original souce code and discretion of it's author.---///
-
 package com.aeternal.iuadditions.proxy;
 
 import com.aeternal.iuadditions.Constants;
-import com.aeternal.iuadditions.api.IModelRegister;
 import com.aeternal.iuadditions.integration.astralsorcery.render.TileEntityDimSolarPanelRender;
 import com.aeternal.iuadditions.integration.astralsorcery.render.TileEntityFaintSolarPanelRender;
 import com.aeternal.iuadditions.integration.astralsorcery.render.TileEntitySolarPanelRender;
@@ -14,6 +9,7 @@ import com.aeternal.iuadditions.integration.astralsorcery.tile.TileDimstarlightc
 import com.aeternal.iuadditions.integration.astralsorcery.tile.TileFaintstarlightcollectorSolarPanel;
 import com.aeternal.iuadditions.integration.divinerpg.render.*;
 import com.aeternal.iuadditions.integration.divinerpg.tile.*;
+import com.denfop.api.IModelRegister;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
