@@ -105,17 +105,22 @@ public final class Config {
     public static boolean allowManaToEfConversion;
 
     public static boolean allowBoss;
+    public static int katanaDmg;
+    public static int katanaEff;
+    public static int katanaArmorPierce;
+    public static int katanaGodSlay;
+    public static int katanaSoulStep;
 
     public static void loadNormalConfig(final File configFile) {
         Core.LOGGER.info("Loading IUA Config from " + configFile.getAbsolutePath());
 
         final Configuration config = new Configuration(configFile);
         try {
-            AstralConfirmed = config.getBoolean("Configuration Solar Panels","AvaritiaConfirm",true,"Are you sure you want to enable Avaritia Solar Panels?");
-            ForestryConfirmed = config.getBoolean("Configuration Solar Panels","ForestryConfirm",true,"Are you sure you want to enable Forestry Solar Panels?");
-            DivineConfirmed = config.getBoolean("Configuration Solar Panels","DivineConfirm",true,"Are you sure you want to enable Divine Solar Panels?");
-            BotaniaConfirmed = config.getBoolean("Configuration Solar Panels","BotaniaConfirm",true,"Are you sure you want to enable Botania Solar Panels?");
-            DraconicConfirmed = config.getBoolean("Configuration Solar Panels","DraconicConfirm",true,"Are you sure you want to enable Draconic Evolution integration?");
+            AstralConfirmed = config.getBoolean("Configuration Solar Panels","Integrations",true,"Are you sure you want to enable Astral Solar Panels?");
+            ForestryConfirmed = config.getBoolean("Configuration Solar Panels","Integrations",true,"Are you sure you want to enable Forestry Solar Panels?");
+            DivineConfirmed = config.getBoolean("Configuration Solar Panels","Integrations",true,"Are you sure you want to enable Divine Solar Panels?");
+            BotaniaConfirmed = config.getBoolean("Configuration Solar Panels","Integrations",true,"Are you sure you want to enable Botania Solar Panels?");
+            DraconicConfirmed = config.getBoolean("Configuration Solar Panels","Integrations",true,"Are you sure you want to enable Draconic Evolution integration?");
 
             //CustomSolarPanelsCFG
             edenGenDay = config.get("Configuration Solar Panels", "EdenGenDay", 81920).getDouble(81920.0);
@@ -209,29 +214,31 @@ public final class Config {
             refractivebeekeeperStorage = config.get("Configuration Solar Panels", "RefractivebeekeeperStorage", 2.5E12).getDouble(2.5E12);
 
             //CustomSolarPanelsCFG_END
-            promt = config.get("general", "Enable prompt about information a panel", true).getBoolean(true);
-            coefficientqe = config.get("general", "coefficient qe", 64).getInt(64);
+            coefficientqe = config.get("Converters", "coefficient qe", 64).getInt(64);
             if (coefficientqe < 1) {
                 coefficientqe = 64;
             }
-            coefficientrf = config.get("general", "coefficient rf", 4).getInt(4);
+            coefficientrf = config.get("Converters", "coefficient rf", 4).getInt(4);
             if (coefficientrf < 1) {
                 coefficientrf = 4;
             }
-            coreSearchRange = (byte) config.get("general", "The area in blocks where spectral converter will attempt to locate the energy core (max 128)", 16).getInt(16);
+            coreSearchRange = (byte) config.get("Converters", "The area in blocks where spectral converter will attempt to locate the energy core (max 128)", 16).getInt(16);
             if (coreSearchRange < 1) {
                 coreSearchRange = 16;
             }
-            allowEfToManaConversion = config.get("general", "Allow EF to Mana Conversion", false).getBoolean(false);
-            allowManaToEfConversion = config.get("general", "Allow Mana to Ef Conversion", true).getBoolean(true);
-            coefficienteftomana = config.get("general", "coefficient ef to mana", 0.02).getDouble(0.02);
+            allowEfToManaConversion = config.get("Converters", "Allow EF to Mana Conversion", false).getBoolean(false);
+            allowManaToEfConversion = config.get("Converters", "Allow Mana to Ef Conversion", true).getBoolean(true);
+            coefficienteftomana = config.get("Converters", "coefficient ef to mana", 0.02).getDouble(0.02);
 
-            coefficientmanatoef = config.get("general", "coefficient mana to ef", 0.02).getDouble(0.02);
+            coefficientmanatoef = config.get("Converters", "coefficient mana to ef", 0.02).getDouble(0.02);
 
-            manatransferrate = config.get("general", "mana I/O transfer rate", 50000).getInt(50000);
+            manatransferrate = config.get("Converters", "mana I/O transfer rate", 50000).getInt(50000);
 
-            allowBoss = config.get("general", "Enable or disable boss spawning in Automatic Hunter",false).getBoolean(false);
-
+            allowBoss = config.get("Mixins", "Enable boss spawning in Automatic Hunter",false).getBoolean(false);
+            katanaDmg = config.get("Mixins", "Katana base damage modifier",14).getInt(14);
+            katanaArmorPierce = config.get("Mixins", "Katana armor pierce damage modifier",14).getInt(14);
+            katanaGodSlay = config.get("Mixins", "Katana god damage",14).getInt(14);
+            katanaSoulStep = config.get("Mixins", "Katana soul damage",100).getInt(100);
         } catch (Exception e) {
             Core.LOGGER.fatal("Fatal error reading config file.", e);
             throw new RuntimeException(e);

@@ -161,3 +161,14 @@ iua.glass.certus=Certus Comb Glass
 iua.glass.statics=Static Comb Glass
 iua.glass.dripping=Gold Comb Glass
 iua.refractive.glass=Refractive Comb Glass
+
+
+#Katana
+attribute.name.iuadditions.armorpiercingattackdamage=Armor Piercing Damage
+attribute.name.iuadditions.godslayingattackdamage=Divine Damage
+attribute.name.iuadditions.souldamage=Permanent Damage
+
+
+
+
+
