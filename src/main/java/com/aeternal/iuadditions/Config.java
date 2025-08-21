@@ -104,7 +104,10 @@ public final class Config {
     public static boolean allowEfToManaConversion;
     public static boolean allowManaToEfConversion;
 
+    //Hunter CFG
     public static boolean allowBoss;
+
+    //Katana CFG
     public static boolean katanaDebug;
     public static int katanaDmg;
     public static int katanaEff;
@@ -115,6 +118,9 @@ public final class Config {
     public static double armorPierceDmgEnergy;
     public static double soulDmgEnergy;
 
+    //Modules CFG
+    public static boolean UpgradeModulesMixin;
+    public static boolean DebugEnum;
 
     public static void loadNormalConfig(final File configFile) {
         Core.LOGGER.info("Loading IUA Config from " + configFile.getAbsolutePath());
@@ -226,12 +232,15 @@ public final class Config {
 
             katanaDebug = config.get("Katana Mixins", "Katana debugger",false).getBoolean(false);
             katanaDmg = config.get("Katana Mixins", "Katana base damage modifier",14).getInt(14);
-            katanaArmorPierce = config.get("Katana Mixins", "Katana armor pierce damage modifier",10).getInt(10);
-            katanaGodSlay = config.get("Katana Mixins", "Katana god damage",5).getInt(5);
-            katanaSoulStep = config.get("Katana Mixins", "Katana soul damage",100).getInt(100);
+            katanaArmorPierce = config.get("Katana Mixins", "Katana armor pierce damage modifier",80).getInt(80);
+            katanaGodSlay = config.get("Katana Mixins", "Katana god damage",10).getInt(10);
+            katanaSoulStep = config.get("Katana Mixins", "Katana soul damage modifier",30).getInt(30);
             godDmgEnergy = config.get("Katana Mixins", "Katana god energy drain",1000.00).getDouble(1000.00);
             armorPierceDmgEnergy = config.get("Katana Mixins", "Katana armor piercing damage energy drain",500.00).getDouble(500.00);
             soulDmgEnergy = config.get("Katana Mixins", "Katana soul damage energy drain",800.00).getDouble(800.00);
+
+            UpgradeModulesMixin = config.get("Upgrade Modules Mixins", "Enable Mixin",true).getBoolean(true);
+            DebugEnum = config.get("Upgrade Modules Mixins", "Mixin Debugger",false).getBoolean(false);
         } catch (Exception e) {
             Core.LOGGER.fatal("Fatal error reading config file.", e);
             throw new RuntimeException(e);

@@ -17,6 +17,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -71,7 +72,9 @@ public final class Core {
         return new ResourceLocation(Constants.MOD_ID, name);
     }
 
+
     public static final List<IModelRender> modelList = new ArrayList<>();
+    @Optional.Method(modid = "powerutils")
     public static void addIModelRegister(IModelRender puItemBase) {
         modelList.add(puItemBase);
     }

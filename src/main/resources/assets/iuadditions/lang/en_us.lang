@@ -164,9 +164,9 @@ iua.refractive.glass=Refractive Comb Glass
 
 
 #Katana
-attribute.name.iuadditions.armorpiercingattackdamage=Armor Piercing Damage
-attribute.name.iuadditions.godslayingattackdamage=Divine Damage
-attribute.name.iuadditions.souldamage=Permanent Damage
+attribute.name.iuadditions.armorpiercingattackdamage=§eArmor Piercing Damage
+attribute.name.iuadditions.godslayingattackdamage=§eDivine Damage
+attribute.name.iuadditions.souldamage=§ePermanent Damage
 
 
 
