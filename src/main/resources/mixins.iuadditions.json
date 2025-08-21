@@ -8,7 +8,8 @@
 	"compatibilityLevel": "JAVA_8",
 	"mixins": [
 		"MixinTileAutoSpawner",
-		"MixinKatana"
+		"MixinKatana",
+		"MixinEnumInfoUpgradeModules"
 	],
 	"server": [],
 	"client": []

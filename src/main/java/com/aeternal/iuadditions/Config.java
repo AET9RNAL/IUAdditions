@@ -121,6 +121,29 @@ public final class Config {
     //Modules CFG
     public static boolean UpgradeModulesMixin;
     public static boolean DebugEnum;
+    public static byte ModuleGENDAYmaxCount;
+    public static byte ModuleGENNIGHTmaxCount;
+    public static byte ModulePROTECTIONmaxCount;
+    public static byte ModuleEFFICIENCYmaxCount;
+    public static byte ModuleBOWENERGYmaxCount;
+    public static byte ModuleSABERENERGYmaxCount;
+    public static byte ModuleDIG_DEPTHmaxCount;
+    public static byte ModuleSPEEDmaxCount;
+    public static byte ModuleJUMPmaxCount;
+    public static byte ModuleBOWDAMAGEmaxCount;
+    public static byte ModuleSABER_DAMAGEmaxCount;
+    public static byte ModuleAOE_DIGmaxCount;
+    public static byte ModuleFLYSPEEDmaxCount;
+    public static byte ModuleSTORAGEmaxCount;
+    public static byte ModuleENERGYmaxCount;
+    public static byte ModuleVAMPIRESmaxCount;
+    public static byte ModuleRESISTANCEmaxCount;
+    public static byte ModuleLOOTmaxCount;
+    public static byte ModuleFIREmaxCount;
+    public static byte ModuleLUCKYmaxCount;
+    public static byte ModuleEFFICIENTmaxCount;
+    public static byte ModuleTHORNSmaxCount;
+    public static byte ModuleLAPPACK_ENERGYmaxCount;
 
     public static void loadNormalConfig(final File configFile) {
         Core.LOGGER.info("Loading IUA Config from " + configFile.getAbsolutePath());
@@ -233,14 +256,39 @@ public final class Config {
             katanaDebug = config.get("Katana Mixins", "Katana debugger",false).getBoolean(false);
             katanaDmg = config.get("Katana Mixins", "Katana base damage modifier",14).getInt(14);
             katanaArmorPierce = config.get("Katana Mixins", "Katana armor pierce damage modifier",80).getInt(80);
-            katanaGodSlay = config.get("Katana Mixins", "Katana god damage",10).getInt(10);
+            katanaGodSlay = config.get("Katana Mixins", "Katana god damage modifier",10).getInt(10);
             katanaSoulStep = config.get("Katana Mixins", "Katana soul damage modifier",30).getInt(30);
             godDmgEnergy = config.get("Katana Mixins", "Katana god energy drain",1000.00).getDouble(1000.00);
             armorPierceDmgEnergy = config.get("Katana Mixins", "Katana armor piercing damage energy drain",500.00).getDouble(500.00);
             soulDmgEnergy = config.get("Katana Mixins", "Katana soul damage energy drain",800.00).getDouble(800.00);
 
-            UpgradeModulesMixin = config.get("Upgrade Modules Mixins", "Enable Mixin",true).getBoolean(true);
-            DebugEnum = config.get("Upgrade Modules Mixins", "Mixin Debugger",false).getBoolean(false);
+            UpgradeModulesMixin            = config.get("Upgrade Modules Mixins", "Enable Mixin",true).getBoolean(true);
+            DebugEnum                      = config.get("Upgrade Modules Mixins", "Mixin Debugger",true).getBoolean(true);
+            ModuleGENDAYmaxCount           = (byte) config.get("Upgrade Modules Mixins", "Module GenDay max count",2).getInt(2);
+            ModuleGENDAYmaxCount           = (byte) config.get("Upgrade Modules Mixins", "Module GenDay max count",           2).getInt(2);
+            ModuleGENNIGHTmaxCount         = (byte) config.get("Upgrade Modules Mixins", "Module GenNight max count",         2).getInt(2);
+            ModulePROTECTIONmaxCount       = (byte) config.get("Upgrade Modules Mixins", "Module Protection max count",       4).getInt(4);
+            ModuleEFFICIENCYmaxCount       = (byte) config.get("Upgrade Modules Mixins", "Module Efficiency max count",       2).getInt(2);
+            ModuleBOWENERGYmaxCount        = (byte) config.get("Upgrade Modules Mixins", "Module BowEnergy max count",        2).getInt(2);
+            ModuleSABERENERGYmaxCount      = (byte) config.get("Upgrade Modules Mixins", "Module SaberEnergy max count",      6).getInt(6);
+            ModuleDIG_DEPTHmaxCount        = (byte) config.get("Upgrade Modules Mixins", "Module DigDepth max count",         2).getInt(2);
+            ModuleSPEEDmaxCount            = (byte) config.get("Upgrade Modules Mixins", "Module Speed max count",            1).getInt(1);
+            ModuleJUMPmaxCount             = (byte) config.get("Upgrade Modules Mixins", "Module Jump max count",             1).getInt(1);
+            ModuleBOWDAMAGEmaxCount        = (byte) config.get("Upgrade Modules Mixins", "Module BowDamage max count",        2).getInt(2);
+            ModuleSABER_DAMAGEmaxCount     = (byte) config.get("Upgrade Modules Mixins", "Module SaberDamage max count",      6).getInt(6);
+            ModuleAOE_DIGmaxCount          = (byte) config.get("Upgrade Modules Mixins", "Module AOEDig max count",           6).getInt(6);
+            ModuleFLYSPEEDmaxCount         = (byte) config.get("Upgrade Modules Mixins", "Module FlySpeed max count",         2).getInt(2);
+            ModuleSTORAGEmaxCount          = (byte) config.get("Upgrade Modules Mixins", "Module Storage max count",          2).getInt(2);
+            ModuleENERGYmaxCount           = (byte) config.get("Upgrade Modules Mixins", "Module Energy max count",           2).getInt(2);
+            ModuleVAMPIRESmaxCount         = (byte) config.get("Upgrade Modules Mixins", "Module Vampires max count",         3).getInt(3);
+            ModuleRESISTANCEmaxCount       = (byte) config.get("Upgrade Modules Mixins", "Module Resistance max count",       3).getInt(3);
+            ModuleLOOTmaxCount             = (byte) config.get("Upgrade Modules Mixins", "Module Loot max count",             3).getInt(3);
+            ModuleFIREmaxCount             = (byte) config.get("Upgrade Modules Mixins", "Module Fire max count",             2).getInt(2);
+            ModuleLUCKYmaxCount            = (byte) config.get("Upgrade Modules Mixins", "Module Lucky max count",            3).getInt(3);
+            ModuleEFFICIENTmaxCount        = (byte) config.get("Upgrade Modules Mixins", "Module Efficient max count",        3).getInt(3);
+            ModuleTHORNSmaxCount           = (byte) config.get("Upgrade Modules Mixins", "Module Thorns max count",           3).getInt(3);
+            ModuleLAPPACK_ENERGYmaxCount   = (byte) config.get("Upgrade Modules Mixins", "Module LappackEnergy max count",    3).getInt(3);
+
         } catch (Exception e) {
             Core.LOGGER.fatal("Fatal error reading config file.", e);
             throw new RuntimeException(e);
