@@ -10,7 +10,6 @@ public class Constants {
     public static final String MOD_DEPS = "required-after:industrialupgrade;after:astralsorcery;after:forestry;" +
             "after:divinerpg;after:botania;after:thaumcraft;after:draconicevolution";
 
-    public static final String TEXTURES = "iuadditions";
     public static final boolean PU_LOADED = Loader.isModLoaded("powerutils");
     public static final boolean DE_LOADED = Loader.isModLoaded("draconicevolution");
     public static final boolean AVA_LOADED = Loader.isModLoaded("avaritia");

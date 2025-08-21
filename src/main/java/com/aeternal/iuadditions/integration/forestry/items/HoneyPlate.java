@@ -2,10 +2,10 @@ package com.aeternal.iuadditions.integration.forestry.items;
 
 import com.aeternal.iuadditions.Constants;
 import com.aeternal.iuadditions.Core;
-import com.aeternal.iuadditions.api.IModelRegister;
-import com.aeternal.iuadditions.api.block.ISubEnum;
-import com.aeternal.iuadditions.items.resource.ItemSubTypes;
+import com.aeternal.iuadditions.items.resource.IUAItemSubTypes;
 import com.aeternal.iuadditions.register.ItemHandler;
+import com.denfop.api.IModelRegister;
+import com.denfop.blocks.ISubEnum;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
@@ -14,7 +14,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Locale;
 
-public class HoneyPlate extends ItemSubTypes<HoneyPlate.HoneyPlateTypes> implements IModelRegister {
+public class HoneyPlate extends IUAItemSubTypes<HoneyPlate.HoneyPlateTypes> implements IModelRegister {
 
     protected static final String NAME = "plate";
 

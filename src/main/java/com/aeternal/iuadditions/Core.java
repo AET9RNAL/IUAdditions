@@ -3,13 +3,13 @@ package com.aeternal.iuadditions;
 
 import com.aeternal.iuadditions.integration.divinerpg.DivinerpgIntegration;
 import com.aeternal.iuadditions.proxy.CommonProxy;
-import com.aeternal.iuadditions.spectralconverters.IModelRender;
 import com.aeternal.iuadditions.spectralconverters.blocks.BlockManaConverter;
 import com.aeternal.iuadditions.spectralconverters.blocks.BlockSpectralConverter;
 import com.aeternal.iuadditions.spectralconverters.blocks.BlockSpectralQEConverter;
 import com.aeternal.iuadditions.tabs.TabCore;
 import com.denfop.blocks.BlockTileEntity;
 import com.denfop.blocks.TileBlockCreator;
+import com.powerutils.IModelRender;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

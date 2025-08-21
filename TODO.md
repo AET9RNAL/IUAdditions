@@ -1,6 +1,4 @@
-- [ ] - Assembler (WIP)
-- [ ] - Crypt 
-- [ ] - Cleanroom (Greg)  
+- [ ] - Crypt  
 - [ ] - HBM energy converter
 - [x] - CT Integrations:
     - [x] Crystal charger
