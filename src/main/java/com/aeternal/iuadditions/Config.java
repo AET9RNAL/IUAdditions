@@ -105,22 +105,27 @@ public final class Config {
     public static boolean allowManaToEfConversion;
 
     public static boolean allowBoss;
+    public static boolean katanaDebug;
     public static int katanaDmg;
     public static int katanaEff;
     public static int katanaArmorPierce;
     public static int katanaGodSlay;
     public static int katanaSoulStep;
+    public static double godDmgEnergy;
+    public static double armorPierceDmgEnergy;
+    public static double soulDmgEnergy;
+
 
     public static void loadNormalConfig(final File configFile) {
         Core.LOGGER.info("Loading IUA Config from " + configFile.getAbsolutePath());
 
         final Configuration config = new Configuration(configFile);
         try {
-            AstralConfirmed = config.getBoolean("Configuration Solar Panels","Integrations",true,"Are you sure you want to enable Astral Solar Panels?");
-            ForestryConfirmed = config.getBoolean("Configuration Solar Panels","Integrations",true,"Are you sure you want to enable Forestry Solar Panels?");
-            DivineConfirmed = config.getBoolean("Configuration Solar Panels","Integrations",true,"Are you sure you want to enable Divine Solar Panels?");
-            BotaniaConfirmed = config.getBoolean("Configuration Solar Panels","Integrations",true,"Are you sure you want to enable Botania Solar Panels?");
-            DraconicConfirmed = config.getBoolean("Configuration Solar Panels","Integrations",true,"Are you sure you want to enable Draconic Evolution integration?");
+            AstralConfirmed = config.getBoolean("Astral confirm","Integrations",true,"Are you sure you want to enable Astral integrations?");
+            ForestryConfirmed = config.getBoolean("Forestry confirm","Integrations",true,"Are you sure you want to enable Forestry integrations?");
+            DivineConfirmed = config.getBoolean("Divine confirm","Integrations",true,"Are you sure you want to enable Divine integrations?");
+            BotaniaConfirmed = config.getBoolean("Botania confirm","Integrations",true,"Are you sure you want to enable Botania integrations?");
+            DraconicConfirmed = config.getBoolean("Draconic confirm","Integrations",true,"Are you sure you want to enable Draconic Evolution integrations?");
 
             //CustomSolarPanelsCFG
             edenGenDay = config.get("Configuration Solar Panels", "EdenGenDay", 81920).getDouble(81920.0);
@@ -166,22 +171,6 @@ public final class Config {
                     config.get("Configuration Solar Panels", "FaintstarlightcollectorOutput", 4128768).getDouble(4128768);
             faintstarlightcollectorStorage = config.get("Configuration Solar Panels", "FaintstarlightcollectorStorage", 5.0E9).getDouble(5.0E9);
 
-            mythrilliumGenDay = config.get("Configuration Solar Panels", "MythrilliumGenDay", 425984).getDouble(425984);
-            mythrilliumOutput = config.get("Configuration Solar Panels", "MythrilliumOutput", 851968).getDouble(851968);
-            mythrilliumStorage = config.get("Configuration Solar Panels", "MythrilliumStorage", 5.0E9).getDouble(5.0E9);
-
-            mythminiteGenDay = config.get("Configuration Solar Panels", "MythminiteGenDay", 1572864).getDouble(1572864);
-            mythminiteOutput = config.get("Configuration Solar Panels", "MythminiteOutput", 3145728).getDouble(3145728);
-            mythminiteStorage = config.get("Configuration Solar Panels", "MythminiteStorage", 6.5E9).getDouble(6.5E9);
-
-            pulsatingGenDay = config.get("Configuration Solar Panels", "PulsatingGenDay", 6291456).getDouble(6291456);
-            pulsatingOutput = config.get("Configuration Solar Panels", "PulsatingOutput", 12582912).getDouble(12582912);
-            pulsatingStorage = config.get("Configuration Solar Panels", "PulsatingStorage", 1.0E10).getDouble(1.0E10);
-
-            adaminiteGenDay = config.get("Configuration Solar Panels", "AdaminiteGenDay", 25165824).getDouble(25165824);
-            adaminiteOutput = config.get("Configuration Solar Panels", "AdaminiteOutput", 50331648).getDouble(50331648);
-            adaminiteStorage = config.get("Configuration Solar Panels", "AdaminiteStorage", 2.5E10).getDouble(2.5E10);
-
             cyanbeekeeperGenDay = config.get("Configuration Solar Panels", "CyanbeekeeperGenDay", 20480).getDouble(20480.0);
             cyanbeekeeperOutput = config.get("Configuration Solar Panels", "CyanbeekeeperOutput", 40960).getDouble(40960.0);
             cyanbeekeeperStorage = config.get("Configuration Solar Panels", "CyanbeekeeperStorage", 1.0E9).getDouble(1.0E9);
@@ -214,6 +203,7 @@ public final class Config {
             refractivebeekeeperStorage = config.get("Configuration Solar Panels", "RefractivebeekeeperStorage", 2.5E12).getDouble(2.5E12);
 
             //CustomSolarPanelsCFG_END
+
             coefficientqe = config.get("Converters", "coefficient qe", 64).getInt(64);
             if (coefficientqe < 1) {
                 coefficientqe = 64;
@@ -229,16 +219,19 @@ public final class Config {
             allowEfToManaConversion = config.get("Converters", "Allow EF to Mana Conversion", false).getBoolean(false);
             allowManaToEfConversion = config.get("Converters", "Allow Mana to Ef Conversion", true).getBoolean(true);
             coefficienteftomana = config.get("Converters", "coefficient ef to mana", 0.02).getDouble(0.02);
-
             coefficientmanatoef = config.get("Converters", "coefficient mana to ef", 0.02).getDouble(0.02);
-
             manatransferrate = config.get("Converters", "mana I/O transfer rate", 50000).getInt(50000);
 
-            allowBoss = config.get("Mixins", "Enable boss spawning in Automatic Hunter",false).getBoolean(false);
-            katanaDmg = config.get("Mixins", "Katana base damage modifier",14).getInt(14);
-            katanaArmorPierce = config.get("Mixins", "Katana armor pierce damage modifier",14).getInt(14);
-            katanaGodSlay = config.get("Mixins", "Katana god damage",14).getInt(14);
-            katanaSoulStep = config.get("Mixins", "Katana soul damage",100).getInt(100);
+            allowBoss = config.get("Hunter Mixins", "Enable boss spawning in Automatic Hunter",false).getBoolean(false);
+
+            katanaDebug = config.get("Katana Mixins", "Katana debugger",false).getBoolean(false);
+            katanaDmg = config.get("Katana Mixins", "Katana base damage modifier",14).getInt(14);
+            katanaArmorPierce = config.get("Katana Mixins", "Katana armor pierce damage modifier",10).getInt(10);
+            katanaGodSlay = config.get("Katana Mixins", "Katana god damage",5).getInt(5);
+            katanaSoulStep = config.get("Katana Mixins", "Katana soul damage",100).getInt(100);
+            godDmgEnergy = config.get("Katana Mixins", "Katana god energy drain",1000.00).getDouble(1000.00);
+            armorPierceDmgEnergy = config.get("Katana Mixins", "Katana armor piercing damage energy drain",500.00).getDouble(500.00);
+            soulDmgEnergy = config.get("Katana Mixins", "Katana soul damage energy drain",800.00).getDouble(800.00);
         } catch (Exception e) {
             Core.LOGGER.fatal("Fatal error reading config file.", e);
             throw new RuntimeException(e);
