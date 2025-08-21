@@ -1,7 +1,10 @@
 package com.aeternal.iuadditions;
 
 
+import com.aeternal.iuadditions.hooks.BaseUpgradeSystemApplier;
+import com.aeternal.iuadditions.hooks.KatanaApplier;
 import com.aeternal.iuadditions.integration.divinerpg.DivinerpgIntegration;
+import com.aeternal.iuadditions.hooks.EnumUpgradeModulesApplier;
 import com.aeternal.iuadditions.proxy.CommonProxy;
 import com.aeternal.iuadditions.spectralconverters.blocks.BlockManaConverter;
 import com.aeternal.iuadditions.spectralconverters.blocks.BlockSpectralConverter;
@@ -27,6 +30,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.oredict.OreDictionary;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import scala.xml.dtd.impl.Base;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +38,7 @@ import java.util.List;
 import static com.aeternal.iuadditions.integration.astralsorcery.AstralSorceryIntegration.blockASSolarPanel;
 import static com.aeternal.iuadditions.integration.divinerpg.DivinerpgIntegration.blockDivineSolarPanel;
 import static com.aeternal.iuadditions.integration.forestry.ForestryIntegration.blockForestrySolarPanel;
+
 
 @SuppressWarnings({"ALL", "UnnecessaryFullyQualifiedName"})
 @Mod.EventBusSubscriber
@@ -85,6 +90,9 @@ public final class Core {
     public void load(final FMLPreInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(this);
         Config.loadNormalConfig(event.getSuggestedConfigurationFile());
+        KatanaApplier.applyNowIfConfigured();
+        EnumUpgradeModulesApplier.applyNowIfConfigured();
+        BaseUpgradeSystemApplier.applyFromConfig(Config.CoreModifier_maxCount, Config.NeutronModifier_maxCount, Config.DebugEnum);
         proxy.preInit(event);
         if(Constants.DE_LOADED && Constants.DE_CONFIRM && Constants.PU_LOADED) {
             itemSpectralPowerConverter = TileBlockCreator.instance.create(BlockSpectralConverter.class);

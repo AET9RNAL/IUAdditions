@@ -24,55 +24,13 @@ public abstract class MixinEnumInfoUpgradeModules {
 
     private static final Logger LOGGER = LogManager.getLogger("IUAdditions|Mixins");
 
-    // We need to be able to write this after instances are created.
     @Shadow @Final @Mutable public int max;
 
-    /**
-     * Runs once after enum static init finishes creating all constants.
-     * This is EARLY; your Config might not be loaded yet.
-     * Therefore we both (a) do a best-effort here, and (b) expose applyNowIfConfigured() for a late pass.
-     */
     @Inject(method = "<clinit>", at = @At("RETURN"))
     private static void iuadditions$afterClinit(CallbackInfo ci) {
-        // Always emit a single proof-of-life message so you can see that the mixin actually ran.
-        // (Not gated by Config so you can verify in latest.log even before Config loads.)
         try {
-            LogManager.getLogger("IUAdditions|Mixins")
-                    .info("[EnumInfoUpgradeModules] <clinit> hook reached (early pass).");
+            LOGGER.info("[EnumInfoUpgradeModules] <clinit> hook reached (mixin applied).");
         } catch (Throwable ignored) {}
-
-        // Early pass: only applies if the switch is already true and config fields are non-default.
-        applyNowIfConfigured();
-    }
-
-    /**
-     * Call this from your mod AFTER your Config is loaded (e.g., end of preInit/init).
-     * Safe to call multiple times.
-     */
-    private static void applyNowIfConfigured() {
-        if (!Config.UpgradeModulesMixin) {
-            if (Config.DebugEnum) {
-                LOGGER.info("[EnumInfoUpgradeModules] Global switch OFF — leaving vanilla max values.");
-            }
-            return;
-        }
-
-        for (EnumInfoUpgradeModules m : EnumInfoUpgradeModules.values()) {
-            // Read the current (possibly vanilla) value
-            int original = ((MixinEnumInfoUpgradeModules)(Object)m).max;
-
-            // Compute configured value with sensible fallback
-            int configured = iuadditions$getConfiguredMax(m, original);
-
-            if (configured != original) {
-                ((MixinEnumInfoUpgradeModules)(Object)m).max = configured;
-                if (Config.DebugEnum) {
-                    LOGGER.info("[EnumInfoUpgradeModules] {}: max {} -> {}", m.name(), original, configured);
-                }
-            } else if (Config.DebugEnum) {
-                LOGGER.info("[EnumInfoUpgradeModules] {}: max unchanged {}", m.name(), original);
-            }
-        }
     }
 
     /**

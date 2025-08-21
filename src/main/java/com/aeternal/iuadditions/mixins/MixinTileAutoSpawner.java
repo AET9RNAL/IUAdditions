@@ -25,7 +25,7 @@ public abstract class MixinTileAutoSpawner {
                     remap = true)
     )
     private boolean redirectIsNonBoss_onLiving(net.minecraft.entity.EntityLiving self) {
-        System.out.println("[IUAdditions] Redirect (EntityLiving) allowBoss=" + com.aeternal.iuadditions.Config.allowBoss);
+        //System.out.println("[IUAdditions] Redirect (EntityLiving) allowBoss=" + com.aeternal.iuadditions.Config.allowBoss);
         return com.aeternal.iuadditions.Config.allowBoss ;
     }
 

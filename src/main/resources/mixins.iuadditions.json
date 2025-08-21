@@ -9,7 +9,11 @@
 	"mixins": [
 		"MixinTileAutoSpawner",
 		"MixinKatana",
-		"MixinEnumInfoUpgradeModules"
+		"accessors.AccessorItemKatana",
+		"MixinEnumInfoUpgradeModules",
+		"accessors.AccessorEnumInfoUpgradeModules",
+		"MixinBaseUpgradeSystem",
+		"accessors.AccessorBaseUpgradeSystem"
 	],
 	"server": [],
 	"client": []

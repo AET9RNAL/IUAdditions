@@ -145,6 +145,8 @@ public final class Config {
     public static byte ModuleTHORNSmaxCount;
     public static byte ModuleLAPPACK_ENERGYmaxCount;
 
+    public static int CoreModifier_maxCount = 1;
+    public static int NeutronModifier_maxCount = 1;
     public static void loadNormalConfig(final File configFile) {
         Core.LOGGER.info("Loading IUA Config from " + configFile.getAbsolutePath());
 
@@ -264,31 +266,33 @@ public final class Config {
 
             UpgradeModulesMixin            = config.get("Upgrade Modules Mixins", "Enable Mixin",true).getBoolean(true);
             DebugEnum                      = config.get("Upgrade Modules Mixins", "Mixin Debugger",true).getBoolean(true);
-            ModuleGENDAYmaxCount           = (byte) config.get("Upgrade Modules Mixins", "Module GenDay max count",2).getInt(2);
-            ModuleGENDAYmaxCount           = (byte) config.get("Upgrade Modules Mixins", "Module GenDay max count",           2).getInt(2);
-            ModuleGENNIGHTmaxCount         = (byte) config.get("Upgrade Modules Mixins", "Module GenNight max count",         2).getInt(2);
-            ModulePROTECTIONmaxCount       = (byte) config.get("Upgrade Modules Mixins", "Module Protection max count",       4).getInt(4);
-            ModuleEFFICIENCYmaxCount       = (byte) config.get("Upgrade Modules Mixins", "Module Efficiency max count",       2).getInt(2);
-            ModuleBOWENERGYmaxCount        = (byte) config.get("Upgrade Modules Mixins", "Module BowEnergy max count",        2).getInt(2);
-            ModuleSABERENERGYmaxCount      = (byte) config.get("Upgrade Modules Mixins", "Module SaberEnergy max count",      6).getInt(6);
-            ModuleDIG_DEPTHmaxCount        = (byte) config.get("Upgrade Modules Mixins", "Module DigDepth max count",         2).getInt(2);
-            ModuleSPEEDmaxCount            = (byte) config.get("Upgrade Modules Mixins", "Module Speed max count",            1).getInt(1);
-            ModuleJUMPmaxCount             = (byte) config.get("Upgrade Modules Mixins", "Module Jump max count",             1).getInt(1);
-            ModuleBOWDAMAGEmaxCount        = (byte) config.get("Upgrade Modules Mixins", "Module BowDamage max count",        2).getInt(2);
-            ModuleSABER_DAMAGEmaxCount     = (byte) config.get("Upgrade Modules Mixins", "Module SaberDamage max count",      6).getInt(6);
-            ModuleAOE_DIGmaxCount          = (byte) config.get("Upgrade Modules Mixins", "Module AOEDig max count",           6).getInt(6);
-            ModuleFLYSPEEDmaxCount         = (byte) config.get("Upgrade Modules Mixins", "Module FlySpeed max count",         2).getInt(2);
-            ModuleSTORAGEmaxCount          = (byte) config.get("Upgrade Modules Mixins", "Module Storage max count",          2).getInt(2);
-            ModuleENERGYmaxCount           = (byte) config.get("Upgrade Modules Mixins", "Module Energy max count",           2).getInt(2);
-            ModuleVAMPIRESmaxCount         = (byte) config.get("Upgrade Modules Mixins", "Module Vampires max count",         3).getInt(3);
-            ModuleRESISTANCEmaxCount       = (byte) config.get("Upgrade Modules Mixins", "Module Resistance max count",       3).getInt(3);
-            ModuleLOOTmaxCount             = (byte) config.get("Upgrade Modules Mixins", "Module Loot max count",             3).getInt(3);
-            ModuleFIREmaxCount             = (byte) config.get("Upgrade Modules Mixins", "Module Fire max count",             2).getInt(2);
-            ModuleLUCKYmaxCount            = (byte) config.get("Upgrade Modules Mixins", "Module Lucky max count",            3).getInt(3);
-            ModuleEFFICIENTmaxCount        = (byte) config.get("Upgrade Modules Mixins", "Module Efficient max count",        3).getInt(3);
-            ModuleTHORNSmaxCount           = (byte) config.get("Upgrade Modules Mixins", "Module Thorns max count",           3).getInt(3);
-            ModuleLAPPACK_ENERGYmaxCount   = (byte) config.get("Upgrade Modules Mixins", "Module LappackEnergy max count",    3).getInt(3);
+            ModuleGENDAYmaxCount           = (byte) config.get("Upgrade Modules Mixins", "Module GenDay max count (def:2)",           2).getInt(2);
+            ModuleGENDAYmaxCount           = (byte) config.get("Upgrade Modules Mixins", "Module GenDay max count (def:2)",           2).getInt(2);
+            ModuleGENNIGHTmaxCount         = (byte) config.get("Upgrade Modules Mixins", "Module GenNight max count (def:2)",         2).getInt(2);
+            ModulePROTECTIONmaxCount       = (byte) config.get("Upgrade Modules Mixins", "Module Protection max count (def:4)",       4).getInt(4);
+            ModuleEFFICIENCYmaxCount       = (byte) config.get("Upgrade Modules Mixins", "Module Efficiency max count (def:2)",       2).getInt(2);
+            ModuleBOWENERGYmaxCount        = (byte) config.get("Upgrade Modules Mixins", "Module BowEnergy max count (def:2)",        2).getInt(2);
+            ModuleSABERENERGYmaxCount      = (byte) config.get("Upgrade Modules Mixins", "Module SaberEnergy max count (def:2)",      2).getInt(2);
+            ModuleDIG_DEPTHmaxCount        = (byte) config.get("Upgrade Modules Mixins", "Module DigDepth max count (def:2)",         2).getInt(2);
+            ModuleSPEEDmaxCount            = (byte) config.get("Upgrade Modules Mixins", "Module Speed max count (def:1)",            1).getInt(1);
+            ModuleJUMPmaxCount             = (byte) config.get("Upgrade Modules Mixins", "Module Jump max count (def:1)",             1).getInt(1);
+            ModuleBOWDAMAGEmaxCount        = (byte) config.get("Upgrade Modules Mixins", "Module BowDamage max count (def:2)",        2).getInt(2);
+            ModuleSABER_DAMAGEmaxCount     = (byte) config.get("Upgrade Modules Mixins", "Module SaberDamage max count (def:2)",      2).getInt(2);
+            ModuleAOE_DIGmaxCount          = (byte) config.get("Upgrade Modules Mixins", "Module AOEDig max count (def:2)",           2).getInt(2);
+            ModuleFLYSPEEDmaxCount         = (byte) config.get("Upgrade Modules Mixins", "Module FlySpeed max count (def:2)",         2).getInt(2);
+            ModuleSTORAGEmaxCount          = (byte) config.get("Upgrade Modules Mixins", "Module Storage max count (def:2)",          2).getInt(2);
+            ModuleENERGYmaxCount           = (byte) config.get("Upgrade Modules Mixins", "Module Energy max count (def:2)",           2).getInt(2);
+            ModuleVAMPIRESmaxCount         = (byte) config.get("Upgrade Modules Mixins", "Module Vampires max count (def:3)",         3).getInt(3);
+            ModuleRESISTANCEmaxCount       = (byte) config.get("Upgrade Modules Mixins", "Module Resistance max count (def:3)",       3).getInt(3);
+            ModuleLOOTmaxCount             = (byte) config.get("Upgrade Modules Mixins", "Module Loot max count (def:3)",             3).getInt(3);
+            ModuleFIREmaxCount             = (byte) config.get("Upgrade Modules Mixins", "Module Fire max count (def:2)",             2).getInt(2);
+            ModuleLUCKYmaxCount            = (byte) config.get("Upgrade Modules Mixins", "Module Lucky max count (def:3)",            3).getInt(3);
+            ModuleEFFICIENTmaxCount        = (byte) config.get("Upgrade Modules Mixins", "Module Efficient max count (def:3)",        3).getInt(3);
+            ModuleTHORNSmaxCount           = (byte) config.get("Upgrade Modules Mixins", "Module Thorns max count (def:3)",           3).getInt(3);
+            ModuleLAPPACK_ENERGYmaxCount   = (byte) config.get("Upgrade Modules Mixins", "Module LappackEnergy max count (def:3)",    3).getInt(3);
 
+            CoreModifier_maxCount          = (byte) config.get("Upgrade Modules Mixins", "Diffraction cores max count (def:1)",    3).getInt(3);
+            NeutronModifier_maxCount       = (byte) config.get("Upgrade Modules Mixins", "Neutron ingots max count (def:1)",    2).getInt(2);
         } catch (Exception e) {
             Core.LOGGER.fatal("Fatal error reading config file.", e);
             throw new RuntimeException(e);

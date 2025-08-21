@@ -1,6 +1,6 @@
 package com.aeternal.iuadditions.mixins;
 
-import com.aeternal.iuadditions.Config;
+import com.aeternal.iuadditions.hooks.KatanaApplier;
 import com.denfop.items.energy.ItemKatana;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
@@ -23,7 +23,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Collections;
@@ -33,6 +32,7 @@ import java.util.WeakHashMap;
 
 @Mixin(value = ItemKatana.class, remap = false)
 public abstract class MixinKatana {
+
     @Unique private static final Logger KATANA_LOG = LogManager.getLogger("IUAdditions|Katana");
 
     @Shadow public int damage1;
@@ -55,13 +55,16 @@ public abstract class MixinKatana {
     @Unique private static final Map<EntityLivingBase, Float> PRE_MAX =
             Collections.synchronizedMap(new WeakHashMap<>());
 
-    @Inject(method = "<init>(Ljava/lang/String;)V", at = @At("RETURN"))
-    private void iuadditions$init(String name, CallbackInfo ci) {
-        this.damage1    = Math.max(14, (int) Config.katanaDmg);
-        //this.efficiency = (float) Math.max(0.0, Config.katanaEff);
-        if (Config.katanaDebug) {
-            KATANA_LOG.info("[Katana:init] damage1={} cfg(dmg={}, eff={})",
-                    this.damage1, /*this.efficiency,*/ Config.katanaDmg, Config.katanaEff);
+    @Unique private boolean iuadditions$baseApplied = false;
+
+    @Unique
+    private void iuadditions$applyBaseFieldsIfNeeded() {
+        if (!iuadditions$baseApplied) {
+            this.damage1 = KatanaApplier.CFG_DMG;
+            iuadditions$baseApplied = true;
+            if (KatanaApplier.CFG_DEBUG) {
+                KATANA_LOG.info("[Katana:applyBase] damage1={}", this.damage1);
+            }
         }
     }
 
@@ -73,48 +76,65 @@ public abstract class MixinKatana {
     private void iuadditions$attributes(EntityEquipmentSlot slot, ItemStack stack,
                                         CallbackInfoReturnable<Multimap<String, AttributeModifier>> cir) {
         if (slot != EntityEquipmentSlot.MAINHAND) return;
+        iuadditions$applyBaseFieldsIfNeeded();
+
         Multimap<String, AttributeModifier> out = HashMultimap.create(cir.getReturnValue());
-        double armorPierce = Math.max(0.0D, Config.katanaArmorPierce);
-        double godSlay     = Math.max(0.0D, Config.katanaGodSlay);
-        double soulDisplay = (Config.katanaSoulStep > 0.0D) ? (10.0D / Config.katanaSoulStep) : 0.0D;
-        out.put(IU_ARMOR_PIERCING.getName(), new AttributeModifier(UUID_ARMOR_PIERCING, "Weapon modifier (armor pierce)", armorPierce, 0));
-        out.put(IU_GOD_SLAYING.getName(),   new AttributeModifier(UUID_GOD_SLAYING,    "Weapon modifier (god slay)",    godSlay, 0));
-        out.put(IU_SOUL_DAMAGE.getName(),   new AttributeModifier(UUID_SOUL_DISPLAY,   "Weapon modifier (soul)",        soulDisplay, 0));
+        double armorPierce = Math.max(0.0D, KatanaApplier.CFG_PIERCE);
+        double godSlay     = Math.max(0.0D, KatanaApplier.CFG_GOD);
+        double soulDisplay = KatanaApplier.CFG_SOUL_STEP > 0.0D ? (10.0D / KatanaApplier.CFG_SOUL_STEP) : 0.0D;
+
+        out.put(IU_ARMOR_PIERCING.getName(),
+                new AttributeModifier(UUID_ARMOR_PIERCING, "Weapon modifier (armor pierce)", armorPierce, 0));
+        out.put(IU_GOD_SLAYING.getName(),
+                new AttributeModifier(UUID_GOD_SLAYING,    "Weapon modifier (god slay)",    godSlay,     0));
+        out.put(IU_SOUL_DAMAGE.getName(),
+                new AttributeModifier(UUID_SOUL_DISPLAY,   "Weapon modifier (soul)",        soulDisplay, 0));
+
         cir.setReturnValue(out);
     }
 
-    @Inject(method = "hitEntity(Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/EntityLivingBase;Lnet/minecraft/entity/EntityLivingBase;)Z",
-            at = @At("HEAD"), require = 0)
+    @Inject(
+            method = "hitEntity(Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/EntityLivingBase;Lnet/minecraft/entity/EntityLivingBase;)Z",
+            at = @At("HEAD"),
+            require = 0
+    )
     private void iuadditions$captureHead(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker,
                                          CallbackInfoReturnable<Boolean> cir) {
-        if (!Config.katanaDebug) return;
+        if (!KatanaApplier.CFG_DEBUG) return;
         PRE_HP.put(target, target.getHealth());
         IAttributeInstance inst = target.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH);
         PRE_MAX.put(target, inst != null ? (float) inst.getAttributeValue() : target.getMaxHealth());
     }
 
-    @Inject(method = "onLeftClickEntity(Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/entity/Entity;)Z",
-            at = @At("HEAD"), require = 0)
+    @Inject(
+            method = "onLeftClickEntity(Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/entity/Entity;)Z",
+            at = @At("HEAD"),
+            require = 0
+    )
     private void iuadditions$captureHeadLeft(ItemStack stack, EntityPlayer player, Entity e,
                                              CallbackInfoReturnable<Boolean> cir) {
-        if (!Config.katanaDebug) return;
-        if (e instanceof EntityLivingBase) {
-            EntityLivingBase target = (EntityLivingBase) e;
-            PRE_HP.put(target, target.getHealth());
-            IAttributeInstance inst = target.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH);
-            PRE_MAX.put(target, inst != null ? (float) inst.getAttributeValue() : target.getMaxHealth());
-        }
+        if (!KatanaApplier.CFG_DEBUG || !(e instanceof EntityLivingBase)) return;
+        EntityLivingBase target = (EntityLivingBase) e;
+        PRE_HP.put(target, target.getHealth());
+        IAttributeInstance inst = target.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH);
+        PRE_MAX.put(target, inst != null ? (float) inst.getAttributeValue() : target.getMaxHealth());
     }
 
-    @Inject(method = "hitEntity(Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/EntityLivingBase;Lnet/minecraft/entity/EntityLivingBase;)Z",
-            at = @At("TAIL"), require = 0)
+    @Inject(
+            method = "hitEntity(Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/EntityLivingBase;Lnet/minecraft/entity/EntityLivingBase;)Z",
+            at = @At("TAIL"),
+            require = 0
+    )
     private void iuadditions$afterHit(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker,
                                       CallbackInfoReturnable<Boolean> cir) {
         iuadditions$doExtraAndMaybeLog(stack, attacker, target, "hitEntity");
     }
 
-    @Inject(method = "onLeftClickEntity(Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/entity/Entity;)Z",
-            at = @At("TAIL"), require = 0)
+    @Inject(
+            method = "onLeftClickEntity(Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/entity/Entity;)Z",
+            at = @At("TAIL"),
+            require = 0
+    )
     private void iuadditions$afterLeft(ItemStack stack, EntityPlayer player, Entity e,
                                        CallbackInfoReturnable<Boolean> cir) {
         if (e instanceof EntityLivingBase) {
@@ -125,24 +145,23 @@ public abstract class MixinKatana {
     @Unique
     private void iuadditions$doExtraAndMaybeLog(ItemStack stack, EntityLivingBase attacker, EntityLivingBase target, String path) {
         if (attacker == null || target == null || attacker.world == null || attacker.world.isRemote) return;
+        iuadditions$applyBaseFieldsIfNeeded();
 
         float startHP = 0, startMax = 0, preExtraHP = 0;
-        if (Config.katanaDebug) {
+        if (KatanaApplier.CFG_DEBUG) {
             startHP = PRE_HP.containsKey(target) ? PRE_HP.remove(target) : target.getHealth();
             startMax = PRE_MAX.containsKey(target) ? PRE_MAX.remove(target) : target.getMaxHealth();
             preExtraHP = target.getHealth();
         }
 
         double preMaxAttr = getMaxHealthAttr(target);
-        boolean soulAppliedFlag = false;
         float soulApplied = 0.0F;
-        if (Config.katanaSoulStep > 0.0D) {
-            if (Config.soulDmgEnergy <= 0.0D || iuadditions$tryDrain(stack, Config.soulDmgEnergy)) {
-                iuadditions$applySoulDrain(target);
-                double postMaxAttr = getMaxHealthAttr(target);
-                soulApplied = (float) Math.max(0.0D, preMaxAttr - postMaxAttr);
-                soulAppliedFlag = soulApplied > 0.0F;
-            }
+        boolean soulAppliedFlag = false;
+        if (KatanaApplier.CFG_SOUL_STEP > 0.0D && (KatanaApplier.CFG_E_SOUL <= 0.0D || iuadditions$tryDrain(stack, KatanaApplier.CFG_E_SOUL))) {
+            iuadditions$applySoulDrain(target);
+            double postMaxAttr = getMaxHealthAttr(target);
+            soulApplied = (float) Math.max(0.0D, preMaxAttr - postMaxAttr);
+            soulAppliedFlag = soulApplied > 0.0F;
         }
 
         float cooled = 1.0F;
@@ -150,8 +169,8 @@ public abstract class MixinKatana {
             cooled = ((EntityPlayer) attacker).getCooledAttackStrength(0.0F);
             if (cooled < 0.2F) cooled = 0.2F;
         }
-        float godPlanned    = (float) Math.max(0.0D, Config.katanaGodSlay)     * cooled;
-        float piercePlanned = (float) Math.max(0.0D, Config.katanaArmorPierce) * cooled;
+        float godPlanned    = (float) Math.max(0.0D, KatanaApplier.CFG_GOD)    * cooled;
+        float piercePlanned = (float) Math.max(0.0D, KatanaApplier.CFG_PIERCE) * cooled;
 
         int prevInvul = target.hurtResistantTime;
         target.hurtResistantTime = 0;
@@ -159,14 +178,14 @@ public abstract class MixinKatana {
 
         float beforeGod = target.getHealth();
         float godApplied = 0.0F;
-        if (godPlanned > 0.0F && (Config.godDmgEnergy <= 0.0D || iuadditions$tryDrain(stack, Config.godDmgEnergy))) {
+        if (godPlanned > 0.0F && (KatanaApplier.CFG_E_GOD <= 0.0D || iuadditions$tryDrain(stack, KatanaApplier.CFG_E_GOD))) {
             target.attackEntityFrom(iuadditions$godSlayingSource(attacker), godPlanned);
             godApplied = Math.max(0.0F, beforeGod - target.getHealth());
         }
 
         float beforePierce = target.getHealth();
         float pierceApplied = 0.0F;
-        if (piercePlanned > 0.0F && (Config.armorPierceDmgEnergy <= 0.0D || iuadditions$tryDrain(stack, Config.armorPierceDmgEnergy))) {
+        if (piercePlanned > 0.0F && (KatanaApplier.CFG_E_PIERCE <= 0.0D || iuadditions$tryDrain(stack, KatanaApplier.CFG_E_PIERCE))) {
             target.attackEntityFrom(iuadditions$armorBypassSource(attacker), piercePlanned);
             pierceApplied = Math.max(0.0F, beforePierce - target.getHealth());
         }
@@ -175,22 +194,19 @@ public abstract class MixinKatana {
         target.velocityChanged = true;
         target.hurtResistantTime = Math.max(target.hurtResistantTime, prevInvul);
 
-        if (Config.katanaDebug) {
+        if (KatanaApplier.CFG_DEBUG) {
             float baseApplied = Math.max(0.0F, startHP - preExtraHP);
             float finalHP = target.getHealth();
             KATANA_LOG.info(
-                    "[Katana:{}] side=SERVER attacker='{}' target='{}' cooldown={} cfg(dmg={}, eff={}, god={}, pierce={}, soulN={}, egod={}, epierce={}, esoul={}) fields(damage1={},)\n" +
+                    "[Katana:{}] attacker='{}' target='{}' cooldown={}\n" +
                             "  Base:  applied={} (HP {} -> {})\n" +
-                            "  Soul:  applied(maxHP)={} (applied={})\n" +
+                            "  Soul:  applied(maxHP)={} (applied={}) N={}\n" +
                             "  God:   applied={} (planned={})\n" +
                             "  Pierce:applied={} (planned={})\n" +
                             "  After all: HP={}",
                     path, safeName(attacker), safeName(target), fmt(cooled),
-                    Config.katanaDmg, Config.katanaEff, Config.katanaGodSlay, Config.katanaArmorPierce, Config.katanaSoulStep,
-                    Config.godDmgEnergy, Config.armorPierceDmgEnergy, Config.soulDmgEnergy,
-                    this.damage1, /*this.efficiency,*/
                     fmt(baseApplied), fmt(startHP), fmt(preExtraHP),
-                    fmt(soulApplied), soulAppliedFlag,
+                    fmt(soulApplied), soulAppliedFlag, fmt((float) KatanaApplier.CFG_SOUL_STEP),
                     fmt(godApplied), fmt(godPlanned),
                     fmt(pierceApplied), fmt(piercePlanned),
                     fmt(finalHP)
@@ -206,7 +222,7 @@ public abstract class MixinKatana {
 
     @Unique
     private void iuadditions$applySoulDrain(EntityLivingBase target) {
-        final double step = 1.0D / Config.katanaSoulStep;
+        final double step = 1.0D / KatanaApplier.CFG_SOUL_STEP;
         final IAttributeInstance inst = target.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH);
         if (inst == null) return;
         double current = 0.0D;
