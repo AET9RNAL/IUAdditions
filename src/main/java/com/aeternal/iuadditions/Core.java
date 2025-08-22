@@ -49,17 +49,35 @@ import static com.aeternal.iuadditions.integration.forestry.ForestryIntegration.
         version = Constants.MOD_VERSION,
         acceptedMinecraftVersions = "[1.12,1.12.2]")
 public final class Core {
-    static {
-        try {
-            org.spongepowered.asm.mixin.Mixins.addConfiguration("mixins.iuadditions.json");
-            System.out.println("[IUAdditions] Mixins.addConfiguration registered mixins.iuadditions.json");
-            if (Core.class.getClassLoader().getResource("mixins.iuadditions.json") == null)
-                System.err.println("[IUAdditions] FATAL: mixins.iuadditions.json NOT FOUND in jar!");
-        } catch (Throwable t) {
-            t.printStackTrace();
-        }
-    }
-
+//    //Method 3 (1 was coremod, 2 was manifest) to try and load that fucking, god foresaken piece of config, because apparently it is dropped in some envs
+//    static {
+//        try {
+//            org.spongepowered.asm.mixin.Mixins.addConfiguration("mixins.iuadditions.json");
+//            System.out.println("[IUAdditions] Mixins.addConfiguration registered mixins.iuadditions.json");
+//            if (Core.class.getClassLoader().getResource("mixins.iuadditions.json") == null)
+//                System.err.println("[IUAdditions] FATAL: mixins.iuadditions.json NOT FOUND in jar!");
+//        } catch (Throwable t) {
+//            t.printStackTrace();
+//        }
+//    }
+//    //Method 4 to try and load that fucking, god foresaken piece of config, because apparently it is dropped in some envs
+//    @Mod.EventHandler
+//    public void onLoadComplete(FMLLoadCompleteEvent e) {
+//        try {
+//            org.spongepowered.asm.mixin.Mixins.addConfiguration("mixins.iuadditions.json");
+//            System.out.println("[IUAdditions] Re-registered mixin config at loadComplete()");
+//        } catch (Throwable ignored) {}
+//    }
+//    private static void logMixinEnv(String where) {
+//        try {
+//            Class<?> env = Class.forName("org.spongepowered.asm.mixin.MixinEnvironment");
+//            Object cur = env.getMethod("getCurrentEnvironment").invoke(null);
+//            String ver = (String) env.getMethod("getVersion").invoke(null);
+//            System.out.println("[IUAdditions]["+where+"] Mixin env=" + (cur!=null) + " version=" + ver);
+//        } catch (Throwable t) {
+//            System.out.println("[IUAdditions]["+where+"] Mixin not on classpath");
+//        }
+//    }
     public static final CreativeTabs IUATab = new TabCore(0, "IU:AdditionsTab");
 
     public static final List<ItemStack> list = new ArrayList<>();
@@ -81,16 +99,10 @@ public final class Core {
         return new ResourceLocation(Constants.MOD_ID, name);
     }
 
-//
-//    public static final List<IModelRender> modelList = new ArrayList<>();
-//    @Optional.Method(modid = "powerutils")
-//    public static void addIModelRegister(IModelRender puItemBase) {
-//        modelList.add(puItemBase);
-//    }
-
 
     @Mod.EventHandler
     public void load(final FMLPreInitializationEvent event) {
+        //org.spongepowered.asm.mixin.Mixins.addConfiguration("mixins.iuadditions.json");
         MinecraftForge.EVENT_BUS.register(this);
         Config.loadNormalConfig(event.getSuggestedConfigurationFile());
 
@@ -103,10 +115,6 @@ public final class Core {
             itemManaConverter = TileBlockCreator.instance.create(BlockManaConverter.class);
         }
         if (event.getSide() == Side.CLIENT) {
-//            final List<IModelRender> modelList = new ArrayList<>();
-//            for (IModelRender register : modelList) {
-//                register.registerModels();
-//            }
             if(Constants.AS_LOADED && Constants.AS_CONFIRM) {
                 blockASSolarPanel.registerModels();
             }
@@ -133,7 +141,7 @@ public final class Core {
     }
 
     @Mod.EventHandler
-    public void loadMixins(final FMLLoadCompleteEvent e){
+    public void loadMixins(final FMLPostInitializationEvent e){
         KatanaApplier.applyNowIfConfigured();
         EnumUpgradeModulesApplier.applyNowIfConfigured();
         BaseUpgradeSystemApplier.applyFromConfig(Config.CoreModifier_maxCount, Config.NeutronModifier_maxCount, Config.DebugEnum);

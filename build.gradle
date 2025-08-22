@@ -223,6 +223,13 @@ jar {
     }
     // Add all embedded dependencies into the jar
     from(provider{ configurations.embed.collect {it.isDirectory() ? it : zipTree(it)} })
+
+    //Method 5 to try and load that fucking, god foresaken piece of config, because apparently it is dropped in some envs
+    from("src/main/resources") {
+        include "mixins.iuadditions.json"
+        rename { "META-INF/mixins.iuadditions.json" }
+        into ""                 // packaged under META-INF/
+    }
 }
 
 idea {

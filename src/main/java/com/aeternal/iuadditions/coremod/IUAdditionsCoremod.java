@@ -13,18 +13,42 @@ import java.util.Map;
 })
 public final class IUAdditionsCoremod implements IFMLLoadingPlugin {
 
-    static {
+
+    @Override
+    public void injectData(java.util.Map<String, Object> data) {
         try {
-            Mixins.addConfiguration("mixins.iuadditions.json");
-            System.out.println("[IUAdditionsCoremod] Registered mixins.iuadditions.json");
+            // Make sure Mixin is bootstrapped (safe even if another booter did it)
+            try {
+                Class<?> bootstrap = Class.forName("org.spongepowered.asm.launch.MixinBootstrap");
+                bootstrap.getMethod("init").invoke(null);
+            } catch (Throwable ignored) {
+            }
+
+            // Now it won't be dropped
+            org.spongepowered.asm.mixin.Mixins.addConfiguration("mixins.iuadditions.json");
+            System.out.println("[IUAdditions] Registered mixins.iuadditions.json in injectData()");
         } catch (Throwable t) {
             t.printStackTrace();
         }
     }
 
-    @Override public String[] getASMTransformerClass() { return new String[0]; }
-    @Override public String getModContainerClass() { return null; }
-    @Override public String getSetupClass() { return null; }
-    @Override public void injectData(Map<String, Object> data) { }
-    @Override public String getAccessTransformerClass() { return null; }
+    // return empty/no-ops for the other IFMLLoadingPlugin methods…
+    public String[] getASMTransformerClass() {
+        return new String[0];
+    }
+
+    public String getModContainerClass() {
+        return null;
+    }
+
+    public String getSetupClass() {
+        return null;
+    }
+
+    public void acceptOptions(java.util.Map<String, String> options) {
+    }
+
+    public String getAccessTransformerClass() {
+        return null;
+    }
 }

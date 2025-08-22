@@ -1,11 +1,9 @@
 {
 	"package": "com.aeternal.iuadditions.mixins",
 	"plugin": "com.aeternal.iuadditions.mixins.DebugPlugin",
-	"required": true,
-	"refmap": "iuadditions.mixins.refmap.json",
-	"target": "@env(DEFAULT)",
-	"minVersion": "0.8.5",
+	"required": false,
 	"compatibilityLevel": "JAVA_8",
+	"injectors": { "defaultRequire": 0 },
 	"mixins": [
 		"MixinTileAutoSpawner",
 		"MixinKatana",
@@ -15,6 +13,6 @@
 		"MixinBaseUpgradeSystem",
 		"accessors.AccessorBaseUpgradeSystem"
 	],
-	"server": [],
-	"client": []
+	"client": [],
+	"server": []
 }
