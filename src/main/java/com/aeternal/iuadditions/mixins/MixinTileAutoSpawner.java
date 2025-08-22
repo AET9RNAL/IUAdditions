@@ -13,12 +13,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/**
- * Rewrites TileAutoSpawner#dropItemFromEntity gate:
- * entity.isNonBoss() || Config.allowBoss
- *
- * Uses MCP name + remap, so a working refmap is required at runtime.
- */
+
 @Mixin(value = TileAutoSpawner.class, remap = false, priority = 1000)
 public abstract class MixinTileAutoSpawner {
 
