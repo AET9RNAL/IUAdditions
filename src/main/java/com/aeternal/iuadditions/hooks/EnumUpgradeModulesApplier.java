@@ -65,7 +65,6 @@ public final class EnumUpgradeModulesApplier {
             case LAPPACK_ENERGY:   v = Config.ModuleLAPPACK_ENERGYmaxCount; break;
             default:               v = original;
         }
-        // Allow 0 if you want to disable a module; if not, use (v > 0 ? v : original)
         return (v >= 0) ? v : original;
     }
 }

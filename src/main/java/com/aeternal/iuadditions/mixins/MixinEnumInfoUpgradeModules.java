@@ -12,13 +12,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/**
- * Mixin target: com.denfop.items.EnumInfoUpgradeModules
- *
- * Strategy:
- * 1) Hook <clinit> at RETURN → apply configured max values once ALL enum constants exist.
- * 2) Provide applyNowIfConfigured() so we can re-apply after Config is loaded (recommended).
- */
 @Mixin(EnumInfoUpgradeModules.class)
 public abstract class MixinEnumInfoUpgradeModules {
 

@@ -1,7 +1,14 @@
-IU Additions is an addon for [Industrial Upgrade](https://modrinth.com/mod/industrialupgrade) that adds a few new solar panels as integrations with other mods such as DivineRPG, Forestry, and AstralSorcery, and CraftTwekaer as well as new items and Converters.
+IU Additions is an addon for [Industrial Upgrade](https://modrinth.com/mod/industrialupgrade).
 
+Integrations DivineRPG, Forestry, AstralSorcery, CraftTweker, PowerUtilities;
 
-CraftTweaker documentation can be found in the repository.
+Tweaks: configurable upgrade modules, weapons, armors;
+
+Tweaks expect you to change the values in the config to the ones you want, by default there is little to no change.
+
+Starting from 1.4.5 requires [MixinBooter](https://www.curseforge.com/minecraft/mc-mods/mixin-booter)
+
+__**CraftTweaker documentation can be found in the**__ **[repository](https://github.com/AET9RNAL/IUAdditions/blob/main/CT_documentation.md).**
 
 Converters added:
 

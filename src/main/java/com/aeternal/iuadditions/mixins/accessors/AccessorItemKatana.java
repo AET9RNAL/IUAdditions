@@ -8,5 +8,4 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(value = ItemKatana.class, remap = false)
 public interface AccessorItemKatana {
     @Accessor("damage1") void iuadditions$setDamage1(int value);
-    //@Accessor("efficiency") void iuadditions$setEfficiency(float value);
 }

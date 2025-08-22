@@ -9,7 +9,6 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 public final class KatanaApplier {
     public static volatile boolean CFG_DEBUG    = false;
     public static volatile int     CFG_DMG      = 13;
-    public static volatile float   CFG_EFF      = 1f;
     public static volatile double  CFG_GOD      = 0.0;
     public static volatile double  CFG_PIERCE   = 0.0;
     public static volatile double  CFG_SOUL_STEP= 100.0;
@@ -19,11 +18,10 @@ public final class KatanaApplier {
 
     private KatanaApplier() {}
 
-    /** Call once after your Config is loaded and items are registered (postInit/loadComplete). */
+
     public static void applyNowIfConfigured() {
         CFG_DEBUG     = Config.katanaDebug;
         CFG_DMG       = Math.max(0, (int) Config.katanaDmg);
-        CFG_EFF       = (float) Math.max(0.0, Config.katanaEff);
         CFG_GOD       = Math.max(0.0, Config.katanaGodSlay);
         CFG_PIERCE    = Math.max(0.0, Config.katanaArmorPierce);
         CFG_SOUL_STEP = Config.katanaSoulStep > 0.0 ? Config.katanaSoulStep : 100.0;
@@ -36,7 +34,6 @@ public final class KatanaApplier {
             if (item instanceof ItemKatana) {
                 AccessorItemKatana acc = (AccessorItemKatana) (Object) item;
                 acc.iuadditions$setDamage1(CFG_DMG);
-               // acc.iuadditions$setEfficiency(CFG_EFF);
             }
         }
     }

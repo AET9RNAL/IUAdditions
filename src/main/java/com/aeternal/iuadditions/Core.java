@@ -12,7 +12,7 @@ import com.aeternal.iuadditions.spectralconverters.blocks.BlockSpectralQEConvert
 import com.aeternal.iuadditions.tabs.TabCore;
 import com.denfop.blocks.BlockTileEntity;
 import com.denfop.blocks.TileBlockCreator;
-import com.powerutils.IModelRender;
+//import com.powerutils.IModelRender;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -23,6 +23,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -52,10 +53,13 @@ public final class Core {
         try {
             org.spongepowered.asm.mixin.Mixins.addConfiguration("mixins.iuadditions.json");
             System.out.println("[IUAdditions] Mixins.addConfiguration registered mixins.iuadditions.json");
+            if (Core.class.getClassLoader().getResource("mixins.iuadditions.json") == null)
+                System.err.println("[IUAdditions] FATAL: mixins.iuadditions.json NOT FOUND in jar!");
         } catch (Throwable t) {
             t.printStackTrace();
         }
     }
+
     public static final CreativeTabs IUATab = new TabCore(0, "IU:AdditionsTab");
 
     public static final List<ItemStack> list = new ArrayList<>();
@@ -77,22 +81,19 @@ public final class Core {
         return new ResourceLocation(Constants.MOD_ID, name);
     }
 
-
-    public static final List<IModelRender> modelList = new ArrayList<>();
-    @Optional.Method(modid = "powerutils")
-    public static void addIModelRegister(IModelRender puItemBase) {
-        modelList.add(puItemBase);
-    }
-
+//
+//    public static final List<IModelRender> modelList = new ArrayList<>();
+//    @Optional.Method(modid = "powerutils")
+//    public static void addIModelRegister(IModelRender puItemBase) {
+//        modelList.add(puItemBase);
+//    }
 
 
     @Mod.EventHandler
     public void load(final FMLPreInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(this);
         Config.loadNormalConfig(event.getSuggestedConfigurationFile());
-        KatanaApplier.applyNowIfConfigured();
-        EnumUpgradeModulesApplier.applyNowIfConfigured();
-        BaseUpgradeSystemApplier.applyFromConfig(Config.CoreModifier_maxCount, Config.NeutronModifier_maxCount, Config.DebugEnum);
+
         proxy.preInit(event);
         if(Constants.DE_LOADED && Constants.DE_CONFIRM && Constants.PU_LOADED) {
             itemSpectralPowerConverter = TileBlockCreator.instance.create(BlockSpectralConverter.class);
@@ -102,9 +103,10 @@ public final class Core {
             itemManaConverter = TileBlockCreator.instance.create(BlockManaConverter.class);
         }
         if (event.getSide() == Side.CLIENT) {
-            for (IModelRender register : modelList) {
-                register.registerModels();
-            }
+//            final List<IModelRender> modelList = new ArrayList<>();
+//            for (IModelRender register : modelList) {
+//                register.registerModels();
+//            }
             if(Constants.AS_LOADED && Constants.AS_CONFIRM) {
                 blockASSolarPanel.registerModels();
             }
@@ -128,6 +130,13 @@ public final class Core {
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         registerOreDict();
+    }
+
+    @Mod.EventHandler
+    public void loadMixins(final FMLLoadCompleteEvent e){
+        KatanaApplier.applyNowIfConfigured();
+        EnumUpgradeModulesApplier.applyNowIfConfigured();
+        BaseUpgradeSystemApplier.applyFromConfig(Config.CoreModifier_maxCount, Config.NeutronModifier_maxCount, Config.DebugEnum);
     }
 
     @Mod.EventHandler

@@ -14,14 +14,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 
-/**
- * Enforce configurable caps for modificators by type.
- *
- * IMPORTANT:
- * - Do NOT try to encode limits via ItemStack count in addModification().
- *   The game uses matches() to block duplicates; count-mismatch breaks matches().
- * - We keep base addModification() intact (two entries, count=1) and cap via needModificate().
- */
 @Mixin(value = BaseUpgradeSystem.class, remap = false)
 public abstract class MixinBaseUpgradeSystem {
 

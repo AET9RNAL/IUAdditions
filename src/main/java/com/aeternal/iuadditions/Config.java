@@ -247,15 +247,15 @@ public final class Config {
             if (coreSearchRange < 1) {
                 coreSearchRange = 16;
             }
-            allowEfToManaConversion = config.get("Converters", "Allow EF to Mana Conversion", false).getBoolean(false);
-            allowManaToEfConversion = config.get("Converters", "Allow Mana to Ef Conversion", true).getBoolean(true);
+            allowEfToManaConversion = config.getBoolean("EF to MANA", "Converters", false, "Allow EF to Mana Conversion");
+            allowManaToEfConversion = config.getBoolean("MANA to EF", "Converters", true, "Allow Mana to Ef Conversion");
             coefficienteftomana = config.get("Converters", "coefficient ef to mana", 0.02).getDouble(0.02);
             coefficientmanatoef = config.get("Converters", "coefficient mana to ef", 0.02).getDouble(0.02);
             manatransferrate = config.get("Converters", "mana I/O transfer rate", 50000).getInt(50000);
 
-            allowBoss = config.get("Hunter Mixins", "Enable boss spawning in Automatic Hunter",false).getBoolean(false);
+            allowBoss = config.getBoolean("Enable boss spawning in Automatic Hunter", "Hunter Mixins",false, "");
 
-            katanaDebug = config.get("Katana Mixins", "Katana debugger",false).getBoolean(false);
+            katanaDebug = config.getBoolean("Katana debugger","Katana Mixins",true,"Enable debugger");
             katanaDmg = config.get("Katana Mixins", "Katana base damage modifier",14).getInt(14);
             katanaArmorPierce = config.get("Katana Mixins", "Katana armor pierce damage modifier",80).getInt(80);
             katanaGodSlay = config.get("Katana Mixins", "Katana god damage modifier",10).getInt(10);
@@ -264,8 +264,8 @@ public final class Config {
             armorPierceDmgEnergy = config.get("Katana Mixins", "Katana armor piercing damage energy drain",500.00).getDouble(500.00);
             soulDmgEnergy = config.get("Katana Mixins", "Katana soul damage energy drain",800.00).getDouble(800.00);
 
-            UpgradeModulesMixin            = config.get("Upgrade Modules Mixins", "Enable Mixin",true).getBoolean(true);
-            DebugEnum                      = config.get("Upgrade Modules Mixins", "Mixin Debugger",true).getBoolean(true);
+            UpgradeModulesMixin            = config.getBoolean("Enable Mixin", "Upgrade Modules Mixins",true, "");
+            DebugEnum                      = config.getBoolean("Mixin Debugger", "Upgrade Modules Mixins",true, "");
             ModuleGENDAYmaxCount           = (byte) config.get("Upgrade Modules Mixins", "Module GenDay max count (def:2)",           2).getInt(2);
             ModuleGENDAYmaxCount           = (byte) config.get("Upgrade Modules Mixins", "Module GenDay max count (def:2)",           2).getInt(2);
             ModuleGENNIGHTmaxCount         = (byte) config.get("Upgrade Modules Mixins", "Module GenNight max count (def:2)",         2).getInt(2);

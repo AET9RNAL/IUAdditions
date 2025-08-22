@@ -36,7 +36,6 @@ public abstract class MixinKatana {
     @Unique private static final Logger KATANA_LOG = LogManager.getLogger("IUAdditions|Katana");
 
     @Shadow public int damage1;
-    //@Shadow protected float efficiency;
 
     @Unique private static final IAttribute IU_ARMOR_PIERCING =
             (IAttribute) new RangedAttribute(null, "iuadditions.armorpiercingattackdamage", 0.0D, 0.0D, 2048.0D).setShouldWatch(true);
