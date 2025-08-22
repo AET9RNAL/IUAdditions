@@ -1,4 +1,4 @@
-IU Additions is an addon for [Industrial Upgrade](https://modrinth.com/mod/industrialupgrade).
+### IU Additions is an addon for [Industrial Upgrade](https://modrinth.com/mod/industrialupgrade).
 
 [![](https://img.shields.io/discord/1137202630125428868?color=f3f2f4&label=Discord&logo=Discord&logoColor=4d57de&style=for-the-badge)](https://discord.gg/bXgXTa6Wxs)[![Modrinth Downloads](https://img.shields.io/modrinth/dt/BoNKsbnO?style=for-the-badge&logo=modrinth&labelColor=666666&color=54ac91&link=https://modrinth.com/mod/iu-additions)](https://modrinth.com/mod/iu-additions)![Static Badge](https://img.shields.io/badge/Supported-5ebfa2?style=for-the-badge&logoColor=4d57de&label=Status&color=54ac91)
 
