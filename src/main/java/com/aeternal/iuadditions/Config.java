@@ -106,6 +106,7 @@ public final class Config {
 
     //Hunter CFG
     public static boolean allowBoss;
+    public static boolean debugHunter;
 
     //Katana CFG
     public static boolean katanaDebug;
@@ -253,7 +254,8 @@ public final class Config {
             coefficientmanatoef = config.get("Converters", "coefficient mana to ef", 0.02).getDouble(0.02);
             manatransferrate = config.get("Converters", "mana I/O transfer rate", 50000).getInt(50000);
 
-            allowBoss = config.getBoolean("Enable boss spawning in Automatic Hunter", "Hunter Mixins",false, "");
+            debugHunter = config.getBoolean("Enable Automatic Hunter Mixin Debug", "Hunter Mixins",true, "");
+            allowBoss = config.getBoolean("Enable boss spawning in Automatic Hunter", "Hunter Mixins",true, "");
 
             katanaDebug = config.getBoolean("Katana debugger","Katana Mixins",true,"Enable debugger");
             katanaDmg = config.get("Katana Mixins", "Katana base damage modifier",14).getInt(14);

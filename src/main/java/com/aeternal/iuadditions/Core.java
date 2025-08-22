@@ -78,6 +78,7 @@ public final class Core {
 //            System.out.println("[IUAdditions]["+where+"] Mixin not on classpath");
 //        }
 //    }
+
     public static final CreativeTabs IUATab = new TabCore(0, "IU:AdditionsTab");
 
     public static final List<ItemStack> list = new ArrayList<>();
