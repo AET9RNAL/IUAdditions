@@ -4,7 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public final class BaseUpgradeSystemApplier {
-    public static final Logger LOGGER = LogManager.getLogger("IUAdditions|BaseUpgradeSystem");
+    public static final Logger LOGGER = LogManager.getLogger("IUAdditionsMixins");
 
     public static volatile int CORE_MAX = 1;
 
@@ -26,7 +26,7 @@ public final class BaseUpgradeSystemApplier {
         DEBUG = debug;
 
         if (DEBUG) {
-            LOGGER.info("[BaseUpgradeSystemApplier] Applied config: CORE_MAX={}, NEUTRON_MAX={}",
+            LOGGER.info("[IUAdditionsMixins] Applied config: CORE_MAX={}, NEUTRON_MAX={}",
                     CORE_MAX, NEUTRON_MAX);
         }
     }

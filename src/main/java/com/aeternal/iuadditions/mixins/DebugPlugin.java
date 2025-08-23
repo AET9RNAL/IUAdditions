@@ -12,13 +12,13 @@ public final class DebugPlugin implements IMixinConfigPlugin {
     static {
         // If class loads, this prints even when onLoad never runs (helps diagnose ABI issues vs. JSON not prepared).
         try {
-            System.out.println("[IUAdditions] DebugPlugin <clinit> reached");
+            System.out.println("[IUAdditionsMixins] DebugPlugin <clinit> reached");
         } catch (Throwable ignored) {}
     }
 
     @Override public void onLoad(String mixinPackage) {
         try {
-            System.out.println("[IUAdditions] mixin config loaded: " + mixinPackage);
+            System.out.println("[IUAdditionsMixins] mixin config loaded: " + mixinPackage);
         } catch (Throwable t) {
             t.printStackTrace();
         }
@@ -28,7 +28,7 @@ public final class DebugPlugin implements IMixinConfigPlugin {
 
     @Override public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         try {
-            System.out.println("[IUAdditions] consider: " + mixinClassName + " -> " + targetClassName);
+            System.out.println("[IUAdditionsMixins] consider: " + mixinClassName + " -> " + targetClassName);
         } catch (Throwable t) {
             t.printStackTrace();
         }

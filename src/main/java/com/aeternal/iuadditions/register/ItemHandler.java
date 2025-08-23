@@ -8,8 +8,10 @@ import com.aeternal.iuadditions.integration.divinerpg.DivinerpgIntegration;
 import com.aeternal.iuadditions.integration.divinerpg.item.DivItems;
 import com.aeternal.iuadditions.integration.forestry.ForestryIntegration;
 import com.aeternal.iuadditions.integration.forestry.items.*;
+import com.aeternal.iuadditions.items.modules.ItemSpecialUpgradeModule;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemSpade;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
@@ -33,7 +35,7 @@ public class ItemHandler {
             IUAItem.divItems = new DivItems();
             DivinerpgIntegration.init();
         }
-
+        //IUAItem.specialupgrademodule = new ItemSpecialUpgradeModule();
     }
     
     public static <T extends Item> T registerItem(T item, ResourceLocation rl) {

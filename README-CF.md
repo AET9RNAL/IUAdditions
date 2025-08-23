@@ -15,12 +15,12 @@ Tweaks: configurable upgrade modules, weapons, armors, machines;
 Tweaks expect you to change the values in the config to the ones you want, by default there is little to no change.
 
 ### **Auto Hunter Boss Support**
+Correct LootTable example: [repo](https://github.com/AET9RNAL/IUAdditions/blob/main/LootTableExample.json)
 <div class="spoiler">Auto Hunter boss support allows you to spawn bosses and gain loot from them. But because most of the modded loot tables have incorrect structure you will often see that the mechanism doesn't generate any loot despite the feature being on. The only fix is to modify the loot table, so that it's structure is correct. An example of a boss loot table is in the repo</div>
 
 
 
-
-Converters added:
+### New Converters:
 
 ### **Draconic Evolution Integration:**
 

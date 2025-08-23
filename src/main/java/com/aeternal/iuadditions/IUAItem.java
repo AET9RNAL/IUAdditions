@@ -5,6 +5,10 @@ import com.aeternal.iuadditions.integration.astralsorcery.item.AstralCraftingEle
 import com.aeternal.iuadditions.integration.divinerpg.item.DivItems;
 import com.aeternal.iuadditions.integration.forestry.items.*;
 import com.denfop.blocks.BlockTileEntity;
+import net.minecraft.item.Item;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class IUAItem {
  public static BlockTileEntity blocktest;
@@ -21,4 +25,6 @@ public class IUAItem {
 
  public static DivItems divItems;
 
+ public static List<String> list = new ArrayList<>();
+ public static Item specialupgrademodule;
 }

@@ -27,7 +27,7 @@ public abstract class MixinTileAutoSpawner {
             require = 0
     )
     private void iuadditions$logEntry(EntityLiving entity, DamageSource source, LootTable table, int index, CallbackInfo ci) {
-        if (Config.allowBoss) {
+        if (Config.AutomaticHunterMixins) {
             LOG.info("[IUAdditions] allowBoss=true -> relaxing gate; entity='{}' nonBoss(original)={}",
                     entity.getName(), entity.isNonBoss());
         }
@@ -40,8 +40,8 @@ public abstract class MixinTileAutoSpawner {
     )
     private boolean iuadditions$allowBossDrops(EntityLiving self) {
         boolean original = self.isNonBoss();
-        boolean result = original || Config.allowBoss;
-        if (Config.allowBoss) {
+        boolean result = original || Config.AutomaticHunterMixins;
+        if (Config.AutomaticHunterMixins) {
             LOG.info("[IUAdditions] redirect isNonBoss: entity='{}' original={} -> returning={}",
                     self.getName(), original, result);
         }

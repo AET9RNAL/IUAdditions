@@ -1,18 +1,21 @@
 package com.aeternal.iuadditions.mixins;
 
 import com.aeternal.iuadditions.Config;
+import com.aeternal.iuadditions.enums.EnumSpecialUpgradeModules;
 import com.denfop.items.EnumInfoUpgradeModules;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Mutable;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.gen.Invoker;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(EnumInfoUpgradeModules.class)
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+@Mixin(value = EnumInfoUpgradeModules.class, priority = 801)
 public abstract class MixinEnumInfoUpgradeModules {
 
     private static final Logger LOGGER = LogManager.getLogger("IUAdditions|Mixins");
@@ -22,7 +25,7 @@ public abstract class MixinEnumInfoUpgradeModules {
     @Inject(method = "<clinit>", at = @At("RETURN"))
     private static void iuadditions$afterClinit(CallbackInfo ci) {
         try {
-            LOGGER.info("[EnumInfoUpgradeModules] <clinit> hook reached (mixin applied).");
+            LOGGER.info("[IUAdditionsMixins] <clinit> hook reached (mixin applied).");
         } catch (Throwable ignored) {}
     }
 
@@ -61,4 +64,76 @@ public abstract class MixinEnumInfoUpgradeModules {
         // Allow zero to "disable" only if you really want that; otherwise keep original as fallback.
         return (v > 0) ? v : original;
     }
+
+    // === IUAdditions: enum extension support ===
+    @Shadow @Final @Mutable
+    private static EnumInfoUpgradeModules[] $VALUES;
+
+    /**
+     * Invoker for the (String name, int ordinal, int max, String displayName, Integer... extra) enum constructor.
+     */
+    @Invoker("<init>")
+    private static EnumInfoUpgradeModules iuadditions$invokeInit(String enumName, int ordinal, int max, String displayName, Integer[] extra) {
+        throw new AssertionError();
+    }
+
+    /**
+     * Invoker for the (String name, int ordinal, int max, String displayName) enum constructor.
+     */
+    @Invoker("<init>")
+    private static EnumInfoUpgradeModules iuadditions$invokeInitNoExtra(String enumName, int ordinal, int max, String displayName) {
+        throw new AssertionError();
+    }
+
+    @Unique
+    private static boolean iuadditions$patched;
+
+    @Inject(method = "<clinit>", at = @At("TAIL"))
+    private static void iuadditions$appendSpecials(CallbackInfo ci) {
+        if (iuadditions$patched) {
+            return;
+        }
+        iuadditions$patched = true;
+
+        // Start from current enum constants
+        List<EnumInfoUpgradeModules> values = new ArrayList<>(Arrays.asList($VALUES));
+
+        // Append from our data enum
+        for (EnumSpecialUpgradeModules spec : EnumSpecialUpgradeModules.values()) {
+            String displayName = spec.getDisplayName();
+
+            // Skip if an existing entry already uses this displayName
+            boolean duplicateByName = false;
+            for (EnumInfoUpgradeModules existing : values) {
+                if (existing.name.equals(displayName)) {
+                    duplicateByName = true;
+                    break;
+                }
+            }
+            if (duplicateByName) {
+                System.out.println("[IUAdditions] EnumInfoUpgradeModules PATCH: skip special '" + spec.name()
+                        + "' due to duplicate display name '" + displayName + "'.");
+                continue;
+            }
+
+            String enumSymbol = "SPECIAL_" + spec.name();
+            int ordinal = values.size();
+
+            EnumInfoUpgradeModules created;
+            List<Integer> extra = spec.getExtraList();
+            if (extra != null && !extra.isEmpty()) {
+                created = iuadditions$invokeInit(enumSymbol, ordinal, spec.getMax(), displayName, extra.toArray(new Integer[0]));
+            } else {
+                created = iuadditions$invokeInitNoExtra(enumSymbol, ordinal, spec.getMax(), displayName);
+            }
+
+            values.add(created);
+            System.out.println("[IUAdditions] EnumInfoUpgradeModules PATCH: added " + enumSymbol
+                    + " (name='" + displayName + "', max=" + spec.getMax() + ", extra=" + extra + ")");
+        }
+
+        $VALUES = values.toArray(new EnumInfoUpgradeModules[0]);
+    }
+// === /enum extension support ===
+
 }

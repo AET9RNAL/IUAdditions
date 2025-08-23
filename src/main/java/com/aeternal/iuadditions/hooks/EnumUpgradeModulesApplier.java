@@ -10,12 +10,12 @@ import org.apache.logging.log4j.Logger;
  * Normal (non-mixin) helper you can call anytime after Config is loaded.
  */
 public final class EnumUpgradeModulesApplier {
-    private static final Logger LOGGER = LogManager.getLogger("IUAdditions|Mixins");
+    private static final Logger LOGGER = LogManager.getLogger("IUAdditionsMixins");
 
     private EnumUpgradeModulesApplier() {}
 
     public static void applyNowIfConfigured() {
-        if (!Config.UpgradeModulesMixin) {
+        if (!Config.UpgradeModulesMixins) {
             if (Config.DebugEnum) {
                 LOGGER.info("[EnumInfoUpgradeModules] Global switch OFF — leaving vanilla values.");
             }

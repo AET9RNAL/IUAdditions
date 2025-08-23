@@ -218,8 +218,10 @@ jar {
             attribute_map['FMLAT'] = propertyString('access_transformer_locations')
         }
         attributes(attribute_map)
-        attributes(
-                "MixinConfigs": "mixins.iuadditions.json")
+        attributes("MixinConfigs": "mixins.iuadditions.autohunter.json")
+        attributes("MixinConfigs": "mixins.iuadditions.katana.json")
+        attributes("MixinConfigs": "mixins.iuadditions.upgrademodules.json")
+
     }
     // Add all embedded dependencies into the jar
     from(provider{ configurations.embed.collect {it.isDirectory() ? it : zipTree(it)} })

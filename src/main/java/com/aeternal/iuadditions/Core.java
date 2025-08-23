@@ -103,7 +103,6 @@ public final class Core {
 
     @Mod.EventHandler
     public void load(final FMLPreInitializationEvent event) {
-        //org.spongepowered.asm.mixin.Mixins.addConfiguration("mixins.iuadditions.json");
         MinecraftForge.EVENT_BUS.register(this);
         Config.loadNormalConfig(event.getSuggestedConfigurationFile());
 
@@ -142,7 +141,7 @@ public final class Core {
     }
 
     @Mod.EventHandler
-    public void loadMixins(final FMLPostInitializationEvent e){
+    public void enqueueMixins(final FMLPostInitializationEvent e){
         KatanaApplier.applyNowIfConfigured();
         EnumUpgradeModulesApplier.applyNowIfConfigured();
         BaseUpgradeSystemApplier.applyFromConfig(Config.CoreModifier_maxCount, Config.NeutronModifier_maxCount, Config.DebugEnum);

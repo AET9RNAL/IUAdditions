@@ -105,11 +105,12 @@ public final class Config {
     public static boolean allowManaToEfConversion;
 
     //Hunter CFG
-    public static boolean allowBoss;
+    public static boolean AutomaticHunterMixins;
     public static boolean debugHunter;
 
     //Katana CFG
     public static boolean katanaDebug;
+    public static boolean KatanaMixins;
     public static int katanaDmg;
     public static int katanaEff;
     public static int katanaArmorPierce;
@@ -120,7 +121,7 @@ public final class Config {
     public static double soulDmgEnergy;
 
     //Modules CFG
-    public static boolean UpgradeModulesMixin;
+    public static boolean UpgradeModulesMixins;
     public static boolean DebugEnum;
     public static byte ModuleGENDAYmaxCount;
     public static byte ModuleGENNIGHTmaxCount;
@@ -160,82 +161,81 @@ public final class Config {
             DraconicConfirmed = config.getBoolean("Draconic confirm","Integrations",true,"Are you sure you want to enable Draconic Evolution integrations?");
 
             //CustomSolarPanelsCFG
-            edenGenDay = config.get("Configuration Solar Panels", "EdenGenDay", 81920).getDouble(81920.0);
-            edenOutput = config.get("Configuration Solar Panels", "EdenOutput", 163840).getDouble(163840.0);
-            edenOutput = config.get("Configuration Solar Panels", "EdenOutput", 163840).getDouble(163840.0);
-            edenStorage = config.get("Configuration Solar Panels", "EdenStorage", 1.5E9).getDouble(1.5E9);
-            wildwoodGenDay = config.get("Configuration Solar Panels", "WildwoodGenDay", 327680).getDouble(327680.0);
-            wildwoodOutput = config.get("Configuration Solar Panels", "WildwoodOutput", 655360).getDouble(655360.0);
-            wildwoodStorage = config.get("Configuration Solar Panels", "WildwoodStorage", 5.0E9).getDouble(5.0E9);
-            apalachiaGenDay = config.get("Configuration Solar Panels", "ApalachiaGenDay", 1310720).getDouble(1310720.0);
-            apalachiaOutput = config.get("Configuration Solar Panels", "ApalachiaOutput", 2621440).getDouble(2621440.0);
-            apalachiaStorage = config.get("Configuration Solar Panels", "ApalachiaStorage", 6.5E9).getDouble(6.5E9);
-            skythernGenDay = config.get("Configuration Solar Panels", "SkythernGenDay", 5242880).getDouble(5242880.0);
-            skythernOutput = config.get("Configuration Solar Panels", "SkythernOutput", 10485760).getDouble(1.048576E7);
-            skythernStorage = config.get("Configuration Solar Panels", "SkythernStorage", 1.0E10).getDouble(1.0E10);
-            mortumGenDay = config.get("Configuration Solar Panels", "MortumGenDay", 20971520).getDouble(2.097152E7);
-            mortumOutput = config.get("Configuration Solar Panels", "MortumOutput", 41943040).getDouble(4.194304E7);
-            mortumStorage = config.get("Configuration Solar Panels", "MortumStorage", 2.5E10).getDouble(2.5E10);
-            arcanaGenDay = config.get("Configuration Solar Panels", "ArcanaGenDay", 83886080).getDouble(8.388608E7);
-            arcanaOutput = config.get("Configuration Solar Panels", "ArcanaOutput", 167772160).getDouble(1.6777216E8);
-            arcanaStorage = config.get("Configuration Solar Panels", "ArcanaStorage", 2.5E11).getDouble(2.5E11);
-            vetheaGenDay = config.get("Configuration Solar Panels", "VatheaGenDay", 335544320).getDouble(3.3554432E8);
-            vetheaOutput = config.get("Configuration Solar Panels", "VatheaOutput", 671088640).getDouble(6.7108864E8);
-            vetheaStorage = config.get("Configuration Solar Panels", "VatheaStorage", 2.5E12).getDouble(2.5E12);
-            crossdimentionalGenDay = config.get("Configuration Solar Panels", "CrossdimentionalGenDay", 671088640).getDouble(6.7108864E8);
-            crossdimentionalOutput = config.get("Configuration Solar Panels", "CrossdimentionalOutput", 1342177280).getDouble(1.34217728E9);
-            crossdimentionalStorage = config.get("Configuration Solar Panels", "CrossdimentionalStorage", 2.5E12).getDouble(2.5E12);
-            brightstarlightcollectorGenDay =
-                    config.get("Configuration Solar Panels", "BrightstarlightcollectorGenDay", 16128).getDouble(16128);
-            brightstarlightcollectorOutput =
-                    config.get("Configuration Solar Panels", "BrightstarlightcollectorOutput", 32256).getDouble(32256);
+            edenGenDay                      = config.get("Configuration Solar Panels", "EdenGenDay", 81920).getDouble(81920.0);
+            edenOutput                      = config.get("Configuration Solar Panels", "EdenOutput", 163840).getDouble(163840.0);
+            edenOutput                      = config.get("Configuration Solar Panels", "EdenOutput", 163840).getDouble(163840.0);
+            edenStorage                     = config.get("Configuration Solar Panels", "EdenStorage", 1.5E9).getDouble(1.5E9);
+
+            wildwoodGenDay                  = config.get("Configuration Solar Panels", "WildwoodGenDay", 327680).getDouble(327680.0);
+            wildwoodOutput                  = config.get("Configuration Solar Panels", "WildwoodOutput", 655360).getDouble(655360.0);
+            wildwoodStorage                 = config.get("Configuration Solar Panels", "WildwoodStorage", 5.0E9).getDouble(5.0E9);
+
+            apalachiaGenDay                 = config.get("Configuration Solar Panels", "ApalachiaGenDay", 1310720).getDouble(1310720.0);
+            apalachiaOutput                 = config.get("Configuration Solar Panels", "ApalachiaOutput", 2621440).getDouble(2621440.0);
+            apalachiaStorage                = config.get("Configuration Solar Panels", "ApalachiaStorage", 6.5E9).getDouble(6.5E9);
+
+            skythernGenDay                  = config.get("Configuration Solar Panels", "SkythernGenDay", 5242880).getDouble(5242880.0);
+            skythernOutput                  = config.get("Configuration Solar Panels", "SkythernOutput", 10485760).getDouble(1.048576E7);
+            skythernStorage                 = config.get("Configuration Solar Panels", "SkythernStorage", 1.0E10).getDouble(1.0E10);
+
+            mortumGenDay                    = config.get("Configuration Solar Panels", "MortumGenDay", 20971520).getDouble(2.097152E7);
+            mortumOutput                    = config.get("Configuration Solar Panels", "MortumOutput", 41943040).getDouble(4.194304E7);
+            mortumStorage                   = config.get("Configuration Solar Panels", "MortumStorage", 2.5E10).getDouble(2.5E10);
+
+            arcanaGenDay                    = config.get("Configuration Solar Panels", "ArcanaGenDay", 83886080).getDouble(8.388608E7);
+            arcanaOutput                    = config.get("Configuration Solar Panels", "ArcanaOutput", 167772160).getDouble(1.6777216E8);
+            arcanaStorage                   = config.get("Configuration Solar Panels", "ArcanaStorage", 2.5E11).getDouble(2.5E11);
+
+            vetheaGenDay                    = config.get("Configuration Solar Panels", "VatheaGenDay", 335544320).getDouble(3.3554432E8);
+            vetheaOutput                    = config.get("Configuration Solar Panels", "VatheaOutput", 671088640).getDouble(6.7108864E8);
+            vetheaStorage                   = config.get("Configuration Solar Panels", "VatheaStorage", 2.5E12).getDouble(2.5E12);
+
+            crossdimentionalGenDay          = config.get("Configuration Solar Panels", "CrossdimentionalGenDay", 671088640).getDouble(6.7108864E8);
+            crossdimentionalOutput          = config.get("Configuration Solar Panels", "CrossdimentionalOutput", 1342177280).getDouble(1.34217728E9);
+            crossdimentionalStorage         = config.get("Configuration Solar Panels", "CrossdimentionalStorage", 2.5E12).getDouble(2.5E12);
+
+            brightstarlightcollectorGenDay  = config.get("Configuration Solar Panels", "BrightstarlightcollectorGenDay", 16128).getDouble(16128);
+            brightstarlightcollectorOutput  = config.get("Configuration Solar Panels", "BrightstarlightcollectorOutput", 32256).getDouble(32256);
             brightstarlightcollectorStorage = config.get("Configuration Solar Panels", "BrightstarlightcollectorStorage", 1.0E9).getDouble(1.0E9);
 
-            dimstarlightcollectorGenDay =
-                    config.get("Configuration Solar Panels", "DimstarlightcollectorGenDay", 258048).getDouble(258048);
-            dimstarlightcollectorOutput =
-                    config.get("Configuration Solar Panels", "DimstarlightcollectorOutput", 516096).getDouble(516096);
-            dimstarlightcollectorStorage = config.get("Configuration Solar Panels", "DimstarlightcollectorStorage", 5.0E9).getDouble(5.0E9);
+            dimstarlightcollectorGenDay     = config.get("Configuration Solar Panels", "DimstarlightcollectorGenDay", 258048).getDouble(258048);
+            dimstarlightcollectorOutput     = config.get("Configuration Solar Panels", "DimstarlightcollectorOutput", 516096).getDouble(516096);
+            dimstarlightcollectorStorage    = config.get("Configuration Solar Panels", "DimstarlightcollectorStorage", 5.0E9).getDouble(5.0E9);
 
-            faintstarlightcollectorGenDay =
-                    config.get("Configuration Solar Panels", "FaintstarlightcollectorGenDay", 2064384).getDouble(2064384);
-            faintstarlightcollectorOutput =
-                    config.get("Configuration Solar Panels", "FaintstarlightcollectorOutput", 4128768).getDouble(4128768);
-            faintstarlightcollectorStorage = config.get("Configuration Solar Panels", "FaintstarlightcollectorStorage", 5.0E9).getDouble(5.0E9);
+            faintstarlightcollectorGenDay   = config.get("Configuration Solar Panels", "FaintstarlightcollectorGenDay", 2064384).getDouble(2064384);
+            faintstarlightcollectorOutput   = config.get("Configuration Solar Panels", "FaintstarlightcollectorOutput", 4128768).getDouble(4128768);
+            faintstarlightcollectorStorage  = config.get("Configuration Solar Panels", "FaintstarlightcollectorStorage", 5.0E9).getDouble(5.0E9);
 
-            cyanbeekeeperGenDay = config.get("Configuration Solar Panels", "CyanbeekeeperGenDay", 20480).getDouble(20480.0);
-            cyanbeekeeperOutput = config.get("Configuration Solar Panels", "CyanbeekeeperOutput", 40960).getDouble(40960.0);
-            cyanbeekeeperStorage = config.get("Configuration Solar Panels", "CyanbeekeeperStorage", 1.0E9).getDouble(1.0E9);
+            cyanbeekeeperGenDay             = config.get("Configuration Solar Panels", "CyanbeekeeperGenDay", 20480).getDouble(20480.0);
+            cyanbeekeeperOutput             = config.get("Configuration Solar Panels", "CyanbeekeeperOutput", 40960).getDouble(40960.0);
+            cyanbeekeeperStorage            = config.get("Configuration Solar Panels", "CyanbeekeeperStorage", 1.0E9).getDouble(1.0E9);
 
-            bluebeekeeperGenDay = config.get("Configuration Solar Panels", "BluebeekeeperGenDay", 245760).getDouble(245760);
-            bluebeekeeperOutput = config.get("Configuration Solar Panels", "BluebeekeeperOutput", 491520).getDouble(491520);
-            bluebeekeeperStorage = config.get("Configuration Solar Panels", "BluebeekeeperStorage", 5.0E9).getDouble(5.0E9);
+            bluebeekeeperGenDay             = config.get("Configuration Solar Panels", "BluebeekeeperGenDay", 245760).getDouble(245760);
+            bluebeekeeperOutput             = config.get("Configuration Solar Panels", "BluebeekeeperOutput", 491520).getDouble(491520);
+            bluebeekeeperStorage            = config.get("Configuration Solar Panels", "BluebeekeeperStorage", 5.0E9).getDouble(5.0E9);
 
-            greenbeekeeperGenDay = config.get("Configuration Solar Panels", "GreenbeekeeperGenDay", 1228800).getDouble(1228800);
-            greenbeekeeperOutput = config.get("Configuration Solar Panels", "GreenbeekeeperOutput", 5898240).getDouble(5898240);
-            greenbeekeeperStorage = config.get("Configuration Solar Panels", "GreenbeekeeperStorage", 6.5E9).getDouble(6.5E9);
+            greenbeekeeperGenDay            = config.get("Configuration Solar Panels", "GreenbeekeeperGenDay", 1228800).getDouble(1228800);
+            greenbeekeeperOutput            = config.get("Configuration Solar Panels", "GreenbeekeeperOutput", 5898240).getDouble(5898240);
+            greenbeekeeperStorage           = config.get("Configuration Solar Panels", "GreenbeekeeperStorage", 6.5E9).getDouble(6.5E9);
 
-            staticbeekeeperGenDay = config.get("Configuration Solar Panels", "StaticbeekeeperGenDay", 6144000).getDouble(6144000);
-            staticbeekeeperOutput = config.get("Configuration Solar Panels", "StaticbeekeeperOutput", 12288000).getDouble(12288000);
-            staticbeekeeperStorage = config.get("Configuration Solar Panels", "StaticbeekeeperStorage", 1.0E10).getDouble(1.0E10);
+            staticbeekeeperGenDay           = config.get("Configuration Solar Panels", "StaticbeekeeperGenDay", 6144000).getDouble(6144000);
+            staticbeekeeperOutput           = config.get("Configuration Solar Panels", "StaticbeekeeperOutput", 12288000).getDouble(12288000);
+            staticbeekeeperStorage          = config.get("Configuration Solar Panels", "StaticbeekeeperStorage", 1.0E10).getDouble(1.0E10);
 
-            purplebeekeeperGenDay = config.get("Configuration Solar Panels", "PurplebeekeeperGenDay", 30720000).getDouble(30720000);
-            purplebeekeeperOutput = config.get("Configuration Solar Panels", "PurplebeekeeperOutput", 61440000).getDouble(61440000);
-            purplebeekeeperStorage = config.get("Configuration Solar Panels", "PurplebeekeeperStorage", 2.5E10).getDouble(2.5E10);
+            purplebeekeeperGenDay           = config.get("Configuration Solar Panels", "PurplebeekeeperGenDay", 30720000).getDouble(30720000);
+            purplebeekeeperOutput           = config.get("Configuration Solar Panels", "PurplebeekeeperOutput", 61440000).getDouble(61440000);
+            purplebeekeeperStorage          = config.get("Configuration Solar Panels", "PurplebeekeeperStorage", 2.5E10).getDouble(2.5E10);
 
-            amberbeekeeperGenDay =
-                    config.get("Configuration Solar Panels", "AmberbeekeeperGenDay", 153600000).getDouble(153600000);
-            amberbeekeeperOutput = config.get("Configuration Solar Panels", "AmberbeekeeperOutput", 307200000).getDouble(307200000);
-            amberbeekeeperStorage = config.get("Configuration Solar Panels", "AmberbeekeeperStorage", 2.5E11).getDouble(2.5E11);
+            amberbeekeeperGenDay            = config.get("Configuration Solar Panels", "AmberbeekeeperGenDay", 153600000).getDouble(153600000);
+            amberbeekeeperOutput            = config.get("Configuration Solar Panels", "AmberbeekeeperOutput", 307200000).getDouble(307200000);
+            amberbeekeeperStorage           = config.get("Configuration Solar Panels", "AmberbeekeeperStorage", 2.5E11).getDouble(2.5E11);
 
-            refractivebeekeeperGenDay =
-                    config.get("Configuration Solar Panels", "RefractivebeekeeperGenDay", 460800000).getDouble(460800000);
-            refractivebeekeeperOutput =
-                    config.get("Configuration Solar Panels", "RefractivebeekeeperOutput", 921600000).getDouble(921600000);
-            refractivebeekeeperStorage = config.get("Configuration Solar Panels", "RefractivebeekeeperStorage", 2.5E12).getDouble(2.5E12);
+            refractivebeekeeperGenDay       = config.get("Configuration Solar Panels", "RefractivebeekeeperGenDay", 460800000).getDouble(460800000);
+            refractivebeekeeperOutput       = config.get("Configuration Solar Panels", "RefractivebeekeeperOutput", 921600000).getDouble(921600000);
+            refractivebeekeeperStorage      = config.get("Configuration Solar Panels", "RefractivebeekeeperStorage", 2.5E12).getDouble(2.5E12);
 
             //CustomSolarPanelsCFG_END
-
+            //Converters
             coefficientqe = config.get("Converters", "coefficient qe", 64).getInt(64);
             if (coefficientqe < 1) {
                 coefficientqe = 64;
@@ -248,25 +248,29 @@ public final class Config {
             if (coreSearchRange < 1) {
                 coreSearchRange = 16;
             }
-            allowEfToManaConversion = config.getBoolean("EF to MANA", "Converters", false, "Allow EF to Mana Conversion");
-            allowManaToEfConversion = config.getBoolean("MANA to EF", "Converters", true, "Allow Mana to Ef Conversion");
-            coefficienteftomana = config.get("Converters", "coefficient ef to mana", 0.02).getDouble(0.02);
-            coefficientmanatoef = config.get("Converters", "coefficient mana to ef", 0.02).getDouble(0.02);
-            manatransferrate = config.get("Converters", "mana I/O transfer rate", 50000).getInt(50000);
 
-            debugHunter = config.getBoolean("Enable Automatic Hunter Mixin Debug", "Hunter Mixins",true, "");
-            allowBoss = config.getBoolean("Enable boss spawning in Automatic Hunter", "Hunter Mixins",true, "");
+            allowEfToManaConversion     = config.getBoolean("EF to MANA", "Converters", false, "Allow EF to Mana Conversion");
+            allowManaToEfConversion     = config.getBoolean("MANA to EF", "Converters", true, "Allow Mana to Ef Conversion");
+            coefficienteftomana         = config.get("Converters", "coefficient ef to mana", 0.02).getDouble(0.02);
+            coefficientmanatoef         = config.get("Converters", "coefficient mana to ef", 0.02).getDouble(0.02);
+            manatransferrate            = config.get("Converters", "mana I/O transfer rate", 50000).getInt(50000);
 
-            katanaDebug = config.getBoolean("Katana debugger","Katana Mixins",true,"Enable debugger");
-            katanaDmg = config.get("Katana Mixins", "Katana base damage modifier",14).getInt(14);
-            katanaArmorPierce = config.get("Katana Mixins", "Katana armor pierce damage modifier",80).getInt(80);
-            katanaGodSlay = config.get("Katana Mixins", "Katana god damage modifier",10).getInt(10);
-            katanaSoulStep = config.get("Katana Mixins", "Katana soul damage modifier",30).getInt(30);
-            godDmgEnergy = config.get("Katana Mixins", "Katana god energy drain",1000.00).getDouble(1000.00);
-            armorPierceDmgEnergy = config.get("Katana Mixins", "Katana armor piercing damage energy drain",500.00).getDouble(500.00);
-            soulDmgEnergy = config.get("Katana Mixins", "Katana soul damage energy drain",800.00).getDouble(800.00);
+            //Mixins
+            debugHunter                 = config.getBoolean("Enable Automatic Hunter Mixin Debug", "Hunter Mixins", false, "");
+            AutomaticHunterMixins       = config.getBoolean("Automatic Hunter Mixins", "Hunter Mixins", true, "Enable Mixins");
 
-            UpgradeModulesMixin            = config.getBoolean("Enable Mixin", "Upgrade Modules Mixins",true, "");
+            katanaDebug                 = config.getBoolean("Katana debugger","Katana Mixins", false, "Enable debugger");
+            KatanaMixins                = config.getBoolean("Katana Mixins","Katana Mixins", true, "Enable Mixins");
+            katanaDmg                   = config.get("Katana Mixins", "Katana base damage modifier", 14).getInt(14);
+            katanaArmorPierce           = config.get("Katana Mixins", "Katana armor pierce damage modifier", 80).getInt(80);
+            katanaGodSlay               = config.get("Katana Mixins", "Katana god damage modifier", 10).getInt(10);
+            katanaSoulStep              = config.get("Katana Mixins", "Katana soul damage modifier", 30).getInt(30);
+            godDmgEnergy                = config.get("Katana Mixins", "Katana god energy drain", 1000.00).getDouble(1000.00);
+            armorPierceDmgEnergy        = config.get("Katana Mixins", "Katana armor piercing damage energy drain", 500.00).getDouble(500.00);
+            soulDmgEnergy               = config.get("Katana Mixins", "Katana soul damage energy drain", 800.00).getDouble(800.00);
+
+
+            UpgradeModulesMixins           = config.getBoolean("Upgrade Modules Mixins", "Upgrade Modules Mixins",true, "Enable Upgrade Modules Mixins");
             DebugEnum                      = config.getBoolean("Mixin Debugger", "Upgrade Modules Mixins",true, "");
             ModuleGENDAYmaxCount           = (byte) config.get("Upgrade Modules Mixins", "Module GenDay max count (def:2)",           2).getInt(2);
             ModuleGENDAYmaxCount           = (byte) config.get("Upgrade Modules Mixins", "Module GenDay max count (def:2)",           2).getInt(2);
