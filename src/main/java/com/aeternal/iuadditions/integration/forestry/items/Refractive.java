@@ -5,7 +5,7 @@ import com.aeternal.iuadditions.Core;
 import com.aeternal.iuadditions.items.resource.IUAItemSubTypes;
 import com.aeternal.iuadditions.register.ItemHandler;
 import com.denfop.api.IModelRegister;
-import com.denfop.blocks.ISubEnum;
+import com.aeternal.iuadditions.api.block.ISubEnum;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
@@ -43,7 +43,7 @@ public class Refractive extends IUAItemSubTypes<Refractive.RefractiveTypes> impl
         );
     }
 
-    public enum RefractiveTypes implements ISubEnum {
+    public enum RefractiveTypes implements ISubEnum{
         plate(0),
         glass(1);
 
