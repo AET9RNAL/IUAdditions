@@ -17,7 +17,7 @@ import java.util.List;
  */
 public enum EnumSpecialUpgradeModules {
     // TODO: add your entries here
-    ENERGY_SHIELD(1,"energy_shield")
+    ENERGY_SHIELD(4,"energy_shield")
     ;
 
     public final int max;

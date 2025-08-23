@@ -1,0 +1,13 @@
+{
+	"package": "com.aeternal.iuadditions.mixins",
+	"refmap": "iuadditions.mixins.refmap.json",
+	"plugin": "com.aeternal.iuadditions.mixins.DebugPlugin",
+	"required": true,
+	"compatibilityLevel": "JAVA_8",
+	"injectors": { "defaultRequire": 0 },
+	"mixins": [
+		"MixinItemSpecialArmor"
+	],
+	"client": [],
+	"server": []
+}

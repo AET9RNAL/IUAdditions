@@ -149,6 +149,8 @@ public final class Config {
 
     public static int CoreModifier_maxCount = 1;
     public static int NeutronModifier_maxCount = 1;
+
+    public static boolean itemSpecialArmorMixins;
     public static void loadNormalConfig(final File configFile) {
         Core.LOGGER.info("Loading IUA Config from " + configFile.getAbsolutePath());
 
@@ -299,6 +301,8 @@ public final class Config {
 
             CoreModifier_maxCount          = (byte) config.get("Upgrade Modules Mixins", "Diffraction cores max count (def:1)",    3).getInt(3);
             NeutronModifier_maxCount       = (byte) config.get("Upgrade Modules Mixins", "Neutron ingots max count (def:1)",    2).getInt(2);
+
+            itemSpecialArmorMixins         = config.getBoolean("ItemSpecialArmor Mixins", "ItemSpecialArmor Mixins",true, "");
         } catch (Exception e) {
             Core.LOGGER.fatal("Fatal error reading config file.", e);
             throw new RuntimeException(e);

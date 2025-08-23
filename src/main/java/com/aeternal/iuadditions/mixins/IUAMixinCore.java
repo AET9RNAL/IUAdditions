@@ -41,12 +41,14 @@ public class IUAMixinCore implements IFMLLoadingPlugin, ILateMixinLoader {
     private static final String CFG_AUTOHUNTER     = "mixins.iuadditions.autohunter.json";
     private static final String CFG_KATANA         = "mixins.iuadditions.katana.json";
     private static final String CFG_UPGRADEMODULES = "mixins.iuadditions.upgrademodules.json";
+    private static final String CFG_DE_ITEMSPECIALARMOR = "mixins.iuadditions.draconicevolution.itemspecialarmor.json";
 
     static {
         // Register mixin configs with (mod present) && (toggle true in Config)
         addModdedMixinCFG(CFG_AUTOHUNTER, "industrialupgrade", () -> Config.AutomaticHunterMixins);
         addModdedMixinCFG(CFG_KATANA, "industrialupgrade", () -> Config.KatanaMixins);
         addModdedMixinCFG(CFG_UPGRADEMODULES, "industrialupgrade", () -> Config.UpgradeModulesMixins);
+        addModdedMixinCFG(CFG_DE_ITEMSPECIALARMOR, "draconicevolution", () -> Config.itemSpecialArmorMixins);
     }
 
     // ------------------------------------------------------------
