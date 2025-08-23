@@ -52,7 +52,7 @@ public abstract class MixinItemSpecialArmor implements ICustomArmor {
     @Unique
     private static EnumInfoUpgradeModules iuadd_energyShieldModule() {
         try {
-            // Avoids getstatic; resolves after your enum injection runs
+            // Avoids getstatic; resolves after enum injection runs
             return Enum.valueOf(EnumInfoUpgradeModules.class, "ENERGY_SHIELD");
         } catch (Throwable t) {
             return null;
@@ -129,7 +129,7 @@ public abstract class MixinItemSpecialArmor implements ICustomArmor {
     }
 
     // =============================================================================================
-    // Other ICustomArmor methods — neutral defaults (keeps behavior unchanged unless you want tweaks)
+    // Other ICustomArmor methods
     // =============================================================================================
 
     @Override
@@ -156,10 +156,6 @@ public abstract class MixinItemSpecialArmor implements ICustomArmor {
         return new boolean[] { false, false, false };
     }
 
-    // =============================================================================================
-    // Config access — @Unique to satisfy mixin member naming rule
-    // Replace with your direct config calls when ready
-    // =============================================================================================
 
     @Unique
     private static int iuadd_cfgMaxShieldPoints(EnumTypeArmor type, EnumSubTypeArmor sub) {

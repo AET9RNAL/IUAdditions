@@ -15,7 +15,7 @@ public final class BaseUpgradeSystemApplier {
     private BaseUpgradeSystemApplier() {}
 
     /**
-     * Apply values from your Config right after it’s loaded (e.g., in preInit).
+     * Apply values from Config right after it’s loaded (e.g., in preInit).
      * @param coreMax    desired max for core modifier; clamped to >= 1
      * @param neutronMax desired max for neutronium modifier; clamped to >= 1
      * @param debug      Config.DebugEnum

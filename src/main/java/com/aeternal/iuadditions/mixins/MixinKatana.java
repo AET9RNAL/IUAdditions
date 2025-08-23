@@ -105,19 +105,6 @@ public abstract class MixinKatana {
         PRE_MAX.put(target, inst != null ? (float) inst.getAttributeValue() : target.getMaxHealth());
     }
 
-//    @Inject(
-//            method = "onLeftClickEntity(Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/entity/Entity;)Z",
-//            at = @At("HEAD"),
-//            require = 0
-//    )
-//    private void iuadditions$captureHeadLeft(ItemStack stack, EntityPlayer player, Entity e,
-//                                             CallbackInfoReturnable<Boolean> cir) {
-//        if (!KatanaApplier.CFG_DEBUG || !(e instanceof EntityLivingBase)) return;
-//        EntityLivingBase target = (EntityLivingBase) e;
-//        PRE_HP.put(target, target.getHealth());
-//        IAttributeInstance inst = target.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH);
-//        PRE_MAX.put(target, inst != null ? (float) inst.getAttributeValue() : target.getMaxHealth());
-//    }
 
     @Inject(
             method = "hitEntity(Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/EntityLivingBase;Lnet/minecraft/entity/EntityLivingBase;)Z",
@@ -129,17 +116,6 @@ public abstract class MixinKatana {
         iuadditions$doExtraAndMaybeLog(stack, attacker, target, "hitEntity");
     }
 
-//    @Inject(
-//            method = "onLeftClickEntity(Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/entity/Entity;)Z",
-//            at = @At("TAIL"),
-//            require = 0
-//    )
-//    private void iuadditions$afterLeft(ItemStack stack, EntityPlayer player, Entity e,
-//                                       CallbackInfoReturnable<Boolean> cir) {
-//        if (e instanceof EntityLivingBase) {
-//            iuadditions$doExtraAndMaybeLog(stack, player, (EntityLivingBase) e, "onLeftClickEntity");
-//        }
-//    }
 
     @Unique
     private void iuadditions$doExtraAndMaybeLog(ItemStack stack, EntityLivingBase attacker, EntityLivingBase target, String path) {

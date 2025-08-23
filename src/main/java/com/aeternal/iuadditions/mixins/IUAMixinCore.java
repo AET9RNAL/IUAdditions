@@ -5,28 +5,19 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import zone.rong.mixinbooter.ILateMixinLoader;
-
 import com.aeternal.iuadditions.Config;
 
 import java.io.File;
 import java.util.*;
 import java.util.function.BooleanSupplier;
 
-/**
- * Loads IU:Additions mixin configs based on early-loaded config toggles and present mods.
- * Also exposes which mixin configs actually got queued so runtime appliers can guard themselves.
- *
- * MC: 1.12.2
- * Forge: 14.23.5.2860
- * Java: 8
- * MixinBooter: 10.6
- */
+
 @IFMLLoadingPlugin.MCVersion(ForgeVersion.mcVersion)
 @IFMLLoadingPlugin.Name("IUAdditionsMixinCore")
 @Optional.Interface(iface = "zone.rong.mixinbooter.ILateMixinLoader", modid = "mixinbooter")
 public class IUAMixinCore implements IFMLLoadingPlugin, ILateMixinLoader {
 
-    // === Adjust these to your actual mixin JSON filenames ===
+
     public static final String CFG_AUTOHUNTER      = "mixins.iuadditions.autohunter.json";
     public static final String CFG_KATANA          = "mixins.iuadditions.katana.json";
     public static final String CFG_UPGRADEMODULES  = "mixins.iuadditions.upgrademodules.json";
@@ -64,7 +55,7 @@ public class IUAMixinCore implements IFMLLoadingPlugin, ILateMixinLoader {
     }
 
     /**
-     * Runtime helpers: your appliers can call this to see if the corresponding mixin JSON
+     * Runtime helpers: appliers can call this to see if the corresponding mixin JSON
      * was actually queued (e.g., guard casts to accessor interfaces).
      */
     public static boolean wasQueued(String cfg) {
@@ -92,7 +83,6 @@ public class IUAMixinCore implements IFMLLoadingPlugin, ILateMixinLoader {
      * Create & load the config BEFORE MixinBooter decides which mixins to queue.
      * This prevents first-run races where the file doesn't exist yet.
      *
-     * Make sure Config.loadNormalConfig(file) creates/saves defaults if the file is missing.
      */
     private static synchronized void ensureConfigLoadedEarly() {
         if (CONFIG_ATTEMPTED) return;

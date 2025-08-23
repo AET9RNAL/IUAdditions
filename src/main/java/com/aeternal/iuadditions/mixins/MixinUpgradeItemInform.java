@@ -12,13 +12,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-/**
- * Appends data-driven cases to UpgradeItemInform#getName() from the end of the original switch.
- * - Leaves all original cases intact.
- * - If vanilla switch would return "", we inject a value from ExtraInfoCases.
- *
- * Env: MC 1.12.2, Forge 14.23.5.2860, Java 8, MixinBooter 10.6
- */
+
 @Mixin(value = UpgradeItemInform.class, remap = false, priority = 997)
 public abstract class MixinUpgradeItemInform {
 

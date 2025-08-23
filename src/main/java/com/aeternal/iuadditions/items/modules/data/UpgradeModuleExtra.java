@@ -3,7 +3,6 @@ package com.aeternal.iuadditions.items.modules.data;
 /**
  * Declare additional upgrade module entries for IUAdditions.
  * Naming must mirror the target enum's convention. Example: upgrademodule47(47).
- * Add/remove entries here; the mixin will append them at runtime.
  */
 public enum UpgradeModuleExtra {
     upgrademodule47(47),

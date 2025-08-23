@@ -11,6 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;
 
@@ -25,8 +26,8 @@ public class AstralCraftingElements extends IUAItemSubTypes<AstralCraftingElemen
         ItemHandler.registerItem((Item) this, Core.getIdentifier(NAME)).setUnlocalizedName(NAME);
         Core.proxy.addIModelRegister(this);
     }
-
-    public String getUnlocalizedName() {
+    @Override
+    public @NotNull String getUnlocalizedName() {
         return Constants.MOD_ID + "." + super.getUnlocalizedName().substring(3);
     }
 

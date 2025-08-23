@@ -10,7 +10,7 @@ import java.util.Map;
  * Add entries here to append new cases without touching the original mod.
  *
  * Each entry binds:
- *  - caseName: exact EnumInfoUpgradeModules constant name you added/want to support
+ *  - caseName: exact EnumInfoUpgradeModules constant name
  *  - color: TextFormatting to prefix the localized label
  *  - locKey: Localization key passed to com.denfop.Localization.translate(locKey)
  *  - render: how to render numeric suffix based on 'number' field (PLAIN/PERCENT/CUSTOM)
@@ -19,13 +19,8 @@ import java.util.Map;
  * Examples below are placeholders; replace with your actual constants and keys.
  */
 public enum ExtraInfoCases {
-
-    // --- EXAMPLES (replace/remove) ---
     ENERGY_SHIELD("ENERGY_SHIELD", TextFormatting.GOLD, "iua.specialupgrade.energy_shield", Render.PLAIN, 0.05D, 100D, 0D),
-    // QUANTUM_TUNING("QUANTUM_TUNING", TextFormatting.AQUA, "iuadditions.upgrade.quantum_tuning", Render.PLAIN, 0D, 0D, 0D),
-    // CORE_EFFICIENCY("CORE_EFFICIENCY", TextFormatting.GREEN, "iuadditions.upgrade.core_efficiency", Render.PERCENT, 0.02D, 100D, 0D),
 
-    // --- Put your real entries here ---
     ;
 
     public enum Render {

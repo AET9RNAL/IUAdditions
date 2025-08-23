@@ -1,8 +1,7 @@
 package com.aeternal.iuadditions.items.resource;
 
 import com.aeternal.iuadditions.Constants;
-import com.denfop.blocks.ISubEnum;
-import com.denfop.items.resource.ItemSubTypes;
+import com.aeternal.iuadditions.api.block.ISubEnum;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

@@ -7,7 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * Normal (non-mixin) helper you can call anytime after Config is loaded.
+ * Normal (non-mixin) helper calls anytime after Config is loaded.
  */
 public final class EnumUpgradeModulesApplier {
     private static final Logger LOGGER = LogManager.getLogger("IUAdditionsMixins");
