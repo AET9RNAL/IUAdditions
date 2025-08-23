@@ -5,6 +5,7 @@ import com.aeternal.iuadditions.hooks.BaseUpgradeSystemApplier;
 import com.aeternal.iuadditions.hooks.KatanaApplier;
 import com.aeternal.iuadditions.integration.divinerpg.DivinerpgIntegration;
 import com.aeternal.iuadditions.hooks.EnumUpgradeModulesApplier;
+import com.aeternal.iuadditions.mixins.IUAMixinCore;
 import com.aeternal.iuadditions.proxy.CommonProxy;
 import com.aeternal.iuadditions.spectralconverters.blocks.BlockManaConverter;
 import com.aeternal.iuadditions.spectralconverters.blocks.BlockSpectralConverter;
@@ -113,10 +114,17 @@ public final class Core {
 
     @Mod.EventHandler
     public void enqueueMixins(final FMLPostInitializationEvent e){
-        if (Config.KatanaMixins){KatanaApplier.applyNowIfConfigured();}
-        if (Config.UpgradeModulesMixins){
+        if (Config.KatanaMixins && IUAMixinCore.wasQueued(IUAMixinCore.CFG_KATANA)) {
+            KatanaApplier.applyNowIfConfigured();
+        }
+        if (Config.UpgradeModulesMixins && IUAMixinCore.wasQueued(IUAMixinCore.CFG_UPGRADEMODULES)) {
             EnumUpgradeModulesApplier.applyNowIfConfigured();
-            BaseUpgradeSystemApplier.applyFromConfig(Config.CoreModifier_maxCount, Config.NeutronModifier_maxCount, Config.DebugEnum);}
+            BaseUpgradeSystemApplier.applyFromConfig(
+                    Config.CoreModifier_maxCount,
+                    Config.NeutronModifier_maxCount,
+                    Config.DebugEnum
+            );
+        }
 
     }
 

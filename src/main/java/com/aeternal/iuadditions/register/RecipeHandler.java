@@ -1,6 +1,8 @@
 package com.aeternal.iuadditions.register;
 
+import com.aeternal.iuadditions.Config;
 import com.aeternal.iuadditions.integration.divinerpg.recipes.DIVRecipes;
+import com.aeternal.iuadditions.recipes.RecipesDoubleMolecular;
 import com.aeternal.iuadditions.spectralconverters.recipes.SRecipes;
 import com.aeternal.iuadditions.Constants;
 import com.aeternal.iuadditions.integration.astralsorcery.recipes.ASRecipes;
@@ -19,8 +21,9 @@ public class RecipeHandler {
         if (Constants.FO_LOADED && Constants.EXBEES_LOADED && Constants.FO_CONFIRM) {
             ForestryRecipes.init();
         }
-        if (Constants.DE_LOADED && Constants.DE_CONFIRM) {
+        if (Constants.DE_LOADED && Constants.DE_CONFIRM && Config.itemSpecialArmorMixins && Config.UpgradeModulesMixins) {
             SRecipes.init();
+            RecipesDoubleMolecular.initMixinRecipe();
         }
 
     }

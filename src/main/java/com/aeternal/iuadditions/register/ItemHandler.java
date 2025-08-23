@@ -8,7 +8,7 @@ import com.aeternal.iuadditions.integration.divinerpg.DivinerpgIntegration;
 import com.aeternal.iuadditions.integration.divinerpg.item.DivItems;
 import com.aeternal.iuadditions.integration.forestry.ForestryIntegration;
 import com.aeternal.iuadditions.integration.forestry.items.*;
-import com.aeternal.iuadditions.items.modules.ItemSpecialUpgradeModule;
+//import com.aeternal.iuadditions.items.modules.ItemSpecialUpgradeModule;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSpade;

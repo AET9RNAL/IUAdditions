@@ -389,17 +389,17 @@ public final class Config {
         // === defaults (kept in sync with the mixin’s fallbacks) ===
         private static int defMaxPoints(EnumTypeArmor t, EnumSubTypeArmor s) {
             switch (t) {
-                case NANO:     return (s == EnumSubTypeArmor.CHESTPLATE ? 11  : 24);
-                case ADV_NANO: return (s == EnumSubTypeArmor.CHESTPLATE ? 56  : 40);
+                case NANO:     return (s == EnumSubTypeArmor.CHESTPLATE ? 24  : 11);
+                case ADV_NANO: return (s == EnumSubTypeArmor.CHESTPLATE ? 56  : 20);
                 case QUANTUM:  return (s == EnumSubTypeArmor.CHESTPLATE ? 96  : 64);
-                case SPECTRAL: return (s == EnumSubTypeArmor.CHESTPLATE ? 120 : 80);
+                case SPECTRAL: return (s == EnumSubTypeArmor.CHESTPLATE ? 200 : 100);
                 default:       return 24;
             }
         }
         private static int defRecoveryRate(EnumTypeArmor t, EnumSubTypeArmor s) {
             switch (t) {
-                case NANO:     return (s == EnumSubTypeArmor.CHESTPLATE ? 3 : 2);
-                case ADV_NANO: return (s == EnumSubTypeArmor.CHESTPLATE ? 4 : 3);
+                case NANO:     return (s == EnumSubTypeArmor.CHESTPLATE ? 2 : 1);
+                case ADV_NANO: return (s == EnumSubTypeArmor.CHESTPLATE ? 3 : 2);
                 case QUANTUM:  return (s == EnumSubTypeArmor.CHESTPLATE ? 8 : 6);
                 case SPECTRAL: return (s == EnumSubTypeArmor.CHESTPLATE ? 10 : 8);
                 default:       return 3;
@@ -407,11 +407,11 @@ public final class Config {
         }
         private static int defEnergyPerPoint(EnumTypeArmor t, EnumSubTypeArmor s) {
             switch (t) {
-                case NANO:     return 2000;
-                case ADV_NANO: return 4000;
-                case QUANTUM:  return 15000;
-                case SPECTRAL: return 50000;
-                default:       return 2000;
+                case NANO:     return 12000 ;
+                case ADV_NANO: return 44000;
+                case QUANTUM:  return 75000;
+                case SPECTRAL: return 100000;
+                default:       return 12000;
             }
         }
     }

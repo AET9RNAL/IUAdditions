@@ -20,16 +20,32 @@ Correct LootTable example: [repo](https://github.com/AET9RNAL/IUAdditions/blob/m
 
 
 
-### New Converters:
+
 
 ### **Draconic Evolution Integration:**
 
+### New Converters:
 <div class="spoiler">Spectral Converter - bidirectional EF to RF. Capable of transferring energy directly to and from DE energy core bypassing any limiters. Place it near your core (default range 16 blocks), ensure that the core is built and active and wait for the converter to detect it, choose the mode in which you want to operate and you're good to go.
 
 Spectral Quantum Converter bidirectional QE to RF, the rest of the story is the same as it's EF version.</div>
 
 DE converters require [Draconic Evolution](https://www.curseforge.com/minecraft/mc-mods/draconic-evolution) and [PowerUtilities\[IU\]](https://www.curseforge.com/minecraft/mc-mods/power-utilities-iu) to be installed.
 
+Draconic Energy Shield module for Nano, Advanced Nano, Quantum and Spectral armor sets. You can install up to 4 modules into a piece of armor.
+
+You can install up to 4 modules into a piece of armor. The higher the armor tier - the higher the recovery rate and shield capacity.
+
+Some specs with all 4 modules installed and a complete set:
+
+Nano: 57 AP, on one full charge restores a maximum of 333 points, giving you ~6 full charges
+
+Advanced Nano: 116 AP, on one full charge restores a maximum of 909 points, giving you ~8 full charges
+
+Quantum: 288 AP, on one full charge restores a maximum of 2666 points, giving you ~9 full charges
+
+Spectral: 500 AP, on one full charge restores a maximum of 12000 points, giving you ~24 full charges
+
+AP - Armor Points
 
 ### **Botania Integration:**
 

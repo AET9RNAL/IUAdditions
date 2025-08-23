@@ -1,5 +1,6 @@
 package com.aeternal.iuadditions.mixins;
 
+import com.aeternal.iuadditions.Config;
 import com.brandon3055.draconicevolution.items.armor.ICustomArmor;
 import com.denfop.ElectricItem;
 import com.denfop.api.upgrade.UpgradeSystem;
@@ -41,7 +42,7 @@ public abstract class MixinItemSpecialArmor implements ICustomArmor {
 
         int installed = UpgradeSystem.system.getModules(es, stack).number;
         int allowed   = Math.max(1, es.max);
-        int maxPts    = iuadd_cfgMaxShieldPoints(armor, subTypeArmor);
+        int maxPts    = Config.Shield.getMaxPoints(armor, subTypeArmor);
 
         double ratio  = Math.min(1D, Math.max(0D, installed / (double) allowed));
         int points    = (int) Math.floor(maxPts * ratio);
@@ -60,12 +61,12 @@ public abstract class MixinItemSpecialArmor implements ICustomArmor {
 
     @Override
     public float getRecoveryRate(@Nonnull ItemStack stack) {
-        return (float) iuadd_cfgRecoveryRate(armor, subTypeArmor);
+        return (float) Config.Shield.getRecoveryRate(armor, subTypeArmor);
     }
 
     @Override
     public int getEnergyPerProtectionPoint() {
-        return iuadd_cfgEnergyPerPoint(armor, subTypeArmor);
+        return Config.Shield.getEnergyPerPoint(armor, subTypeArmor);
     }
 
     @Override
