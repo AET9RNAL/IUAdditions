@@ -10,20 +10,17 @@ import com.denfop.items.EnumInfoUpgradeModules;
  * Example shows ENERGY_SHIELD being added to HELMET and BODY.
  * Replace/extend as needed.
  */
-public enum EnumUpgradesPatch {
-    HELMET(EnumInfoUpgradeModules.ENERGY_SHIELD),
-    BODY(EnumInfoUpgradeModules.ENERGY_SHIELD),
-    LEGGINGS(EnumInfoUpgradeModules.ENERGY_SHIELD),
-    BOOTS(EnumInfoUpgradeModules.ENERGY_SHIELD),
-    ;
-
-    private final EnumInfoUpgradeModules[] extraModules;
-
-    EnumUpgradesPatch(EnumInfoUpgradeModules... extraModules) {
-        this.extraModules = extraModules;
+public final class EnumUpgradesPatch {
+    // only names here; no touching IU classes in <clinit>
+    private static final java.util.Map<String, String[]> NAMES = new java.util.LinkedHashMap<>();
+    static {
+        NAMES.put("HELMET",   new String[]{"ENERGY_SHIELD"});
+        NAMES.put("BODY",     new String[]{"ENERGY_SHIELD"});
+        NAMES.put("LEGGINGS", new String[]{"ENERGY_SHIELD"});
+        NAMES.put("BOOTS",    new String[]{"ENERGY_SHIELD"});
     }
 
-    public EnumInfoUpgradeModules[] getExtraModules() {
-        return extraModules;
+    public static String[] extrasFor(String targetEnumName) {
+        return NAMES.getOrDefault(targetEnumName, new String[0]);
     }
 }

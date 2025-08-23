@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Mixin(value = EnumInfoUpgradeModules.class, priority = 801)
+@Mixin(value = EnumInfoUpgradeModules.class, priority = 100)
 public abstract class MixinEnumInfoUpgradeModules {
 
     private static final Logger LOGGER = LogManager.getLogger("IUAdditions|Mixins");
@@ -116,7 +116,7 @@ public abstract class MixinEnumInfoUpgradeModules {
                 continue;
             }
 
-            String enumSymbol = "SPECIAL_" + spec.name();
+            String enumSymbol = /*"SPECIAL_" +*/ spec.name();
             int ordinal = values.size();
 
             EnumInfoUpgradeModules created;

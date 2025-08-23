@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
-@Mixin(value = EnumUpgrades.class, priority = 800) // ensure this runs AFTER your MixinEnumInfoUpgradeModules (e.g., priority 900)
+@Mixin(value = EnumUpgrades.class, priority = 998) // ensure this runs AFTER your MixinEnumInfoUpgradeModules (e.g., priority 900)
 public abstract class MixinEnumUpgrades {
 
     @Unique private static final Logger IUADD_LOG = LogManager.getLogger("IUAdditions");
@@ -37,60 +37,50 @@ public abstract class MixinEnumUpgrades {
     @Inject(method = "<clinit>", at = @At("TAIL"))
     private static void iuadditions$patchExistingConstants(CallbackInfo ci) {
         try {
+            // Force-load the enum we extend so its mixin has time to apply.
+            try {
+                Class.forName("com.denfop.items.EnumInfoUpgradeModules", true,
+                        Thread.currentThread().getContextClassLoader());
+            } catch (Throwable ignored) {}
+
             int totalPatched = 0;
 
-            for (EnumUpgradesPatch patch : EnumUpgradesPatch.values()) {
-                final String targetName = patch.name();
+            // Iterate the actual EnumUpgrades constants that exist at runtime.
+            for (EnumUpgrades target : EnumUpgrades.values()) {
+                final String targetName = target.name();
 
-                EnumUpgrades target;
-                try {
-                    target = EnumUpgrades.valueOf(targetName);
-                } catch (IllegalArgumentException missing) {
-                    // No such constant in the target enum; skip silently but note it.
-                    LogManager.getLogger("IUAdditions")
-                            .warn("[IUAdditions] EnumUpgrades has no constant '{}'; skipping patch entry.", targetName);
-                    continue;
-                }
-
-                // Cast the target constant to this mixin type to access @Accessor methods.
-                MixinEnumUpgrades access = (MixinEnumUpgrades) (Object) target;
-
-                List<EnumInfoUpgradeModules> current = access.iuadditions$getList();
-                if (current == null) {
-                    current = new ArrayList<>();
-                }
-
-                // Ensure we have a mutable list (Arrays.asList returns fixed-size).
-                List<EnumInfoUpgradeModules> mutable = (current instanceof ArrayList)
-                        ? current
-                        : new ArrayList<>(current);
-
-                EnumInfoUpgradeModules[] extras = patch.getExtraModules();
-                if (extras == null || extras.length == 0) {
+                // Pull *names* (String[]) lazily from your helper. No hard links here.
+                final String[] extraNames = EnumUpgradesPatch.extrasFor(targetName);
+                if (extraNames == null || extraNames.length == 0) {
                     IUADD_LOG.info("[IUAdditions] No extras for EnumUpgrades.{}, nothing to append.", targetName);
-                    // Still set to a mutable list if it wasn't.
-                    if (mutable != current) access.iuadditions$setList(mutable);
                     continue;
                 }
 
-                // De-dup and append in order.
-                HashSet<EnumInfoUpgradeModules> seen = new HashSet<>(mutable);
-                int added = 0;
-                for (EnumInfoUpgradeModules m : extras) {
-                    if (m == null) continue;
-                    if (seen.add(m)) {
-                        mutable.add(m);
-                        added++;
+                // Access the mutable list on the target constant.
+                MixinEnumUpgrades access = (MixinEnumUpgrades) (Object) target;
+                java.util.List<EnumInfoUpgradeModules> current = access.iuadditions$getList();
+                if (current == null) current = new java.util.ArrayList<>();
+                final java.util.List<EnumInfoUpgradeModules> mutable =
+                        (current instanceof java.util.ArrayList) ? current : new java.util.ArrayList<>(current);
+
+                // Resolve names -> enum values at patch time (after enum has been extended).
+                final java.util.List<EnumInfoUpgradeModules> toAppend = new java.util.ArrayList<>();
+                for (String name : extraNames) {
+                    if (name == null || name.isEmpty()) continue;
+                    try {
+                        EnumInfoUpgradeModules m = EnumInfoUpgradeModules.valueOf(name);
+                        if (!mutable.contains(m)) toAppend.add(m);
+                    } catch (IllegalArgumentException notPresent) {
+                        IUADD_LOG.warn("[IUAdditions] Extra module '{}' not found on EnumInfoUpgradeModules; skipping.", name);
                     }
                 }
 
-                // Replace with the mutable list (even if added==0, to ensure future flexibility).
-                access.iuadditions$setList(mutable);
-
-                if (added > 0) {
+                if (!toAppend.isEmpty()) {
+                    mutable.addAll(toAppend);
+                    access.iuadditions$setList(mutable);
                     totalPatched++;
                     IUADD_LOG.info("[IUAdditions] Patched EnumUpgrades.{}: appended {} module(s): {}",
-                            targetName, added, Arrays.toString(extras));
+                            targetName, toAppend.size(), java.util.Arrays.toString(extraNames));
                 } else {
                     IUADD_LOG.info("[IUAdditions] EnumUpgrades.{} unchanged (all extras already present).", targetName);
                 }
@@ -101,4 +91,5 @@ public abstract class MixinEnumUpgrades {
             IUADD_LOG.error("[IUAdditions] Failed to patch EnumUpgrades constants.", t);
         }
     }
+
 }

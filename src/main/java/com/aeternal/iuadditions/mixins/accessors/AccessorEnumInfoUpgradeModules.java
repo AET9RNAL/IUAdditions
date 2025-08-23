@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 /**
  * Accessor interface to set the (now mutable) 'max' field.
  */
-@Mixin(EnumInfoUpgradeModules.class)
+@Mixin(value = EnumInfoUpgradeModules.class, priority = 999)
 public interface AccessorEnumInfoUpgradeModules {
     @Accessor("max")
     void setMax(int value);

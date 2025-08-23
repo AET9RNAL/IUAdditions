@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(targets = "com.denfop.items.modules.ItemUpgradeModule$Types", remap = false)
+@Mixin(targets = "com.denfop.items.modules.ItemUpgradeModule$Types", remap = false, priority = 996)
 public abstract class MixinItemUpgradeModule {
 
     private static final Logger LOG = LogManager.getLogger("IUAdditions");

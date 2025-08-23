@@ -8,6 +8,7 @@
 	"mixins": [
 		"MixinEnumInfoUpgradeModules",
 		"MixinItemUpgradeModule",
+		"MixinUpgradeItemInform",
 		"MixinEnumUpgrades",
 		"accessors.AccessorEnumInfoUpgradeModules",
 		"MixinBaseUpgradeSystem",
