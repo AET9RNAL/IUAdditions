@@ -32,18 +32,30 @@ public abstract class MixinItemSpecialArmor implements ICustomArmor {
 
     @Override
     public float getProtectionPoints(@Nonnull ItemStack stack) {
-        // Guard by module presence
-        if (!UpgradeSystem.system.hasModules(EnumInfoUpgradeModules.ENERGY_SHIELD, stack)) {
+        EnumInfoUpgradeModules es = iuadd_energyShieldModule();
+        if (es == null) return 0F; // module not injected yet / not present
+
+        if (!UpgradeSystem.system.hasModules(es, stack)) {
             return 0F;
         }
-        int installed = UpgradeSystem.system.getModules(EnumInfoUpgradeModules.ENERGY_SHIELD, stack).number;
-        int allowed   = Math.max(1, EnumInfoUpgradeModules.ENERGY_SHIELD.max); // avoid div-by-zero
+
+        int installed = UpgradeSystem.system.getModules(es, stack).number;
+        int allowed   = Math.max(1, es.max);
         int maxPts    = iuadd_cfgMaxShieldPoints(armor, subTypeArmor);
 
         double ratio  = Math.min(1D, Math.max(0D, installed / (double) allowed));
         int points    = (int) Math.floor(maxPts * ratio);
-        points        = Math.max(0, Math.min(points, maxPts));
-        return (float) points;
+        return (float) Math.max(0, Math.min(points, maxPts));
+    }
+
+    @Unique
+    private static EnumInfoUpgradeModules iuadd_energyShieldModule() {
+        try {
+            // Avoids getstatic; resolves after your enum injection runs
+            return Enum.valueOf(EnumInfoUpgradeModules.class, "ENERGY_SHIELD");
+        } catch (Throwable t) {
+            return null;
+        }
     }
 
     @Override

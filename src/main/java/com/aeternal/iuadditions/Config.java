@@ -2,7 +2,10 @@ package com.aeternal.iuadditions;
 
 import net.minecraftforge.common.config.Configuration;
 import java.io.File;
-
+import com.denfop.items.armour.special.EnumTypeArmor;
+import com.denfop.items.armour.special.EnumSubTypeArmor;
+import java.util.EnumMap;
+import java.util.Locale;
 public final class Config {
 
     public static double edenGenDay;
@@ -151,10 +154,13 @@ public final class Config {
     public static int NeutronModifier_maxCount = 1;
 
     public static boolean itemSpecialArmorMixins;
+
     public static void loadNormalConfig(final File configFile) {
         Core.LOGGER.info("Loading IUA Config from " + configFile.getAbsolutePath());
 
         final Configuration config = new Configuration(configFile);
+        Shield.load(config);
+
         try {
             AstralConfirmed = config.getBoolean("Astral confirm","Integrations",true,"Are you sure you want to enable Astral integrations?");
             ForestryConfirmed = config.getBoolean("Forestry confirm","Integrations",true,"Are you sure you want to enable Forestry integrations?");
@@ -312,6 +318,102 @@ public final class Config {
             }
         }
 
+    }
+
+    public static final class Shield {
+        private static final EnumMap<EnumTypeArmor, EnumMap<EnumSubTypeArmor, Integer>> MAX_POINTS = new EnumMap<>(EnumTypeArmor.class);
+        private static final EnumMap<EnumTypeArmor, EnumMap<EnumSubTypeArmor, Integer>> RECOVERY   = new EnumMap<>(EnumTypeArmor.class);
+        private static final EnumMap<EnumTypeArmor, EnumMap<EnumSubTypeArmor, Integer>> ENERGY_PER = new EnumMap<>(EnumTypeArmor.class);
+
+        private static String cat(EnumTypeArmor t, EnumSubTypeArmor s) {
+            return "Configuration Draconic Shields."
+                    + t.name().toLowerCase(Locale.ROOT) + "."
+                    + s.name().toLowerCase(Locale.ROOT);
+        }
+
+        public static void load(Configuration config) {
+            for (EnumTypeArmor t : EnumTypeArmor.values()) {
+                EnumMap<EnumSubTypeArmor, Integer> mp = new EnumMap<>(EnumSubTypeArmor.class);
+                EnumMap<EnumSubTypeArmor, Integer> rr = new EnumMap<>(EnumSubTypeArmor.class);
+                EnumMap<EnumSubTypeArmor, Integer> ep = new EnumMap<>(EnumSubTypeArmor.class);
+
+                for (EnumSubTypeArmor s : EnumSubTypeArmor.values()) {
+                    String category = cat(t, s);
+
+                    int defMP = defMaxPoints(t, s);
+                    int defRR = defRecoveryRate(t, s);
+                    int defEP = defEnergyPerPoint(t, s);
+
+                    int maxPts = config.get(category, "maxPoints", defMP,
+                                    "Maximum shield points for " + t + " " + s + " (absolute cap; unlocked by ENERGY_SHIELD modules).")
+                            .getInt(defMP);
+
+                    int rec = config.get(category, "recoveryRate", defRR,
+                                    "Shield recovery rate (points per second) for " + t + " " + s + ".")
+                            .getInt(defRR);
+
+                    int epp = config.get(category, "energyPerPoint", defEP,
+                                    "EF required to restore 1 protection point for " + t + " " + s + ".")
+                            .getInt(defEP);
+
+                    mp.put(s, Math.max(0, maxPts));
+                    rr.put(s, Math.max(0, rec));
+                    ep.put(s, Math.max(1, epp));
+                }
+                MAX_POINTS.put(t, mp);
+                RECOVERY.put(t, rr);
+                ENERGY_PER.put(t, ep);
+            }
+        }
+
+        // === getters used by the mixin (via reflection or direct call) ===
+        public static int getMaxPoints(EnumTypeArmor t, EnumSubTypeArmor s) {
+            Integer v = val(MAX_POINTS, t, s);
+            return v != null ? v : defMaxPoints(t, s);
+        }
+        public static int getRecoveryRate(EnumTypeArmor t, EnumSubTypeArmor s) {
+            Integer v = val(RECOVERY, t, s);
+            return v != null ? v : defRecoveryRate(t, s);
+        }
+        public static int getEnergyPerPoint(EnumTypeArmor t, EnumSubTypeArmor s) {
+            Integer v = val(ENERGY_PER, t, s);
+            return v != null ? v : defEnergyPerPoint(t, s);
+        }
+
+        private static Integer val(EnumMap<EnumTypeArmor, EnumMap<EnumSubTypeArmor, Integer>> map,
+                                   EnumTypeArmor t, EnumSubTypeArmor s) {
+            EnumMap<EnumSubTypeArmor, Integer> inner = map.get(t);
+            return inner != null ? inner.get(s) : null;
+        }
+
+        // === defaults (kept in sync with the mixin’s fallbacks) ===
+        private static int defMaxPoints(EnumTypeArmor t, EnumSubTypeArmor s) {
+            switch (t) {
+                case NANO:     return (s == EnumSubTypeArmor.CHESTPLATE ? 11  : 24);
+                case ADV_NANO: return (s == EnumSubTypeArmor.CHESTPLATE ? 56  : 40);
+                case QUANTUM:  return (s == EnumSubTypeArmor.CHESTPLATE ? 96  : 64);
+                case SPECTRAL: return (s == EnumSubTypeArmor.CHESTPLATE ? 120 : 80);
+                default:       return 24;
+            }
+        }
+        private static int defRecoveryRate(EnumTypeArmor t, EnumSubTypeArmor s) {
+            switch (t) {
+                case NANO:     return (s == EnumSubTypeArmor.CHESTPLATE ? 3 : 2);
+                case ADV_NANO: return (s == EnumSubTypeArmor.CHESTPLATE ? 4 : 3);
+                case QUANTUM:  return (s == EnumSubTypeArmor.CHESTPLATE ? 8 : 6);
+                case SPECTRAL: return (s == EnumSubTypeArmor.CHESTPLATE ? 10 : 8);
+                default:       return 3;
+            }
+        }
+        private static int defEnergyPerPoint(EnumTypeArmor t, EnumSubTypeArmor s) {
+            switch (t) {
+                case NANO:     return 2000;
+                case ADV_NANO: return 4000;
+                case QUANTUM:  return 15000;
+                case SPECTRAL: return 50000;
+                default:       return 2000;
+            }
+        }
     }
 }
 

@@ -49,35 +49,6 @@ import static com.aeternal.iuadditions.integration.forestry.ForestryIntegration.
         version = Constants.MOD_VERSION,
         acceptedMinecraftVersions = "[1.12,1.12.2]")
 public final class Core {
-//    //Method 3 (1 was coremod, 2 was manifest) to try and load that fucking, god foresaken piece of config, because apparently it is dropped in some envs
-//    static {
-//        try {
-//            org.spongepowered.asm.mixin.Mixins.addConfiguration("mixins.iuadditions.json");
-//            System.out.println("[IUAdditions] Mixins.addConfiguration registered mixins.iuadditions.json");
-//            if (Core.class.getClassLoader().getResource("mixins.iuadditions.json") == null)
-//                System.err.println("[IUAdditions] FATAL: mixins.iuadditions.json NOT FOUND in jar!");
-//        } catch (Throwable t) {
-//            t.printStackTrace();
-//        }
-//    }
-//    //Method 4 to try and load that fucking, god foresaken piece of config, because apparently it is dropped in some envs
-//    @Mod.EventHandler
-//    public void onLoadComplete(FMLLoadCompleteEvent e) {
-//        try {
-//            org.spongepowered.asm.mixin.Mixins.addConfiguration("mixins.iuadditions.json");
-//            System.out.println("[IUAdditions] Re-registered mixin config at loadComplete()");
-//        } catch (Throwable ignored) {}
-//    }
-//    private static void logMixinEnv(String where) {
-//        try {
-//            Class<?> env = Class.forName("org.spongepowered.asm.mixin.MixinEnvironment");
-//            Object cur = env.getMethod("getCurrentEnvironment").invoke(null);
-//            String ver = (String) env.getMethod("getVersion").invoke(null);
-//            System.out.println("[IUAdditions]["+where+"] Mixin env=" + (cur!=null) + " version=" + ver);
-//        } catch (Throwable t) {
-//            System.out.println("[IUAdditions]["+where+"] Mixin not on classpath");
-//        }
-//    }
 
     public static final CreativeTabs IUATab = new TabCore(0, "IU:AdditionsTab");
 
@@ -142,9 +113,11 @@ public final class Core {
 
     @Mod.EventHandler
     public void enqueueMixins(final FMLPostInitializationEvent e){
-        KatanaApplier.applyNowIfConfigured();
-        EnumUpgradeModulesApplier.applyNowIfConfigured();
-        BaseUpgradeSystemApplier.applyFromConfig(Config.CoreModifier_maxCount, Config.NeutronModifier_maxCount, Config.DebugEnum);
+        if (Config.KatanaMixins){KatanaApplier.applyNowIfConfigured();}
+        if (Config.UpgradeModulesMixins){
+            EnumUpgradeModulesApplier.applyNowIfConfigured();
+            BaseUpgradeSystemApplier.applyFromConfig(Config.CoreModifier_maxCount, Config.NeutronModifier_maxCount, Config.DebugEnum);}
+
     }
 
     @Mod.EventHandler
