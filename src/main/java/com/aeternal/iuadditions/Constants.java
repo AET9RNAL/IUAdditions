@@ -6,7 +6,7 @@ public class Constants {
 
     public static final String MOD_ID = "iuadditions";
     public static final String MOD_NAME = "IU:Additions";
-    public static final String MOD_VERSION = "1.5.7";
+    public static final String MOD_VERSION = "1.5.8";
     public static final String MOD_DEPS = "required-after:industrialupgrade;after:astralsorcery;after:forestry;" +
             "after:divinerpg;after:botania;after:thaumcraft;after:draconicevolution";
 

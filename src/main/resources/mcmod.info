@@ -17,7 +17,7 @@
     "screenshots" : [],
     "updateUrl" : "",
     "url" : "",
-    "version" : "1.5.7",
+    "version" : "1.5.8",
     "mixinConfigs": ["mixins.iuadditions.json"]
   }
 ]

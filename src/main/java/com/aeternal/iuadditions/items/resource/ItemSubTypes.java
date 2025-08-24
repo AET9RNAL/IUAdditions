@@ -14,6 +14,7 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.util.*;
@@ -57,7 +58,7 @@ public class ItemSubTypes<T extends Enum<T> & IStringSerializable> extends Item 
         return I18n.translateToLocal(this.getUnlocalizedName(stack));
     }
 
-    public String getUnlocalizedName(ItemStack stack) {
+    public @NotNull String getUnlocalizedName(ItemStack stack) {
         T type = this.getType(stack);
         return type == null
                 ? super.getUnlocalizedName(stack).replace("item", "iua").replace(".name", "")

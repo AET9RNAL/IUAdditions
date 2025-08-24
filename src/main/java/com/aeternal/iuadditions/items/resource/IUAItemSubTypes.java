@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jetbrains.annotations.NotNull;
 
 public class IUAItemSubTypes<T extends Enum<T> & ISubEnum> extends ItemSubTypes<T> {
 
@@ -26,11 +27,8 @@ public class IUAItemSubTypes<T extends Enum<T> & ISubEnum> extends ItemSubTypes<
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack stack) {
-        T type = this.getType(stack);
-        return type == null
-                ? super.getUnlocalizedName(stack).replace("item", "iua").replace(".name", "")
-                : super.getUnlocalizedName(stack).replace("item", "iua") + "." + type.getName();
+    public @NotNull String getUnlocalizedName(ItemStack stack) {
+        return super.getUnlocalizedName(stack);
     }
 
 
