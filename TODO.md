@@ -11,14 +11,14 @@
     - [x] Crystal Grower
     - [x] Upgrade Kit manufacturer
     - 
--[x] - Auto hunter boss support //TO-DO make it a craftable boss module instead
+- [x] - Auto hunter boss support //TO-DO make it a craftable boss module instead
 
--[x] - Katana buff
+- [x] - Katana buff
 
--[x] - Ability to change max installed upgrade/base modules
+- [x] - Ability to change max installed upgrade/base modules
 
--[x] - DE energy shield for armor
+- [x] - DE energy shield for armor
 
--[ ] - Module day/night for solar panels
+- [ ] - Module day/night for solar panels
 
--[ ] - Make generators energy output configurable
+- [ ] - Make generators energy output configurable
