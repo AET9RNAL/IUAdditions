@@ -1,5 +1,3 @@
-- [ ] - Crypt  
-- [ ] - HBM energy converter
 - [x] - CT Integrations:
     - [x] Crystal charger
     - [x] El assembler
