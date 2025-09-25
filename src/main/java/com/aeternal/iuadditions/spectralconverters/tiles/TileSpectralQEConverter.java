@@ -23,7 +23,7 @@ import com.denfop.api.upgrades.UpgradableProperty;
 import com.denfop.blocks.BlockTileEntity;
 import com.denfop.componets.ComponentBaseEnergy;
 import com.denfop.componets.Energy;
-import com.denfop.invslot.InvSlotUpgrade;
+import com.denfop.invslot.InventoryUpgrade;
 import com.denfop.network.DecoderHandler;
 import com.denfop.network.EncoderHandler;
 import com.denfop.network.IUpdatableTileEvent;
@@ -51,7 +51,7 @@ public class TileSpectralQEConverter extends TileEntityInventory implements
         IUpdatableTileEvent, IEnergyHandler, IEnergyReceiver, IEnergyProvider, IUpgradableBlock {
     protected BlockPos foundCore = null;
     public ComponentBaseEnergy energy;
-    public final InvSlotUpgrade upgradeSlot;
+    public final InventoryUpgrade upgradeSlot;
     public final double defaultEnergyRFStorage;
     public final double defaultEnergyStorage;
     public double capacity;
@@ -81,7 +81,7 @@ public class TileSpectralQEConverter extends TileEntityInventory implements
         this.rf = true;
         this.capacity = this.energy.capacity;
         this.energy.setDirections(ModUtils.allFacings, ModUtils.allFacings);
-        this.upgradeSlot = new InvSlotUpgrade(this, 4);
+        this.upgradeSlot = new InventoryUpgrade(this, 4);
         this.defaultEnergyStorage = 10000000;
         this.defaultEnergyRFStorage = defaultEnergyStorage*64;
         this.tier = 15;

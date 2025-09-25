@@ -1,6 +1,9 @@
 package com.aeternal.iuadditions;
 
+import net.minecraftforge.fml.common.Loader;
+
 public class Utils {
+    public static boolean L(String modid){return Loader.isModLoaded(modid);}
     public static String getWholeNumberString(long value) {
         final String[] units = new String[] { "", "K", "M", "G", "T", "P", "E" };
         int unitIndex = 0;

@@ -1,30 +1,32 @@
 package com.aeternal.iuadditions;
 
-import net.minecraftforge.fml.common.Loader;
+import java.util.ArrayList;
+
+import static com.aeternal.iuadditions.Utils.*;
 
 public class Constants {
 
     public static final String MOD_ID = "iuadditions";
     public static final String MOD_NAME = "IU:Additions";
-    public static final String MOD_VERSION = "1.5.8";
+    public static final String MOD_VERSION = "1.5.9-3.3.0.47+";
     public static final String MOD_DEPS = "required-after:industrialupgrade;after:astralsorcery;after:forestry;" +
-            "after:divinerpg;after:botania;after:thaumcraft;after:draconicevolution";
+            "after:divinerpg;after:botania;after:draconicevolution";
 
-    public static final boolean PU_LOADED = Loader.isModLoaded("powerutils");
-    public static final boolean DE_LOADED = Loader.isModLoaded("draconicevolution");
-    public static final boolean AVA_LOADED = Loader.isModLoaded("avaritia");
-    public static final boolean AE2_LOADED = Loader.isModLoaded("appliedenergistics2");
-    public static final boolean BA_LOADED = Loader.isModLoaded("botania");
-    public static final boolean BV_LOADED = Loader.isModLoaded("botaniverse");
-    public static final boolean BOP_LOADED = Loader.isModLoaded("biomesoplenty");
-    public static final boolean BADD_LOADED = Loader.isModLoaded("botanicadds");
-    public static final boolean EB_LOADED = Loader.isModLoaded("extrabotany");
-    public static final boolean AS_LOADED = Loader.isModLoaded("astralsorcery");
-    public static final boolean ASA_LOADED = Loader.isModLoaded("astraladditions");
-    public static final boolean DIV_LOADED = Loader.isModLoaded("divinerpg");
-    public static final boolean FO_LOADED = Loader.isModLoaded("forestry");
-    public static final boolean EXBEES_LOADED = Loader.isModLoaded("extrabees");
-    public static final boolean TE_LOADED = Loader.isModLoaded("thermalexpansion");
+    public static final boolean PU_LOADED = L("powerutils");
+    public static final boolean DE_LOADED = L("draconicevolution");
+    public static final boolean AVA_LOADED = L("avaritia");
+    public static final boolean AE2_LOADED = L("appliedenergistics2");
+    public static final boolean BA_LOADED = L("botania");
+    public static final boolean BV_LOADED = L("botaniverse");
+    public static final boolean BOP_LOADED = L("biomesoplenty");
+    public static final boolean BADD_LOADED = L("botanicadds");
+    public static final boolean EB_LOADED = L("extrabotany");
+    public static final boolean AS_LOADED = L("astralsorcery");
+    public static final boolean ASA_LOADED = L("astraladditions");
+    public static final boolean DIV_LOADED = L("divinerpg");
+    public static final boolean FO_LOADED = L("forestry");
+    public static final boolean EXBEES_LOADED = L("extrabees");
+    public static final boolean TE_LOADED = L("thermalexpansion");
     public static final boolean DE_CONFIRM = Config.DraconicConfirmed;
     public static final boolean BA_CONFIRM = Config.BotaniaConfirmed;
     public static final boolean AS_CONFIRM = Config.AstralConfirmed;

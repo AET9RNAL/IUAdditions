@@ -13,7 +13,6 @@ import com.aeternal.iuadditions.spectralconverters.blocks.BlockSpectralQEConvert
 import com.aeternal.iuadditions.tabs.TabCore;
 import com.denfop.blocks.BlockTileEntity;
 import com.denfop.blocks.TileBlockCreator;
-//import com.powerutils.IModelRender;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -21,10 +20,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -32,7 +29,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.oredict.OreDictionary;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import scala.xml.dtd.impl.Base;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +64,7 @@ public final class Core {
     @Mod.Instance("iuadditions")
     public static Core instance;
 
-    public static ResourceLocation getIdentifier(final String name) {
+    public static final ResourceLocation getIdentifier(final String name) {
         return new ResourceLocation(Constants.MOD_ID, name);
     }
 
@@ -114,9 +110,7 @@ public final class Core {
 
     @Mod.EventHandler
     public void enqueueMixins(final FMLPostInitializationEvent e){
-        if (Config.KatanaMixins && IUAMixinCore.wasQueued(IUAMixinCore.CFG_KATANA)) {
-            KatanaApplier.applyNowIfConfigured();
-        }
+        if (Config.KatanaMixins && IUAMixinCore.wasQueued(IUAMixinCore.CFG_KATANA)) { KatanaApplier.applyNowIfConfigured(); }
         if (Config.UpgradeModulesMixins && IUAMixinCore.wasQueued(IUAMixinCore.CFG_UPGRADEMODULES)) {
             EnumUpgradeModulesApplier.applyNowIfConfigured();
             BaseUpgradeSystemApplier.applyFromConfig(
@@ -136,7 +130,6 @@ public final class Core {
     @Mod.EventHandler
     public void postInit(final FMLPostInitializationEvent event) {
         proxy.postInit(event);
-
     }
 
     public static void registerOreDict() {

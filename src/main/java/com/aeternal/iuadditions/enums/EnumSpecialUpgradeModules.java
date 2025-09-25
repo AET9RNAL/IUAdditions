@@ -11,9 +11,6 @@ import java.util.List;
  *
  * Mirror the target's shape: (int max, String displayName, Integer... extra).
  *
- * Add your entries below, e.g.:
- *     SPEED_PLUS(2, "speed_plus"),
- *     GENERATOR_PLUS(1, "generator_plus", 36, 35, 28);
  */
 public enum EnumSpecialUpgradeModules {
     // TODO: add your entries here

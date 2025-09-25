@@ -4,6 +4,8 @@ import net.minecraftforge.common.config.Configuration;
 import java.io.File;
 import com.denfop.items.armour.special.EnumTypeArmor;
 import com.denfop.items.armour.special.EnumSubTypeArmor;
+
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.Locale;
 public final class Config {
@@ -51,21 +53,6 @@ public final class Config {
     public static double faintstarlightcollectorStorage;
     public static double faintstarlightcollectorOutput;
 
-    public static double mythrilliumGenDay;
-    public static double mythrilliumStorage;
-    public static double mythrilliumOutput;
-
-    public static double mythminiteGenDay;
-    public static double mythminiteStorage;
-    public static double mythminiteOutput;
-
-    public static double pulsatingGenDay;
-    public static double pulsatingStorage;
-    public static double pulsatingOutput;
-
-    public static double adaminiteGenDay;
-    public static double adaminiteStorage;
-    public static double adaminiteOutput;
     public static double cyanbeekeeperGenDay;
     public static double cyanbeekeeperStorage;
     public static double cyanbeekeeperOutput;
@@ -94,9 +81,7 @@ public final class Config {
     public static boolean BotaniaConfirmed;
     public static boolean DraconicConfirmed;
 
-    public static boolean registerAstralPanels;
-    public static boolean disableUpdateCheck;
-
+    //Spectral Converters
     public static int coefficientqe;
     public static int coefficientrf;
     public static double coefficienteftomana;
@@ -104,6 +89,7 @@ public final class Config {
     public static int manatransferrate;
     public static byte coreSearchRange;
 
+    // Mana Converter
     public static boolean allowEfToManaConversion;
     public static boolean allowManaToEfConversion;
 
@@ -243,6 +229,7 @@ public final class Config {
             refractivebeekeeperStorage      = config.get("Configuration Solar Panels", "RefractivebeekeeperStorage", 2.5E12).getDouble(2.5E12);
 
             //CustomSolarPanelsCFG_END
+
             //Converters
             coefficientqe = config.get("Converters", "coefficient qe", 64).getInt(64);
             if (coefficientqe < 1) {
@@ -313,9 +300,7 @@ public final class Config {
             Core.LOGGER.fatal("Fatal error reading config file.", e);
             throw new RuntimeException(e);
         } finally {
-            if (config.hasChanged()) {
-                config.save();
-            }
+            if (config.hasChanged()) { config.save(); }
         }
 
     }

@@ -88,7 +88,6 @@ public class IUAMixinCore implements IFMLLoadingPlugin, ILateMixinLoader {
         if (CONFIG_ATTEMPTED) return;
         CONFIG_ATTEMPTED = true;
         try {
-            // Adjust filename if your mod uses a different one.
             File cfg = new File(Loader.instance().getConfigDir(), "iuadditions.cfg");
             Config.loadNormalConfig(cfg); // must save if missing
             log("Early-loaded config: " + cfg.getAbsolutePath());

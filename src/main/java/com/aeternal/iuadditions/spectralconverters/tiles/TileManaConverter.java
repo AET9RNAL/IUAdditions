@@ -17,7 +17,7 @@ import com.denfop.api.upgrades.IUpgradableBlock;
 import com.denfop.api.upgrades.UpgradableProperty;
 import com.denfop.blocks.BlockTileEntity;
 import com.denfop.componets.Energy;
-import com.denfop.invslot.InvSlotUpgrade;
+import com.denfop.invslot.InventoryUpgrade;
 import com.denfop.network.DecoderHandler;
 import com.denfop.network.EncoderHandler;
 import com.denfop.network.IUpdatableTileEvent;
@@ -52,7 +52,7 @@ public class TileManaConverter extends TileEntityInventory implements
 
 
     public final Energy energy;
-    public final InvSlotUpgrade upgradeSlot;
+    public final InventoryUpgrade upgradeSlot;
     public final double defaultEnergyStorage;
     public double capacity;
     public double differenceenergy = 0;
@@ -81,7 +81,7 @@ public class TileManaConverter extends TileEntityInventory implements
         )));
         this.capacity = this.energy.capacity;
         this.energy.setDirections(ModUtils.allFacings, ModUtils.allFacings);
-        this.upgradeSlot = new InvSlotUpgrade(this, 4);
+        this.upgradeSlot = new InventoryUpgrade(this, 4);
         this.defaultEnergyStorage = 40000;
         this.tier = 5;
         this.tick = 0;
@@ -93,12 +93,8 @@ public class TileManaConverter extends TileEntityInventory implements
 //        this.mn = true;
         this.defaultManaStorage = 400000;
         this.transferSpeed = 1000;
-        if (!Config.allowEfToManaConversion) {
-            mn = false;
-        }
-        else if (!Config.allowManaToEfConversion) {
-            mn = true;
-        }
+        if (!Config.allowEfToManaConversion) { mn = false; }
+        else if (!Config.allowManaToEfConversion) { mn = true; }
     }
     public IMultiTileBlock getTeBlock() {
         return BlockManaConverter.mana_converter;
@@ -156,8 +152,7 @@ public class TileManaConverter extends TileEntityInventory implements
 
 
     @Override
-    public void attachSpark(ISparkEntity arg0) {
-    }
+    public void attachSpark(ISparkEntity arg0) {}
 
     @Override
     public boolean canAttachSpark(ItemStack arg0) {
@@ -410,7 +405,7 @@ private static final BlockPos[] POOL_LOCATIONS = {
                             mana -= move;
                         }
                     }
-                    // Botaniverse pool
+                    // Botanicadds pool
                     if (Constants.BADD_LOADED && te instanceof TileDreamingPool) {
                         TileDreamingPool  p = (TileDreamingPool ) te;
                         int want  = Math.min(speed, mana);
@@ -437,11 +432,7 @@ private static final BlockPos[] POOL_LOCATIONS = {
         this.mana = Math.min(this.mana, this.manaCap);
     }
 
-    protected boolean shouldEmitEnergy() {
-
-        return !this.mn;
-
-    }
+    protected boolean shouldEmitEnergy() { return !this.mn; }
 
     public int extractEnergy(int paramInt, boolean paramBoolean) {
         int i = (int) Math.min(this.mana, paramInt);
