@@ -140,6 +140,9 @@ public final class Config {
     public static int NeutronModifier_maxCount = 1;
 
     public static boolean itemSpecialArmorMixins;
+    public static boolean FluxNetworksMixins;
+    public static int coefficientEfToRf;
+    public static int coefficientQeToRf;
 
     public static void loadNormalConfig(final File configFile) {
         Core.LOGGER.info("Loading IUA Config from " + configFile.getAbsolutePath());
@@ -296,6 +299,16 @@ public final class Config {
             NeutronModifier_maxCount       = (byte) config.get("Upgrade Modules Mixins", "Neutron ingots max count (def:1)",    2).getInt(2);
 
             itemSpecialArmorMixins         = config.getBoolean("ItemSpecialArmor Mixins", "ItemSpecialArmor Mixins",true, "");
+
+            FluxNetworksMixins             = config.getBoolean("Flux Networks Mixins", "Flux Networks Mixins", true, "Enable IU EF energy integration with Flux Networks");
+            coefficientEfToRf              = config.get("Flux Networks Mixins", "coefficient ef to rf", 4, "EF to RF conversion ratio (1 EF = N RF)").getInt(4);
+            if (coefficientEfToRf < 1) {
+                coefficientEfToRf = 4;
+            }
+            coefficientQeToRf              = config.get("Flux Networks Mixins", "coefficient qe to rf", 64, "QE to RF conversion ratio (1 QE = N RF)").getInt(64);
+            if (coefficientQeToRf < 1) {
+                coefficientQeToRf = 64;
+            }
         } catch (Exception e) {
             Core.LOGGER.fatal("Fatal error reading config file.", e);
             throw new RuntimeException(e);

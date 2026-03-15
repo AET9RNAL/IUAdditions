@@ -22,6 +22,7 @@ public class IUAMixinCore implements IFMLLoadingPlugin, ILateMixinLoader {
     public static final String CFG_KATANA          = "mixins.iuadditions.katana.json";
     public static final String CFG_UPGRADEMODULES  = "mixins.iuadditions.upgrademodules.json";
     public static final String CFG_DE_SPEC_ARMOR   = "mixins.iuadditions.draconicevolution.itemspecialarmor.json";
+    public static final String CFG_FLUXNETWORKS    = "mixins.iuadditions.fluxnetworks.json";
 
     // Map of mixin-config -> condition supplier (mod present + toggle)
     private static final Map<String, BooleanSupplier> MIXIN_CONFIGS = new LinkedHashMap<>();
@@ -35,6 +36,7 @@ public class IUAMixinCore implements IFMLLoadingPlugin, ILateMixinLoader {
         addModdedMixinCFG(CFG_KATANA,         "industrialupgrade", () -> Config.KatanaMixins);
         addModdedMixinCFG(CFG_UPGRADEMODULES, "industrialupgrade", () -> Config.UpgradeModulesMixins);
         addModdedMixinCFG(CFG_DE_SPEC_ARMOR,  "draconicevolution",  () -> Config.itemSpecialArmorMixins);
+        addModdedMixinCFG(CFG_FLUXNETWORKS,   "fluxnetworks",       () -> Config.FluxNetworksMixins);
     }
 
     // --- ILateMixinLoader ---
