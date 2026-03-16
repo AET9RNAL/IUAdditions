@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Read(//d/1.12.2/Flux-Networks-1.12.2-refactored/src/main/java/sonar/fluxnetworks/**)",
+      "Bash(jar tf:*)",
+      "Bash(python3 -c \"import zipfile; z=zipfile.ZipFile\\(''c:/Users/maksg/Documents/GitHub/IUAdditions/libs/IndustrialUpgrade-3.3.0.10-sources.jar''\\); [print\\(n\\) for n in z.namelist\\(\\) if ''energy'' in n.lower\\(\\)]\")",
+      "Bash(python -c \"import zipfile; z=zipfile.ZipFile\\(''c:/Users/maksg/Documents/GitHub/IUAdditions/libs/IndustrialUpgrade-3.3.0.10-sources.jar''\\); [print\\(n\\) for n in z.namelist\\(\\) if ''energy'' in n.lower\\(\\)]\")",
+      "Bash(unzip:*)"
+    ]
+  }
+}
