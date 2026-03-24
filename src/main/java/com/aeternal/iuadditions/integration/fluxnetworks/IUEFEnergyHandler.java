@@ -38,6 +38,10 @@ public class IUEFEnergyHandler implements ITileEnergyHandler {
 
     private IUEFEnergyHandler() {}
 
+    /**
+     * Find the Energy component on an IU tile entity via cached reflection.
+     * IU tiles store their Energy component as a public field.
+     */
     private static Energy getEnergyComponent(TileEntity tile) {
         Optional<Field> opt = ENERGY_FIELD_CACHE.computeIfAbsent(tile.getClass(), clazz -> {
             for (Field f : clazz.getFields()) {
@@ -56,6 +60,10 @@ public class IUEFEnergyHandler implements ITileEnergyHandler {
         }
     }
 
+    /**
+     * Find the IEnergySink for a tile - checks direct implementation first,
+     * then falls back to the Energy component delegate.
+     */
     public static IEnergySink findSink(TileEntity tile) {
         if (tile instanceof IEnergySink) return (IEnergySink) tile;
         Energy energy = getEnergyComponent(tile);
@@ -65,6 +73,10 @@ public class IUEFEnergyHandler implements ITileEnergyHandler {
         return null;
     }
 
+    /**
+     * Find the IEnergySource for a tile - checks direct implementation first,
+     * then falls back to the Energy component delegate.
+     */
     public static IEnergySource findSource(TileEntity tile) {
         if (tile instanceof IEnergySource) return (IEnergySource) tile;
         Energy energy = getEnergyComponent(tile);
