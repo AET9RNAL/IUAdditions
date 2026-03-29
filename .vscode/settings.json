@@ -1,0 +1,40 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.import.gradle.enabled": true,
+    "java.import.gradle.wrapper.enabled": true,
+    "java.import.gradle.offline.enabled": false,
+    "java.project.sourcePaths": [
+        "src/main/java",
+        "src/generated/resources"
+    ],
+    "java.project.outputPath": "bin",
+    "java.completion.importOrder": [
+        "com.aeternal",
+        "net.minecraft",
+        "net.minecraftforge",
+        "com",
+        "org",
+        "java",
+        "javax",
+        ""
+    ],
+    "java.sources.organizeImports.staticStarThreshold": 3,
+    "java.sources.organizeImports.starThreshold": 5,
+    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx2G -Xms100m",
+    "files.exclude": {
+        "**/.gradle": true,
+        "**/build": true,
+        "**/bin": true,
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/*.class": true,
+        "**/run": true
+    },
+    "search.exclude": {
+        "**/build": true,
+        "**/bin": true,
+        "**/.gradle": true,
+        "**/run": true
+    }
+}
