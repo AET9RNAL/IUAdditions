@@ -1,9 +1,9 @@
-package com.aeternal.iuadditions.integration.divinerpg.render;
+package com.aeternal.iuadditions.render;
 
 import com.aeternal.iuadditions.Constants;
-import com.aeternal.iuadditions.integration.divinerpg.tile.TileEdenSolarPanel;
 import com.denfop.render.panel.DataPollution;
 import com.denfop.render.panel.PollutionModel;
+import com.denfop.tiles.panels.entity.TileSolarPanel;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
@@ -13,16 +13,17 @@ import javax.annotation.Nonnull;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TileEntityEdenSolarPanelRender<T extends TileEdenSolarPanel> extends TileEntitySpecialRenderer<T> {
+public class GenericSolarPanelRenderer<T extends TileSolarPanel> extends TileEntitySpecialRenderer<T> {
 
-    public static final ResourceLocation texture = new ResourceLocation(
+    private static final ResourceLocation TEXTURE = new ResourceLocation(
             Constants.MOD_ID,
             "textures/models/pollution.png"
     );
-    private Map<BlockPos, DataPollution> entries = new HashMap<>();
+    private final Map<BlockPos, DataPollution> entries = new HashMap<>();
 
+    @Override
     public void render(
-            @Nonnull TileEdenSolarPanel te,
+            @Nonnull T te,
             double x,
             double y,
             double z,
@@ -30,28 +31,25 @@ public class TileEntityEdenSolarPanelRender<T extends TileEdenSolarPanel> extend
             int destroyStage,
             float alpha
     ) {
-
-
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, z);
-        this.bindTexture(texture);
+        this.bindTexture(TEXTURE);
+
         DataPollution dataPollution = entries.get(te.getBlockPos());
-        if(dataPollution == null){
-            dataPollution = new DataPollution(te.timer.getIndexWork(), new PollutionModel(te.getWorld().rand,
-                    te.timer.getIndexWork()));
-            entries.put(te.getBlockPos(),dataPollution);
+        if (dataPollution == null) {
+            dataPollution = new DataPollution(te.timer.getIndexWork(),
+                    new PollutionModel(te.getWorld().rand, te.timer.getIndexWork()));
+            entries.put(te.getBlockPos(), dataPollution);
         }
 
-        if(dataPollution.getIndex() != te.timer.getIndexWork()){
-            dataPollution.setIndex( te.timer.getIndexWork());
+        if (dataPollution.getIndex() != te.timer.getIndexWork()) {
+            dataPollution.setIndex(te.timer.getIndexWork());
             dataPollution.setModel(null);
         }
-        if(dataPollution.getModel() == null){
-            dataPollution.setModel(new PollutionModel(te.getWorld().rand,
-                    te.timer.getIndexWork()));
+        if (dataPollution.getModel() == null) {
+            dataPollution.setModel(new PollutionModel(te.getWorld().rand, te.timer.getIndexWork()));
         }
         dataPollution.getModel().render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 1F);
         GlStateManager.popMatrix();
-
     }
 }

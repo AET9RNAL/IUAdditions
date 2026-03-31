@@ -16,9 +16,6 @@ public final class BaseUpgradeSystemApplier {
 
     /**
      * Apply values from Config right after it’s loaded (e.g., in preInit).
-     * @param coreMax    desired max for core modifier; clamped to >= 1
-     * @param neutronMax desired max for neutronium modifier; clamped to >= 1
-     * @param debug      Config.DebugEnum
      */
     public static void applyFromConfig(int coreMax, int neutronMax, boolean debug) {
         CORE_MAX = Math.max(1, coreMax);

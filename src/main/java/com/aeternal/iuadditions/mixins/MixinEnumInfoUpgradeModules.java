@@ -31,7 +31,6 @@ public abstract class MixinEnumInfoUpgradeModules {
 
     /**
      * Maps each enum constant to Config.Module<NAME>maxCount.
-     * If a config value looks invalid (<=0), we fall back to the original value to avoid breaking gameplay.
      */
     private static int iuadditions$getConfiguredMax(EnumInfoUpgradeModules m, int original) {
         int v;
@@ -61,25 +60,18 @@ public abstract class MixinEnumInfoUpgradeModules {
             case LAPPACK_ENERGY:   v = Config.ModuleLAPPACK_ENERGYmaxCount; break;
             default:               v = original; // untouched modules
         }
-        // Allow zero to "disable" only if you really want that; otherwise keep original as fallback.
         return (v > 0) ? v : original;
     }
 
-    // === IUAdditions: enum extension support ===
+
     @Shadow @Final @Mutable
     private static EnumInfoUpgradeModules[] $VALUES;
 
-    /**
-     * Invoker for the (String name, int ordinal, int max, String displayName, Integer... extra) enum constructor.
-     */
     @Invoker("<init>")
     private static EnumInfoUpgradeModules iuadditions$invokeInit(String enumName, int ordinal, int max, String displayName, Integer[] extra) {
         throw new AssertionError();
     }
 
-    /**
-     * Invoker for the (String name, int ordinal, int max, String displayName) enum constructor.
-     */
     @Invoker("<init>")
     private static EnumInfoUpgradeModules iuadditions$invokeInitNoExtra(String enumName, int ordinal, int max, String displayName) {
         throw new AssertionError();

@@ -21,14 +21,6 @@ import java.util.List;
 
 /**
  * Active IU energy pulling for Flux Plugs (EF + QE).
- * <p>
- * Injected at the END of {@code FluxNetworkServer.onEndServerTick()}, after
- * {@code bufferLimiter} has been fully accumulated from all connectors' {@code getRequest()}.
- * At this point {@code receiveFromSupplier()} correctly throttles intake based on
- * actual network demand — matching the timing of FE/IC2 energy push.
- * <p>
- * Energy pulled here sits in the plug buffer and gets distributed to points
- * at the start of the next cycle's transfer loop.
  */
 @Mixin(value = FluxNetworkServer.class, remap = false)
 public class MixinFluxNetworkServer {

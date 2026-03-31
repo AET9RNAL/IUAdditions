@@ -33,16 +33,10 @@ public class IUQEEnergyHandler implements ITileEnergyHandler {
     public static final IUQEEnergyHandler INSTANCE = new IUQEEnergyHandler();
     private static final Logger LOGGER = LogManager.getLogger("IUAdditions/FN-QE");
 
-    // Cache per tile class: list of ComponentBaseEnergy fields (may include non-QUANTUM types)
     private static final Map<Class<?>, List<Field>> CBE_FIELD_CACHE = new HashMap<>();
 
     private IUQEEnergyHandler() {}
 
-    /**
-     * Find the ComponentBaseEnergy with EnergyType.QUANTUM on an IU tile entity.
-     * A tile may have multiple ComponentBaseEnergy fields for different energy types,
-     * so we check getType() on each one.
-     */
     private static ComponentBaseEnergy getQEComponent(TileEntity tile) {
         List<Field> fields = CBE_FIELD_CACHE.computeIfAbsent(tile.getClass(), clazz -> {
             List<Field> found = new ArrayList<>();
@@ -67,9 +61,6 @@ public class IUQEEnergyHandler implements ITileEnergyHandler {
         return null;
     }
 
-    /**
-     * Find the ISink delegate for a tile's QE component.
-     */
     public static ISink findSink(TileEntity tile) {
         ComponentBaseEnergy comp = getQEComponent(tile);
         if (comp != null && comp.delegate instanceof ISink) {
@@ -78,9 +69,6 @@ public class IUQEEnergyHandler implements ITileEnergyHandler {
         return null;
     }
 
-    /**
-     * Find the ISource delegate for a tile's QE component.
-     */
     public static ISource findSource(TileEntity tile) {
         ComponentBaseEnergy comp = getQEComponent(tile);
         if (comp != null && comp.delegate instanceof ISource) {

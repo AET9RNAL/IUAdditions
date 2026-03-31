@@ -25,7 +25,7 @@ public class AnnotationProcessor {
     /**
      * Check if mod is loaded (maps friendly names to Constants fields)
      */
-    private static boolean isModLoaded(String modName) {
+    static boolean isModLoaded(String modName) {
         switch (modName.toLowerCase()) {
             case "astralsorcery": return Constants.AS_LOADED && Constants.AS_CONFIRM;
             case "divinerpg": return Constants.DIV_LOADED && Constants.DIV_CONFIRM;

@@ -64,24 +64,3 @@ public class DivinerpgIntegration {
 }
 
 
-
-
-/*public static void addcompressor(ItemStack input, ItemStack output) {
-
-        final IInputHandler input1 = Recipes.inputFactory;
-        com.denfop.api.Recipes.recipes.addRecipe(
-                "compressor",
-                new BaseMachineRecipe(
-                        new Input(
-                                input1.getInput(input)
-                        ),
-                        new RecipeOutput(null, output)
-                )
-        );
-
-
-    }
-
-
-}*/
-

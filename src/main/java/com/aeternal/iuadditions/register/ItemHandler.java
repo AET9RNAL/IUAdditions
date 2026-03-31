@@ -17,7 +17,7 @@ public class ItemHandler {
 
     public static void init() {
 
-        if(Constants.FO_LOADED && Constants.FO_CONFIRM) {
+        if(Constants.isActive("forestry")) {
             IUAItem.compressedHoneycomb = new CompressedHoneyComb();
             IUAItem.honeyCrystal = new HoneyCrystal();
             IUAItem.honeyPlate = new HoneyPlate();
@@ -25,11 +25,11 @@ public class ItemHandler {
             IUAItem.refractive = new Refractive();
             ForestryIntegration.init();
         }
-        if (Constants.AS_LOADED && Constants.AS_CONFIRM) {
+        if (Constants.isActive("astralsorcery")) {
             IUAItem.astralElements = new AstralCraftingElements();
             AstralSorceryIntegration.init();
         }
-        if (Constants.DIV_LOADED && Constants.DIV_CONFIRM) {
+        if (Constants.isActive("divinerpg")) {
             IUAItem.divItems = new DivItems();
             DivinerpgIntegration.init();
         }

@@ -21,15 +21,6 @@ import java.util.Map;
 
 /**
  * Active QE energy pulling for Flux Plugs.
- * <p>
- * IU QE sources don't push energy into FN plugs (IU's QE network is separate).
- * mixin scans adjacent tiles for IU {@link ISource}s (via QE ComponentBaseEnergy
- * delegates) during {@code onCycleStart()} and adds extracted energy directly to
- * the plug's buffer.
- * <p>
- * bypass {@code receiveFromSupplier()} because FN resets {@code bufferLimiter}
- * to 0 before calling {@code onCycleStart()}, making {@code receiveFromSupplier()}
- * always return 0 at this point in the cycle.
  */
 @Mixin(value = FluxPlugHandler.class, remap = false)
 public abstract class MixinFluxPlugHandlerQE extends BasicTransferHandler {

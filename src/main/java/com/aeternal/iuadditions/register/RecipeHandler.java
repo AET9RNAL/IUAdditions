@@ -12,13 +12,13 @@ public class RecipeHandler {
 
     public static void init() {
 
-        if (Constants.AS_LOADED && Constants.AS_CONFIRM) {
+        if (Constants.isActive("astralsorcery")) {
             ASRecipes.init();
         }
-        if (Constants.DIV_LOADED && Constants.DIV_CONFIRM) {
+        if (Constants.isActive("divinerpg")) {
             DIVRecipes.init();
         }
-        if (Constants.FO_LOADED && Constants.EXBEES_LOADED && Constants.FO_CONFIRM) {
+        if (Constants.isActive("forestry") && Constants.isActive("extrabees")) {
             ForestryRecipes.init();
         }
         if (Constants.DE_LOADED && Constants.DE_CONFIRM && Config.itemSpecialArmorMixins && Config.UpgradeModulesMixins) {

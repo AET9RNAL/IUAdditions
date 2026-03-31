@@ -7,7 +7,7 @@ public class Constants {
 
     public static final String MOD_ID = "iuadditions";
     public static final String MOD_NAME = "IU:Additions";
-    public static final String MOD_VERSION = "1.6.1";
+    public static final String MOD_VERSION = "1.6.2";
     public static final String MOD_DEPS = "required-after:industrialupgrade;after:astralsorcery;after:forestry;" +
             "after:divinerpg;after:botania;after:draconicevolution;after:fluxnetworks";
 
@@ -32,4 +32,26 @@ public class Constants {
     public static final boolean AS_CONFIRM = Config.AstralConfirmed;
     public static final boolean DIV_CONFIRM = Config.DivineConfirmed;
     public static final boolean FO_CONFIRM = Config.ForestryConfirmed;
+
+    public static boolean isActive(String modId) {
+        switch (modId.toLowerCase()) {
+            case "astralsorcery":       return AS_LOADED && AS_CONFIRM;
+            case "divinerpg":           return DIV_LOADED && DIV_CONFIRM;
+            case "forestry":            return FO_LOADED && FO_CONFIRM;
+            case "draconicevolution":   return DE_LOADED && DE_CONFIRM;
+            case "botania":             return BA_LOADED && BA_CONFIRM;
+            case "powerutils":          return PU_LOADED;
+            case "avaritia":            return AVA_LOADED;
+            case "appliedenergistics2": return AE2_LOADED;
+            case "botaniverse":         return BV_LOADED;
+            case "biomesoplenty":       return BOP_LOADED;
+            case "botanicadds":         return BADD_LOADED;
+            case "extrabotany":         return EB_LOADED;
+            case "astraladditions":     return ASA_LOADED;
+            case "extrabees":           return EXBEES_LOADED;
+            case "thermalexpansion":    return TE_LOADED;
+            case "fluxnetworks":        return FN_LOADED;
+            default:                    return L(modId);
+        }
+    }
 }

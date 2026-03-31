@@ -6,14 +6,12 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Data-only enum describing additional upgrade modules to append to
- * com.denfop.items.EnumInfoUpgradeModules via Mixin patching.
- *
- * Mirror the target's shape: (int max, String displayName, Integer... extra).
+ * Appends to com.denfop.items.EnumInfoUpgradeModules via Mixin patching.
+ * 
+ * Mirrors the target's shape: (int max, String displayName, Integer... extra).
  *
  */
 public enum EnumSpecialUpgradeModules {
-    // TODO: add your entries here
     ENERGY_SHIELD(4,"energy_shield")
     ;
 

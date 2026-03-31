@@ -1,6 +1,7 @@
 package com.aeternal.iuadditions;
 
 
+//import com.aeternal.iuadditions.api.annotation.processor.AnnotationRegistryProcessor;
 import com.aeternal.iuadditions.hooks.BaseUpgradeSystemApplier;
 import com.aeternal.iuadditions.hooks.KatanaApplier;
 import com.aeternal.iuadditions.integration.divinerpg.DivinerpgIntegration;
@@ -75,28 +76,28 @@ public final class Core {
         Config.loadNormalConfig(event.getSuggestedConfigurationFile());
 
         proxy.preInit(event);
-        if(Constants.DE_LOADED && Constants.DE_CONFIRM && Constants.PU_LOADED) {
+        if(Constants.isActive("draconicevolution") && Constants.isActive("powerutils")) {
             itemSpectralPowerConverter = TileBlockCreator.instance.create(BlockSpectralConverter.class);
             itemSpectralQEConverter = TileBlockCreator.instance.create(BlockSpectralQEConverter.class);
         }
-        if(Constants.BA_LOADED && Constants.BA_CONFIRM && Constants.PU_LOADED) {
+        if(Constants.isActive("botania") && Constants.isActive("powerutils")) {
             itemManaConverter = TileBlockCreator.instance.create(BlockManaConverter.class);
         }
         if (event.getSide() == Side.CLIENT) {
-            if(Constants.AS_LOADED && Constants.AS_CONFIRM) {
+            if(Constants.isActive("astralsorcery")) {
                 blockASSolarPanel.registerModels();
             }
-            if(Constants.DIV_LOADED && Constants.DIV_CONFIRM) {
+            if(Constants.isActive("divinerpg")) {
                 blockDivineSolarPanel.registerModels();
             }
-            if(Constants.FO_LOADED && Constants.FO_CONFIRM) {
+            if(Constants.isActive("forestry")) {
                 blockForestrySolarPanel.registerModels();
             }
-            if(Constants.DE_LOADED && Constants.DE_CONFIRM && Constants.PU_LOADED) {
+            if(Constants.isActive("draconicevolution") && Constants.isActive("powerutils")) {
                 itemSpectralPowerConverter.registerModels();
                 itemSpectralQEConverter.registerModels();
             }
-            if(Constants.BA_LOADED && Constants.BA_CONFIRM && Constants.PU_LOADED) {
+            if(Constants.isActive("botania") && Constants.isActive("powerutils")) {
                 itemManaConverter.registerModels();
             }
 
@@ -105,6 +106,7 @@ public final class Core {
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
+//        AnnotationRegistryProcessor.registerOreDict();
         registerOreDict();
     }
 
@@ -133,15 +135,24 @@ public final class Core {
     }
 
     public static void registerOreDict() {
+        if (Constants.isActive("divinerpg")) {
+            registerOres(
+                "ingotShadowPhotonium", DivinerpgIntegration.ingot_shadowphotonium,
+                "ingotDemonic", DivinerpgIntegration.ingot_moltendemon,
+                "ingotCelestial", DivinerpgIntegration.ingot_celestial,
+                "ingotHades", DivinerpgIntegration.ingot_hades,
+                "ingotHarmonite", DivinerpgIntegration.ingot_harmonite,
+                "ingotNucleoArlemite", DivinerpgIntegration.ingot_nucleoarlemite,
+                "ingotVoidweave", DivinerpgIntegration.ingot_voidweave
+            );
+        }
+    }
 
-        if (Constants.DIV_LOADED && Constants.DIV_CONFIRM) {
-            OreDictionary.registerOre("ingotShadowPhotonium", new ItemStack(DivinerpgIntegration.ingot_shadowphotonium, 1));
-            OreDictionary.registerOre("ingotDemonic", new ItemStack(DivinerpgIntegration.ingot_moltendemon, 1));
-            OreDictionary.registerOre("ingotCelestial", new ItemStack(DivinerpgIntegration.ingot_celestial, 1));
-            OreDictionary.registerOre("ingotHades", new ItemStack(DivinerpgIntegration.ingot_hades, 1));
-            OreDictionary.registerOre("ingotHarmonite", new ItemStack(DivinerpgIntegration.ingot_harmonite, 1));
-            OreDictionary.registerOre("ingotNucleoArlemite", new ItemStack(DivinerpgIntegration.ingot_nucleoarlemite, 1));
-            OreDictionary.registerOre("ingotVoidweave", new ItemStack(DivinerpgIntegration.ingot_voidweave, 1));
+    private static void registerOres(Object... pairs) {
+        for (int i = 0; i < pairs.length; i += 2) {
+            String oreName = (String) pairs[i];
+            Item item = (Item) pairs[i + 1];
+            OreDictionary.registerOre(oreName, new ItemStack(item, 1));
         }
     }
 }

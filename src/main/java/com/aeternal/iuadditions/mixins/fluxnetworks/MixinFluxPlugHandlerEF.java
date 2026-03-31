@@ -21,13 +21,6 @@ import java.util.Map;
 
 /**
  * Active EF energy pulling for Flux Plugs.
- * <p>
- *  mixin scans adjacent tiles for IU {@link IEnergySource}s during
- * {@code onCycleStart()} and adds extracted energy directly to the plug's buffer.
- * <p>
- * Bypass {@code receiveFromSupplier()} because FN resets {@code bufferLimiter}
- * to 0 before calling {@code onCycleStart()}, making {@code receiveFromSupplier()}
- * always return 0 at this point in the cycle.
  */
 @Mixin(value = FluxPlugHandler.class, remap = false)
 public abstract class MixinFluxPlugHandlerEF extends BasicTransferHandler {
