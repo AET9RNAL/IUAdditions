@@ -1,0 +1,166 @@
+package com.aeternal.iuadditions.recipe;
+
+import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
+public class InputOreDict implements IInputItemStack {
+
+    public final Integer meta;
+    private final TagKey<Item> tag;
+    private final List<ItemStack> ores;
+    public int amount;
+
+    public InputOreDict(String input) {
+        this(input.toLowerCase(), 1);
+    }
+
+    public InputOreDict(String input, int amount) {
+        this(input.toLowerCase(), amount, 0);
+    }
+
+    public InputOreDict(CompoundTag tagCompound) {
+        this.amount = tagCompound.getInt("Amount");
+        this.meta = tagCompound.contains("Meta") ? tagCompound.getInt("Meta") : 0;
+        this.tag = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(), new ResourceLocation(tagCompound.getString("ItemTag")));
+        
+        this.ores = new ArrayList<>();
+        ListTag list = tagCompound.getList("Ores", Tag.TAG_COMPOUND);
+        for (int i = 0; i < list.size(); i++) {
+            ores.add(ItemStack.of(list.getCompound(i)));
+        }
+    }
+
+    public InputOreDict(String input, int amount, Integer meta) {
+        ResourceLocation input1 = new ResourceLocation(input.toLowerCase());
+        this.amount = amount;
+        this.meta = meta;
+        this.tag = ItemTags.create(input1);
+        ores = new ArrayList<>();
+        Iterable<Holder<Item>> holder = Registry.ITEM.getTagOrEmpty(this.tag);
+        holder.forEach(itemHolder -> ores.add(new ItemStack(itemHolder)));
+        for (ItemStack stack : ores) {
+            stack.setCount(this.getAmount());
+        }
+    }
+
+    public InputOreDict(TagKey<Item> tag, int amount) {
+        this.amount = amount;
+        this.meta = 0;
+        this.tag = tag;
+        ores = new ArrayList<>();
+        Registry.ITEM.getTagOrEmpty(this.tag).forEach(itemHolder -> ores.add(new ItemStack(itemHolder)));
+        for (ItemStack stack : ores) {
+            stack.setCount(this.getAmount());
+        }
+    }
+
+    public InputOreDict(int amount, TagKey<Item> tag) {
+        this(tag, amount);
+    }
+
+    public InputOreDict(FriendlyByteBuf buffer) {
+        this(buffer.readInt(), TagKey.create(Registry.ITEM_REGISTRY, buffer.readResourceLocation()));
+    }
+
+    public static ItemStack setSize(ItemStack stack, int col) {
+        stack = stack.copy();
+        stack.setCount(col);
+        return stack;
+    }
+
+    @Override
+    public CompoundTag writeNBT() {
+        CompoundTag tagCompound = new CompoundTag();
+        tagCompound.putByte("id", (byte) 1);
+        tagCompound.putInt("Amount", amount);
+
+        if (meta != null) {
+            tagCompound.putInt("Meta", meta);
+        }
+
+        if (tag != null) {
+            tagCompound.putString("ItemTag", tag.location().toString());
+        }
+
+        ListTag list = new ListTag();
+        for (ItemStack stack : ores) {
+            list.add(stack.save(new CompoundTag()));
+        }
+        tagCompound.put("Ores", list);
+
+        return tagCompound;
+    }
+
+    @Override
+    public void growAmount(final int col) {
+        amount += col;
+        for (ItemStack stack : getOres()) {
+            stack.setCount(this.getAmount());
+        }
+    }
+
+    public boolean matches(ItemStack subject) {
+        return subject.is(tag);
+    }
+
+    @Override
+    public void toNetwork(FriendlyByteBuf buffer) {
+        buffer.writeInt(1);
+        buffer.writeInt(amount);
+        buffer.writeResourceLocation(this.tag.location());
+    }
+
+    public int getAmount() {
+        return this.amount;
+    }
+
+    public List<ItemStack> getInputs() {
+        List<ItemStack> oresList = this.getOres();
+        boolean allSuitableEntries = oresList.stream().allMatch(stack -> stack.getCount() == this.getAmount());
+
+        if (allSuitableEntries) {
+            return oresList;
+        } else {
+            return oresList.stream()
+                    .filter(stack -> !stack.isEmpty())
+                    .map(stack -> stack.getCount() == this.getAmount() ? stack : setSize(stack, this.getAmount()))
+                    .collect(Collectors.toList());
+        }
+    }
+
+    @Override
+    public boolean hasTag() {
+        return true;
+    }
+
+    @Override
+    public TagKey<Item> getTag() {
+        return this.tag;
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        InputOreDict other = (InputOreDict) obj;
+        return amount == other.amount && Objects.equals(meta, other.meta) && tag.equals(other.tag);
+    }
+
+    private List<ItemStack> getOres() {
+        return this.ores;
+    }
+}
